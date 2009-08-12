@@ -1,0 +1,46 @@
+#!/bin/sh
+
+GET=wget
+GET_MV_OPT=-O
+
+MR_HEAD="http://git.kitenet.net/?p=mr.git;a=blob;f=mr;hb=HEAD"
+
+
+# vim scripts that supply no license
+
+# ctab.vim - Smart Tabs for Vim
+# http://www.vim.org/scripts/script.php?script_id=231
+# version: 2.1
+CTAB_VIM="http://www.vim.org/scripts/download_script.php?src_id=10726"
+
+
+TOPDIR="`dirname ${0}`/.."
+
+if [ ! -x "`which git`" ] ; then
+	echo "git not found, aborting."
+	exit 1
+fi
+
+PERL=`which perl`
+if [ ! -x "${PERL}" ] ; then
+	echo "perl not found, aborting."
+	exit 1
+fi
+
+MR=`which mr`
+if [ ! -x "${MR}" ] ; then
+	cd "${TOPDIR}/bin"
+	"${GET}" "${MR_HEAD}"
+
+	MR="bin/mr"
+fi
+
+cd "${TOPDIR}"
+"${MR}" checkout
+
+[ -d "${TOPDIR}/plugins" ] || mkdir "${TOPDIR}/plugins"
+cd "${TOPDIR}/plugins"
+"${GET}" "${CTAB_VIM}" "${GET_MV_OPT}" ctab.vim
+
+
+echo "Done."
