@@ -41,6 +41,47 @@ set fileencoding=utf-8
 " n...   name of the viminfo file
 set viminfo='30,\"50,%,n~/.viminfo
 
+
+" statusline {{{2
+"-------------------------------------------------------------------------------
+
+" always show status line
+set laststatus=2
+
+
+" custom statusline format
+set statusline=
+
+" show buffer number first with width always 3
+" %-0{minwid}.{maxwid}{item}
+set statusline+=%-3.3n\      " trailing whitespace
+
+" truncate at start
+set statusline+=%<
+
+" filename
+set statusline+=%f\          " trailing whitespace
+
+" status flags
+set statusline+=%h%m%r
+
+" show filetype
+set statusline+=\[%{strlen(&filetype)?&filetype:'none'}]
+
+" separation point; following fields are right aligned
+set statusline+=%=
+
+" show byte value under cursor in hex
+set statusline+=0x%-8B\ \  " trailing whitespace
+
+" show line, column and virtual column number
+set statusline+=%-14.(%l,%c%V%)
+
+" position in file
+set statusline+=%P
+
+
+"-------------------------------------------------------------------------------
 "===============================================================================
 
 " Text Formatting {{{1
