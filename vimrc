@@ -33,6 +33,14 @@ endif
 " Unicode encoding
 set fileencoding=utf-8
 
+
+" viminfo
+" '30    store viminfo for the last 30 files previously edited
+" \"50   maximum number of lines saved for each register
+" %      restore buffer list if vim is not started with a filename argument
+" n...   name of the viminfo file
+set viminfo='30,\"50,%,n~/.viminfo
+
 "===============================================================================
 
 " Text Formatting {{{1
