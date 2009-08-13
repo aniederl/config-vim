@@ -7,8 +7,8 @@ scriptencoding utf-8
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " include gentoo specific gvimrc (with sane defaults) if available {{{1
-if filereadable($ETC_VIM/'gvimrc.gentoo')
-  source $ETC_VIM/'gvimrc.gentoo'
+if filereadable(expand("$ETC_VIM/gvimrc.gentoo"))
+  source $ETC_VIM/gvimrc.gentoo
 endif
 
 " Basic Settings {{{1

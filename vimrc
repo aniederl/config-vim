@@ -9,8 +9,8 @@ scriptencoding utf-8
 
 " include gentoo specific vimrc (with sane defaults) if available {{{1
 let $ETC_VIM = '/etc/vim'
-if filereadable($ETC_VIM/'vimrc.gentoo')
-  source $ETC_VIM/'vimrc.gentoo'
+if filereadable(expand("$ETC_VIM/vimrc.gentoo"))
+  source $ETC_VIM/vimrc.gentoo
 endif
 
 
