@@ -39,7 +39,7 @@ cd "${TOPDIR}"
 "${MR}" checkout
 
 [ -d "${TOPDIR}/plugins" ] || mkdir "${TOPDIR}/plugins"
-cd "${TOPDIR}/plugins"
+cd "${TOPDIR}/plugins/plugin"
 "${GET}" "${CTAB_VIM}" "${GET_MV_OPT}" ctab.vim
 
 
