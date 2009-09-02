@@ -342,6 +342,9 @@ au BufEnter *.hs set tabstop=4
 " differently name slrnrc
 au BufNewFile,BufRead slrnrc   setf slrnrc
 
+" ProVerif
+au BufEnter *.pv setf ocaml
+
 endif " has("autocmd")
 "===============================================================================
 
