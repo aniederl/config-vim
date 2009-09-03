@@ -185,8 +185,12 @@ set hlsearch
 " Menues {{{1
 "===============================================================================
 
-" nice menu with completions
+" nice completion menu
 set wildmenu
+
+" complete longest first while showing all completions, then enter completion
+" menu
+set wildmode=longest:full,full
 
 " ignore for wild completion
 set wildignore=.svn,CVS,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif
