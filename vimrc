@@ -341,6 +341,7 @@ au BufNewFile,BufRead *vimperatorrc setf vim
 let g:haddock_browser="/usr/bin/w3m"
 au BufNewFile,BufRead *.hs compiler ghc
 au BufNewFile,BufRead *.hs set ts=4 sw=4
+au BufNewFile,BufRead *.hs set expandtab
 
 
 " differently name slrnrc
