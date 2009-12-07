@@ -313,41 +313,41 @@ if has("autocmd")
 
 
 " Gentoo file types
-au BufEnter *.eblit setf ebuild
+au BufNewFile,BufRead *.eblit setf ebuild
 
-au BufEnter /etc/portage/env/* setf ebuild
-au BufEnter /etc/portage/bashrc.d/* setf ebuild
+au BufNewFile,BufRead /etc/portage/env/* setf ebuild
+au BufNewFile,BufRead /etc/portage/bashrc.d/* setf ebuild
 
 
 " Always use tabs for indenting XML stuff
-au BufEnter *.\(xml\|xsl\) set noexpandtab
+au BufNewFile,BufRead *.\(xml\|xsl\) set noexpandtab
 
-au BufEnter xorg.conf set foldmethod=syntax
+au BufNewFile,BufRead xorg.conf set foldmethod=syntax
 
 " re-source vimrc when written
 au BufWritePost ~/.vimrc :source ~/.vimrc
 
 " remind
-au BufEnter *.rem   setf remind
-au BufEnter *.rem   set textwidth=0
+au BufNewFile,BufRead *.rem   setf remind
+au BufNewFile,BufRead *.rem   set textwidth=0
 
 
-au BufEnter *.gp    setf gnuplot
+au BufNewFile,BufRead *.gp    setf gnuplot
 
-au BufEnter *vimperatorrc setf vim
+au BufNewFile,BufRead *vimperatorrc setf vim
 
 
 " Haskell
 let g:haddock_browser="/usr/bin/w3m"
-au BufEnter *.hs compiler ghc
-au BufEnter *.hs set tabstop=4
+au BufNewFile,BufRead *.hs compiler ghc
+au BufNewFile,BufRead *.hs set ts=4 sw=4
 
 
 " differently name slrnrc
 au BufNewFile,BufRead slrnrc   setf slrnrc
 
 " ProVerif
-au BufEnter *.pv setf ocaml
+au BufNewFile,BufRead *.pv setf ocaml
 
 endif " has("autocmd")
 "===============================================================================
