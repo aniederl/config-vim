@@ -350,6 +350,10 @@ au BufNewFile,BufRead slrnrc   setf slrnrc
 " ProVerif
 au BufNewFile,BufRead *.pv setf ocaml
 
+" Java
+"au BufNewFile,BufRead *.java setlocal omnifunc=javacomplete#Complete
+au BufNewFile,BufRead *.java setlocal omnifunc=javacomplete#CompleteParamsInfo
+
 endif " has("autocmd")
 "===============================================================================
 
