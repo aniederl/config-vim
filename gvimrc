@@ -29,29 +29,38 @@ set guioptions-=T
 " default font
 set guifont=DejaVu\ Sans\ Mono\ 12
 
+" always show tabline
+set showtabline=2
+
 "===============================================================================
 
 " Colors {{{1
 "===============================================================================
 
 " white on black
-highlight Normal guifg=white guibg=black
+"highlight Normal guifg=white guibg=black
 
 " green bold cursor
-highlight Cursor  guibg=Green guifg=NONE
+"highlight Cursor  guibg=Green guifg=NONE
 
 " cyan for :lmap
-highlight lCursor guibg=Cyan  guifg=NONE
+"highlight lCursor guibg=Cyan  guifg=NONE
 
 " yellow visual mode
-highlight Visual guifg=black guibg=yellow gui=none
+"highlight Visual guifg=black guibg=yellow gui=none
 
 " cyan folds
-highlight Folded guifg=black guibg=cyan
+"highlight Folded guifg=black guibg=cyan
 
 " status line colors
-highlight StatusLine   guibg=white  guifg=red
-highlight StatusLineNC guibg=yellow guifg=blue
+"highlight StatusLine   guibg=white  guifg=red
+"highlight StatusLineNC guibg=yellow guifg=blue
+
+colorscheme fruity
+
+" cursor line
+highlight CursorLine guibg=Gray20
+set cursorline
 
 "===============================================================================
 
