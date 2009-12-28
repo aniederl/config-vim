@@ -379,6 +379,21 @@ nnoremap <Leader>sl  :SessionShowLast<CR>
 
 " EasyGrep
 let g:EasyGrepRecursive = 1
+"===============================================================================
 
 " }}}1
 
+" Colors {{{1
+"===============================================================================
+
+" don't load CSApprox without gui support
+if !has('gui')
+	let g:CSApprox_verbose_level = 0
+endif
+
+colorscheme fruity256
+
+" cursor line
+set cursorline
+
+"===============================================================================
