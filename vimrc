@@ -318,6 +318,8 @@ au BufNewFile,BufRead *.eblit setf ebuild
 au BufNewFile,BufRead /etc/portage/env/* setf ebuild
 au BufNewFile,BufRead /etc/portage/bashrc.d/* setf ebuild
 
+" /var/log/*
+au BufRead /var/log/* setf messages
 
 " Always use tabs for indenting XML stuff
 au BufNewFile,BufRead *.\(xml\|xsl\) set noexpandtab
