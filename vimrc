@@ -249,6 +249,10 @@ nnoremap <silent> <F11> :QFix<CR>
 " toggle taglist window
 nnoremap <F12> :TlistToggle<CR>
 
+" navigate through quickfix buffer with main window following errors
+nnoremap <silent> <C-j> :cnext<CR>
+nnoremap <silent> <C-k> :cprevious<CR>
+
 "===============================================================================
 
 
