@@ -362,6 +362,9 @@ au BufNewFile,BufRead *.java setlocal omnifunc=javacomplete#Complete
 
 au BufNewFile,BufRead *.{md,mld,mark,markdown} set filetype=markdown
 
+let g:ikiwiki_render_filetype = "markdown"
+au BufNewFile,BufRead *.mdwn set filetype=ikiwiki
+
 endif " has("autocmd")
 "===============================================================================
 
