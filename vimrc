@@ -360,6 +360,8 @@ au BufNewFile,BufRead *.pv setf ocaml
 au BufNewFile,BufRead *.java setlocal omnifunc=javacomplete#Complete
 "au BufNewFile,BufRead *.java setlocal completefunc=javacomplete#CompleteParamsInfo
 
+au BufNewFile,BufRead *.{md,mld,mark,markdown} set filetype=markdown
+
 endif " has("autocmd")
 "===============================================================================
 
