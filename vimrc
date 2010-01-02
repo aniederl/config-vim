@@ -250,7 +250,10 @@ nnoremap <Leader>b :make<CR>:cwindow<CR>
 
 " toggle quickfix window using Vim Tip 1008
 let g:jah_Quickfix_Win_Height = 10
-nnoremap <silent> <LocalLeader>q :QFix<CR>
+nnoremap <silent> <LocalLeader>d :QFix<CR>
+
+nnoremap <silent> <LocalLeader>fn :cnext<CR>
+nnoremap <silent> <LocalLeader>fp :cprevious<CR>
 
 " toggle taglist window
 nnoremap <F12> :TlistToggle<CR>
