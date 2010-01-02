@@ -228,6 +228,9 @@ augroup END
 " Keyboard Shortcuts {{{1
 "===============================================================================
 
+let maplocalleader=','
+
+
 " navigate tabs like vimperator
 noremap <silent> <C-n> :tabnext<CR>
 noremap <silent> <C-p> :tabprev<CR>
@@ -240,7 +243,7 @@ nnoremap <F8> :set list!<CR>
 
 " pastetoogle key, enter paste mode for disabling autoindentation when
 " pasting something into vim
-set pastetoggle=<F10>
+nnoremap <silent> <LocalLeader>p :set invpaste<CR>
 
 " toggle quickfix window using Vim Tip 1008
 let g:jah_Quickfix_Win_Height = 10
