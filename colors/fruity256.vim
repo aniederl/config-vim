@@ -59,7 +59,7 @@ elseif has("gui_running") || (&t_Co == 256 && (&term ==# "xterm" || &term =~# "^
     CSAHi TabLineSel term=bold cterm=bold ctermbg=bg ctermfg=fg gui=bold guibg=bg guifg=fg
     CSAHi TabLineFill term=reverse cterm=NONE ctermbg=231 ctermfg=233 gui=reverse guibg=bg guifg=fg
     CSAHi CursorColumn term=reverse cterm=NONE ctermbg=254 ctermfg=fg gui=NONE guibg=Grey90 guifg=fg
-    CSAHi CursorLine term=underline cterm=NONE ctermbg=59 gui=NONE guibg=Gray20 guifg=fg
+    CSAHi CursorLine term=underline cterm=NONE ctermbg=59 gui=NONE guibg=Gray20 guifg=NONE
     CSAHi Cursor term=NONE cterm=NONE ctermbg=248 ctermfg=233 gui=NONE guibg=#aaaaaa guifg=bg
     CSAHi rubyIndentifier term=NONE cterm=NONE ctermbg=bg ctermfg=39 gui=NONE guibg=bg guifg=#008aff
     CSAHi ShowMarksHLuH term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
@@ -282,7 +282,7 @@ elseif has("gui_running") || (&t_Co == 256 && (&term ==# "xterm" || &term =~# "^
     CSAHi TabLineSel term=bold cterm=bold ctermbg=bg ctermfg=fg gui=bold guibg=bg guifg=fg
     CSAHi TabLineFill term=reverse cterm=NONE ctermbg=255 ctermfg=233 gui=reverse guibg=bg guifg=fg
     CSAHi CursorColumn term=reverse cterm=NONE ctermbg=254 ctermfg=fg gui=NONE guibg=Grey90 guifg=fg
-    CSAHi CursorLine term=underline cterm=NONE ctermbg=234 gui=NONE guibg=Gray20 guifg=fg
+    CSAHi CursorLine term=underline cterm=NONE ctermbg=234 gui=NONE guibg=Gray20 guifg=NONE
     CSAHi Cursor term=NONE cterm=NONE ctermbg=188 ctermfg=233 gui=NONE guibg=#aaaaaa guifg=bg
     CSAHi rubyIndentifier term=NONE cterm=NONE ctermbg=bg ctermfg=39 gui=NONE guibg=bg guifg=#008aff
     CSAHi ShowMarksHLuH term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
@@ -505,7 +505,7 @@ elseif has("gui_running") || &t_Co == 256
     CSAHi TabLineSel term=bold cterm=bold ctermbg=bg ctermfg=fg gui=bold guibg=bg guifg=fg
     CSAHi TabLineFill term=reverse cterm=NONE ctermbg=231 ctermfg=233 gui=reverse guibg=bg guifg=fg
     CSAHi CursorColumn term=reverse cterm=NONE ctermbg=254 ctermfg=fg gui=NONE guibg=Grey90 guifg=fg
-    CSAHi CursorLine term=underline cterm=NONE ctermbg=234 gui=NONE guibg=Gray20 guifg=fg
+    CSAHi CursorLine term=underline cterm=NONE ctermbg=234 gui=NONE guibg=Gray20 guifg=NONE
     CSAHi Cursor term=NONE cterm=NONE ctermbg=248 ctermfg=233 gui=NONE guibg=#aaaaaa guifg=bg
     CSAHi rubyIndentifier term=NONE cterm=NONE ctermbg=bg ctermfg=33 gui=NONE guibg=bg guifg=#008aff
     CSAHi ShowMarksHLuH term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
@@ -728,7 +728,7 @@ elseif has("gui_running") || &t_Co == 88
     CSAHi TabLineSel term=bold cterm=bold ctermbg=bg ctermfg=fg gui=bold guibg=bg guifg=fg
     CSAHi TabLineFill term=reverse cterm=NONE ctermbg=79 ctermfg=16 gui=reverse guibg=bg guifg=fg
     CSAHi CursorColumn term=reverse cterm=NONE ctermbg=87 ctermfg=fg gui=NONE guibg=Grey90 guifg=fg
-    CSAHi CursorLine term=underline cterm=NONE ctermbg=80 gui=NONE guibg=Gray20 guifg=fg
+    CSAHi CursorLine term=underline cterm=NONE ctermbg=80 gui=NONE guibg=Gray20 guifg=NONE
     CSAHi Cursor term=NONE cterm=NONE ctermbg=84 ctermfg=16 gui=NONE guibg=#aaaaaa guifg=bg
     CSAHi rubyIndentifier term=NONE cterm=NONE ctermbg=bg ctermfg=23 gui=NONE guibg=bg guifg=#008aff
     CSAHi ShowMarksHLuH term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
