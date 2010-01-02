@@ -243,11 +243,14 @@ nnoremap <F8> :set list!<CR>
 
 " pastetoogle key, enter paste mode for disabling autoindentation when
 " pasting something into vim
-nnoremap <silent> <LocalLeader>p :set invpaste<CR>
+nnoremap <silent> <Leader>p :set invpaste<CR>
+
+" build buffer and show errors
+nnoremap <Leader>b :make<CR>:cwindow<CR>
 
 " toggle quickfix window using Vim Tip 1008
 let g:jah_Quickfix_Win_Height = 10
-nnoremap <silent> <F11> :QFix<CR>
+nnoremap <silent> <LocalLeader>q :QFix<CR>
 
 " toggle taglist window
 nnoremap <F12> :TlistToggle<CR>
