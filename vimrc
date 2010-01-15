@@ -307,6 +307,8 @@ set completeopt+=longest
 " match, e.g., what file it comes from.
 set completeopt+=menuone
 
+" switch to tab with open file or open new tab (quickfix)
+set switchbuf=usetab,newtab
 
 " report all line changes
 set report=0
