@@ -262,6 +262,10 @@ nnoremap <F12> :TlistToggle<CR>
 nnoremap <silent> <C-j> :cnext<CR>
 nnoremap <silent> <C-k> :cprevious<CR>
 
+" better vmappings for surround.vim
+vmap <Leader>s <Plug>Vsurround
+vmap <Leader>S <Plug>VSurround
+
 "===============================================================================
 
 
