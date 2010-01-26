@@ -250,13 +250,16 @@ nnoremap <Leader>b :make<CR>:cwindow<CR>
 
 " toggle quickfix window using Vim Tip 1008
 let g:jah_Quickfix_Win_Height = 10
-nnoremap <silent> <LocalLeader>d :QFix<CR>
+nnoremap <silent> <LocalLeader>f :QFix<CR>
 
 nnoremap <silent> <LocalLeader>fn :cnext<CR>
 nnoremap <silent> <LocalLeader>fp :cprevious<CR>
 
+" nerdtree
+nnoremap <silent> <LocalLeader>d :NERDTreeToggle<CR>
+
 " toggle taglist window
-nnoremap <F12> :TlistToggle<CR>
+nnoremap <silent> <LocalLeader>t :TlistToggle<CR>
 
 " navigate through quickfix buffer with main window following errors
 nnoremap <silent> <C-j> :cnext<CR>
