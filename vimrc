@@ -343,6 +343,9 @@ set hidden
 " report all line changes
 set report=0
 
+" extend command history
+set history=1000
+
 " Highlight syntax errors
 let c_space_errors = 1
 let java_space_errors = 1
