@@ -350,6 +350,9 @@ set hidden
 " avoid hit-enter prompts
 set shortmess=atI
 
+" console dialogs instead of popups
+set guioptions+=c
+
 " report all line changes
 set report=0
 
