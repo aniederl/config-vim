@@ -245,6 +245,9 @@ nnoremap <F8> :set list!<CR>
 " pasting something into vim
 nnoremap <silent> <Leader>p :set invpaste<CR>
 
+" remove highlighting from previous search
+nnoremap <silent> <LocalLeader>n :nohlsearch<CR>
+
 " build buffer and show errors
 nnoremap <Leader>b :make<CR>:cwindow<CR>
 
