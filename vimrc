@@ -318,6 +318,10 @@ set backspace=indent,eol,start
 " always show line number and names of matching files when grepping
 set grepprg=grep\ -nH\ $*
 
+" use backups
+set nobackup
+set writebackup
+set backupdir=~/.vim/.backup//,.
 
 " temporary files
 set directory=~/.vim/.tmp//,.
