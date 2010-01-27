@@ -347,6 +347,9 @@ set switchbuf=usetab,newtab
 " allow putting unwritten buffers into background
 set hidden
 
+" avoid hit-enter prompts
+set shortmess=atI
+
 " report all line changes
 set report=0
 
