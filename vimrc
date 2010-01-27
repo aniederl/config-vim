@@ -269,6 +269,21 @@ nnoremap <silent> <C-k> :cprevious<CR>
 vmap <Leader>s <Plug>Vsurround
 vmap <Leader>S <Plug>VSurround
 
+
+" fuzzyfinder
+nnoremap <Leader>f :FufFile<CR>
+nnoremap <Leader>F :FufFileWithCurrentBufferDir<CR>
+nnoremap <Leader>d :FufDir<CR>
+nnoremap <Leader>g :FufBuffer<CR>
+
+" define recursive search with shell globbing
+try
+	call fuf#defineLaunchCommand('FufFileRecursive', 'file', '"**/"')
+	nnoremap <Leader>/ :FufFileRecursive<CR>
+catch
+endtry
+
+
 "===============================================================================
 
 
