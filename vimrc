@@ -284,6 +284,11 @@ catch
 endtry
 
 
+" switch ` and ' (` jumps to line and column)
+nnoremap ' `
+nnoremap ` '
+
+
 "===============================================================================
 
 
