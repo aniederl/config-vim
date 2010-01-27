@@ -326,6 +326,11 @@ let java_space_errors = 1
 let python_space_errors = 1
 let ruby_space_errors = 1
 
+" activate matchit % matching
+if has("eval")
+	runtime! macros/matchit.vim
+endif
+
 "===============================================================================
 
 
