@@ -332,6 +332,9 @@ set completeopt+=menuone
 " switch to tab with open file or open new tab (quickfix)
 set switchbuf=usetab,newtab
 
+" allow putting unwritten buffers into background
+set hidden
+
 " report all line changes
 set report=0
 
