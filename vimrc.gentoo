@@ -2,7 +2,7 @@ scriptencoding utf-8
 " ^^ Please leave the above line at the start of the file.
 
 " Default configuration file for Vim
-" $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/files/vimrc-r3,v 1.1 2006/03/25 20:26:27 genstef Exp $
+" $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/files/vimrc-r4,v 1.1 2009/07/22 14:05:52 lack Exp $
 
 " Written by Aron Griffis <agriffis@gentoo.org>
 " Modified by Ryan Phillips <rphillips@gentoo.org>
@@ -73,11 +73,17 @@ endif
 
 " Always check for UTF-8 when trying to determine encodings.
 if &fileencodings !~? "utf-8"
+  " If we have to add this, the default encoding is not Unicode.
+  " We use this fact later to revert to the default encoding in plaintext/empty
+  " files.
+  let g:added_fenc_utf8 = 1
   set fileencodings+=utf-8
 endif
 
 " Make sure we have a sane fallback for encoding detection
-set fileencodings+=default
+if &fileencodings !~? "default"
+  set fileencodings+=default
+endif
 " }}}
 
 " {{{ Syntax highlighting settings
@@ -168,6 +174,16 @@ augroup gentoo
   " When editing a crontab file, set backupcopy to yes rather than auto. See
   " :help crontab and bug #53437.
   autocmd FileType crontab set backupcopy=yes
+
+  " If we previously detected that the default encoding is not UTF-8
+  " (g:added_fenc_utf8), assume that a file with only ASCII characters (or no
+  " characters at all) isn't a Unicode file, but is in the default encoding.
+  " Except of course if a byte-order mark is in effect.
+  autocmd BufReadPost *
+        \ if exists("g:added_fenc_utf8") && &fileencoding == "utf-8" && 
+        \    ! &bomb && search('[\x80-\xFF]','w') == 0 && &modifiable |
+        \       set fileencoding= |
+        \ endif
 
 augroup END
 
