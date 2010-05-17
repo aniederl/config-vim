@@ -437,6 +437,17 @@ au BufNewFile,BufRead *.{md,mld,mark,markdown} set filetype=markdown
 let g:ikiwiki_render_filetype = "markdown"
 au BufNewFile,BufRead *.mdwn set filetype=ikiwiki
 
+" csv
+au BufNewFile,BufRead *.csv set filetype=csv scrollbind scrollopt+=hor scrollopt-=ver nowrap
+au BufNewFile,BufRead *.csv set tabstop=10 | call OpenCSV()
+" display header line in separate window with height 1
+function! OpenCSV()
+	split
+	resize 1
+	"wincmd j
+endfunction
+
+
 endif " has("autocmd")
 "===============================================================================
 
