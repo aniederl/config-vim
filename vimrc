@@ -399,6 +399,16 @@ au BufWritePost ~/.vimrc :source ~/.vimrc
 au BufNewFile,BufRead *.rem   setf remind
 au BufNewFile,BufRead *.rem   set textwidth=0
 
+function l:RemindAbbreviations()
+	iab r REM
+	iab m MSG
+	iab pri PRIORITY
+	iab d <C-r>=strftime("%a")<CR>
+	iab t <C-r>=strftime("%b %d %Y")<CR>
+endfunction
+
+au BufNewFile,BufRead *.rem   call l:RemindAbbreviations()
+
 
 au BufNewFile,BufRead *.gp    setf gnuplot
 
