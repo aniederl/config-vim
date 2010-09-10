@@ -139,6 +139,7 @@ Xf86confdeclopt XaaNoSolidFillTrap XaaNoSolidHorVertLine XaaNoSolidTwoPointLine 
 Xf86confdeclopt XkbCompat XkbDisable XkbGeometry XkbKeycodes XkbKeymap XkbLayout XkbModel
 Xf86confdeclopt XkbOptions XkbRules XkbSymbols XkbTypes XkbVariant XvBskew XvHsync XvOnCRT2
 Xf86confdeclopt XvRskew XvVsync YAxisMapping ZAxisMapping ZoomOnLCD
+Xf86confdeclopt Ignore
 
 delcommand Xf86confdeclopt
 
