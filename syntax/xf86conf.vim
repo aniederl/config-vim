@@ -145,6 +145,10 @@ Xf86confdeclopt Ignore
 Xf86confdeclopt DAMAGE DOUBLE-BUFFER GLX MIT-SCREEN-SAVER MIT-SHM RANDR RENDER X-Resource
 Xf86confdeclopt XFree86-DGA XFree86-DRI XFree86-VidModeExtension XFIXES XINERAMA XTEST
 
+" video-intel
+Xf86confdeclopt DRI XvMC XvMCSurfaces XvPreferOverlay FallbackDebug DebugFlushBatches DebugFlushCaches
+Xf86confdeclopt DebugWait SwapbuffersWait Tiling
+
 delcommand Xf86confdeclopt
 
 " Keywords
