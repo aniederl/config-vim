@@ -141,6 +141,10 @@ Xf86confdeclopt XkbOptions XkbRules XkbSymbols XkbTypes XkbVariant XvBskew XvHsy
 Xf86confdeclopt XvRskew XvVsync YAxisMapping ZAxisMapping ZoomOnLCD
 Xf86confdeclopt Ignore
 
+" extensions
+Xf86confdeclopt DAMAGE DOUBLE-BUFFER GLX MIT-SCREEN-SAVER MIT-SHM RANDR RENDER X-Resource
+Xf86confdeclopt XFree86-DGA XFree86-DRI XFree86-VidModeExtension XFIXES XINERAMA XTEST
+
 delcommand Xf86confdeclopt
 
 " Keywords
