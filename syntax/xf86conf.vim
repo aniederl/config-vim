@@ -144,6 +144,7 @@ delcommand Xf86confdeclopt
 
 " Keywords
 syn keyword xf86confKeyword Device Driver FontPath Group Identifier Load ModelName ModulePath Monitor RGBPath VendorName VideoAdaptor Visual nextgroup=xf86confComment,xf86confString skipwhite
+syn keyword xf86confKeyword MatchProduct MatchVendor MatchDevicePath MatchTag MatchIsKeyboard MatchIsPointer MatchIsJoystick MatchIsTable MatchIsTouchpad MatchIsTouchscreen nextgroup=xf86confComment,xf86confString skipwhite
 syn keyword xf86confKeyword BiosBase Black BoardName BusID ChipID ChipRev Chipset nextgroup=xf86confComment,xf86confValue
 syn keyword xf86confKeyword ClockChip Clocks DacSpeed DefaultDepth DefaultFbBpp nextgroup=xf86confComment,xf86confValue
 syn keyword xf86confKeyword DefaultColorDepth nextgroup=xf86confComment,xf86confValue
