@@ -377,6 +377,8 @@ endif
 "===============================================================================
 if has("autocmd")
 
+" xorg-server-1.8.0
+au BufNewFile,BufRead /etc/X11/xorg.conf.d/* setf xf86conf
 
 " Gentoo file types
 au BufNewFile,BufRead *.eblit setf ebuild
