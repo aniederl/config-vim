@@ -166,6 +166,10 @@ Xf86confdeclopt PalmDetect PalmMinWidth PalmMinZ CoastingSpeed CoastingFriction 
 Xf86confdeclopt GrabEventDevice TapAndDragGesture VertResolution HorizResolution
 Xf86confdeclopt AreaLeftEdge AreaRightEdge AreaTopEdge AreaBottomEdge
 
+" input-*
+Xf86confdeclopt AutoServerLayout AccelerationProfile ConstantDeceleration AdaptiveDeceleration
+Xf86confdeclopt AccelerationScheme AccelerationNumerator AccelerationDenominator AccelerationThreshold
+
 delcommand Xf86confdeclopt
 
 " Keywords
