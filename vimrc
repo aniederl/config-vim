@@ -300,6 +300,9 @@ nnoremap ` '
 " write changes on buffer switch or :make
 set autowrite
 
+" read a file unasked when unchanged in vim but changed outside
+set autoread
+
 " Show the current mode
 set showmode
 
