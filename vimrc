@@ -193,7 +193,7 @@ set wildmenu
 set wildmode=list:longest,full
 
 " ignore for wild completion
-set wildignore=.svn,CVS,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif
+set wildignore=*.swp,*.jpg,*.png,*.xpm,*.gif
 
 "===============================================================================
 
@@ -349,6 +349,21 @@ let ruby_space_errors = 1
 if has("eval")
 	runtime! macros/matchit.vim
 endif
+
+" ignore VCS
+set wildignore+=RCS,CVS,.svn,.hg,.git
+
+" ignore tags and cscope files
+set wildignore+=tags,cscope.out,types_*.vim
+
+" ignore generated files
+set wildignore+=*.o,*.a,*.class,*.mo,*.la,*.so,*.obj
+
+" ignore qt moc source files
+set wildignore+=moc_*.cpp
+
+" ignore certificates
+set wildignore+=*.pem
 
 "===============================================================================
 
