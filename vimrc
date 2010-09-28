@@ -333,6 +333,25 @@ nnoremap ` '
 "===============================================================================
 
 
+" Programming {{{1
+"===============================================================================
+
+" highlight strings inside C comments
+let c_comment_strings=1
+
+" Highlight syntax errors
+let c_space_errors = 1
+let java_space_errors = 1
+let python_space_errors = 1
+let ruby_space_errors = 1
+
+" activate matchit % matching
+if has("eval")
+	runtime! macros/matchit.vim
+endif
+
+"===============================================================================
+
 " Misc {{{1
 "===============================================================================
 " write changes on buffer switch or :make
@@ -346,9 +365,6 @@ set showmode
 
 " show matching parenthesises
 set showmatch
-
-" highlight strings inside C comments
-let c_comment_strings=1
 
 " do not flicker around
 set novisualbell
@@ -399,17 +415,6 @@ set report=0
 
 " extend command history
 set history=1000
-
-" Highlight syntax errors
-let c_space_errors = 1
-let java_space_errors = 1
-let python_space_errors = 1
-let ruby_space_errors = 1
-
-" activate matchit % matching
-if has("eval")
-	runtime! macros/matchit.vim
-endif
 
 "===============================================================================
 
