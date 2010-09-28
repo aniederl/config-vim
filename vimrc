@@ -248,8 +248,14 @@ nnoremap <silent> <Leader>p :set invpaste<CR>
 " remove highlighting from previous search
 nnoremap <silent> <LocalLeader>n :nohlsearch<CR>
 
+function! BuildProject()
+	silent make
+	echohl StatusLine | echo "Build Complete" | echohl None
+	cwindow
+endfunction
+
 " build buffer and show errors
-nnoremap <Leader>b :make<CR>:cwindow<CR>
+nnoremap <Leader>b :call BuildProject()<CR>
 
 " toggle quickfix window using Vim Tip 1008
 let g:jah_Quickfix_Win_Height = 10
@@ -404,7 +410,7 @@ au BufWritePost ~/.vimrc :source ~/.vimrc
 au BufNewFile,BufRead *.rem   setf remind
 au BufNewFile,BufRead *.rem   set textwidth=0
 
-function l:RemindAbbreviations()
+function! l:RemindAbbreviations()
 	iab r REM
 	iab m MSG
 	iab pri PRIORITY
