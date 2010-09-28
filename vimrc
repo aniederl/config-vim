@@ -225,6 +225,41 @@ augroup QFixToggle
 augroup END
 "===============================================================================
 
+" Functions {{{1
+"===============================================================================
+function! BuildProject()
+	silent make
+	echohl StatusLine | echo "Build Complete" | echohl None
+	cwindow
+endfunction
+
+let g:CtagsExcludes = [ '.git', '.hg', '.svn' ]
+
+function! UpdateTags()
+	let ctags_args = ''
+
+	let ctags_args .= ' --recurse'
+
+	if exists('g:CtagsExcludes')
+		for exclude in g:CtagsExcludes
+			let ctags_args .= ' --exclude=' . exclude
+		endfor
+	endif
+
+	let ctags_args .= ' --c-kinds=+p'
+	let ctags_args .= ' --c++-kinds=+p'
+
+	let ctags_args .= ' --fields=+iaS'
+	let ctags_args .= ' --extra=+q'
+
+	execute ":!ctags " . ctags_args
+
+	echohl StatusLine | echo "Tags File Updated" | echohl None
+endfunction
+command! -nargs=0 UpdateTags call UpdateTags()
+
+"===============================================================================
+
 " Keyboard Shortcuts {{{1
 "===============================================================================
 
@@ -248,14 +283,11 @@ nnoremap <silent> <Leader>p :set invpaste<CR>
 " remove highlighting from previous search
 nnoremap <silent> <LocalLeader>n :nohlsearch<CR>
 
-function! BuildProject()
-	silent make
-	echohl StatusLine | echo "Build Complete" | echohl None
-	cwindow
-endfunction
-
 " build buffer and show errors
 nnoremap <Leader>b :call BuildProject()<CR>
+
+" update tags and types file
+nnoremap <Leader>u :UpdateTypesFile!<CR>
 
 " toggle quickfix window using Vim Tip 1008
 let g:jah_Quickfix_Win_Height = 10
