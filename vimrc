@@ -365,6 +365,10 @@ set wildignore+=moc_*.cpp
 " ignore certificates
 set wildignore+=*.pem
 
+" abbreviations
+iab #i #include
+iab #d #define
+
 "===============================================================================
 
 " Misc {{{1
