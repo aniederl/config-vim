@@ -324,6 +324,20 @@ try
 catch
 endtry
 
+" bindings for alternate.vim
+imap <LocalLeader>r  <C-O>:A<CR>
+nmap <LocalLeader>r  :A<CR>
+imap <LocalLeader>aa <C-O>:A<CR>
+nmap <LocalLeader>aa :A<CR>
+imap <LocalLeader>as <C-O>:AS<CR>
+nmap <LocalLeader>as :AS<CR>
+imap <LocalLeader>av <C-O>:AV<CR>
+nmap <LocalLeader>av :AV<CR>
+imap <LocalLeader>at <C-O>:AT<CR>
+nmap <LocalLeader>at :AT<CR>
+imap <LocalLeader>an <C-O>:AN<CR>
+nmap <LocalLeader>an :AN<CR>
+
 
 " switch ` and ' (` jumps to line and column)
 nnoremap ' `
