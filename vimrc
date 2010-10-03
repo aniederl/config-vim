@@ -424,7 +424,7 @@ set switchbuf=usetab,newtab
 set hidden
 
 " avoid hit-enter prompts
-set shortmess=atAI
+set shortmess+=aAI
 
 " console dialogs instead of popups
 set guioptions+=c
