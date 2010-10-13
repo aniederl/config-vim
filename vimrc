@@ -195,6 +195,9 @@ set wildmode=list:longest,full
 " ignore for wild completion
 set wildignore=*.swp,*.jpg,*.png,*.xpm,*.gif
 
+" tex
+set wildignore+=*.pdf,*.dvi,*.ps,*.aux,*.out,*.vrb,*.nav,*.toc,*.snm,*.log
+
 "===============================================================================
 
 " highlight trailing whitespaces and whitespaces before tabs {{{1
