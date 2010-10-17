@@ -473,6 +473,9 @@ set report=0
 " extend command history
 set history=1000
 
+" show tab number, filename and modified flag in tab label
+set guitablabel=%N:\ %t\ %M
+
 "===============================================================================
 
 
