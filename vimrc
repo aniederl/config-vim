@@ -362,6 +362,10 @@ function! CloseTab()
 endfunction
 nmap <silent> Q :call CloseTab()<CR>
 
+nnoremap te :tabe 
+nnoremap td :tab drop 
+nnoremap ts :tab split<CR>
+
 
 " switch ` and ' (` jumps to line and column)
 nnoremap ' `
