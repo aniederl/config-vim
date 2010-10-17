@@ -342,6 +342,27 @@ imap <LocalLeader>an <C-O>:AN<CR>
 nmap <LocalLeader>an :AN<CR>
 
 
+" split current tab into a new one
+nnoremap <LocalLeader>s :tab split<CR>
+
+" relative tab nav
+nnoremap <silent> <C-h> :tabprevious<CR>
+nnoremap <silent> <C-l> :tabnext<CR>
+
+" relative tab move
+nnoremap <silent> <A-Left>  :execute 'silent! tabmove ' . (tabpagenr() - 2)<CR>
+nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . (tabpagenr())<CR>
+
+function! CloseTab()
+	if winnr("$") == 1  && tabpagenr() > 1 && tabpagenr() < tabpagenr("$")
+		tabclose | tabprev
+	else
+		quit
+	endif
+endfunction
+nmap <silent> Q :call CloseTab()<CR>
+
+
 " switch ` and ' (` jumps to line and column)
 nnoremap ' `
 nnoremap ` '
