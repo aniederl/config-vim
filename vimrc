@@ -401,8 +401,8 @@ set wildignore+=tags,cscope.out,types_*.vim
 " ignore generated files
 set wildignore+=*.o,*.a,*.class,*.mo,*.la,*.so,*.obj
 
-" ignore qt moc source files
-set wildignore+=moc_*.cpp
+" ignore qt moc and qrc source files
+set wildignore+=moc_*.cpp,qrc_*.cpp
 
 " ignore certificates
 set wildignore+=*.pem
