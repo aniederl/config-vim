@@ -565,6 +565,9 @@ function! OpenCSV()
 endfunction
 
 
+au BufNewFile,BufRead *.qrc setf xml
+
+
 endif " has("autocmd")
 "===============================================================================
 
