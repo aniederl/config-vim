@@ -266,7 +266,40 @@ command! -nargs=0 UpdateTags call UpdateTags()
 " Keyboard Shortcuts {{{1
 "===============================================================================
 
+
 let maplocalleader=','
+
+
+" CreateMaps from NERD_commenter.vim
+function! s:CreateMaps(target, combo)
+	if !hasmapto(a:target, 'n')
+		exec 'nmap ' . a:combo . ' ' . a:target
+	endif
+
+	if !hasmapto(a:target, 'v')
+		exec 'vmap ' . a:combo . ' ' . a:target
+	endif
+endfunction
+
+let g:NERDCreateMyMappings = 1
+if g:NERDCreateMyMappings
+	call s:CreateMaps('<plug>NERDCommenterComment',    '<LocalLeader>cc')
+	call s:CreateMaps('<plug>NERDCommenterToggle',     '<LocalLeader>c<space>')
+	call s:CreateMaps('<plug>NERDCommenterMinimal',    '<LocalLeader>cm')
+	call s:CreateMaps('<plug>NERDCommenterSexy',       '<LocalLeader>cs')
+	call s:CreateMaps('<plug>NERDCommenterInvert',     '<LocalLeader>ci')
+	call s:CreateMaps('<plug>NERDCommenterYank',       '<LocalLeader>cy')
+	call s:CreateMaps('<plug>NERDCommenterAlignLeft',  '<LocalLeader>cl')
+	call s:CreateMaps('<plug>NERDCommenterAlignBoth',  '<LocalLeader>cb')
+	call s:CreateMaps('<plug>NERDCommenterNest',       '<LocalLeader>cn')
+	call s:CreateMaps('<plug>NERDCommenterUncomment',  '<LocalLeader>cu')
+	call s:CreateMaps('<plug>NERDCommenterToEOL',      '<LocalLeader>c$')
+	call s:CreateMaps('<plug>NERDCommenterAppend',     '<LocalLeader>cA')
+
+	if !hasmapto('<plug>NERDCommenterAltDelims', 'n')
+		nmap <LocalLeader>ca <plug>NERDCommenterAltDelims
+	endif
+endif
 
 
 " navigate tabs like vimperator
@@ -580,9 +613,10 @@ let g:secure_modelines_verbose = 0
 let g:secure_modelines_modelines = 15
 
 " misc plugins
-let g:tex_flavor='latex'
-let g:showmarks_enable=0
-let NERDShutUp=1
+let g:tex_flavor = 'latex'
+let g:showmarks_enable = 0
+let NERDShutUp = 1
+let g:NERDCreateDefaultMappings = 0
 
 " sessionman
 nnoremap <Leader>ss  :wa<CR>:SessionSave<CR>
