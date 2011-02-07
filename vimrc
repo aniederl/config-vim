@@ -7,6 +7,11 @@ scriptencoding utf-8
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
+" activate pathogen
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+
+
 " include gentoo specific vimrc (with sane defaults) if available {{{1
 let $ETC_VIM = '/etc/vim'
 if filereadable(expand("$ETC_VIM/vimrc.gentoo"))
@@ -20,7 +25,7 @@ endif
 set nocompatible
 
 " custom runtime path for system wide plugins in /etc/vim/plugins
-set runtimepath=$HOME/.vim,$ETC_VIM,$ETC_VIM/plugins,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$ETC_VIM/after,~/.vim/after
+"set runtimepath=$HOME/.vim,$ETC_VIM,$ETC_VIM/plugins,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$ETC_VIM/after,~/.vim/after
 
 " Use lighter colors on dark backgrounds
 set background=dark
