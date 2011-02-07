@@ -588,8 +588,9 @@ au BufNewFile,BufRead *.java setlocal omnifunc=javacomplete#Complete
 "au BufNewFile,BufRead *.java setlocal completefunc=javacomplete#CompleteParamsInfo
 
 " Python
-au BufNewFile,BufRead *.py setlocal omnifunc=pythoncomplete#Complete
-au BufNewFile,BufRead *.py setlocal cinwords=if,elif,else,for,while,try,except,finally,def,class
+au BufEnter *.py setlocal omnifunc=pythoncomplete#Complete
+au BufEnter *.py setlocal cinwords=if,elif,else,for,while,try,except,finally,def,class
+au BufEnter *.py setlocal expandtab
 
 
 au BufNewFile,BufRead *.{md,mld,mark,markdown} set filetype=markdown
