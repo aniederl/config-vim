@@ -273,6 +273,8 @@ command! -nargs=0 UpdateTags call UpdateTags()
 " Keyboard Shortcuts {{{1
 "===============================================================================
 
+" shortcut for ex cmds
+nnoremap ; :
 
 let maplocalleader=','
 
