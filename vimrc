@@ -101,12 +101,17 @@ set tabstop=2
 " Indentation shift width
 set shiftwidth=2
 
+" round indent to multiple of sw using < and >
+set shiftround
 
 " use tabs for indentation, spaces for alignment (ctab.vim)
 set noexpandtab
 
 " use smart indentation (i.e. respect indentation with blank lines in between)
 set smartindent
+
+" preserve indentation style from previous lines
+set copyindent
 
 " visualize tabs and trailing whitespaces
 " use :set list! to toggle
@@ -196,7 +201,9 @@ set wildmode=list:longest,full
 set wildignore=*.swp,*.jpg,*.png,*.xpm,*.gif
 
 " tex
-set wildignore+=*.pdf,*.dvi,*.ps,*.aux,*.out,*.vrb,*.nav,*.toc,*.snm,*.log
+set wildignore+=*.pdf,*.dvi,*.ps,*.aux,*.out,*.vrb,*.nav,*.toc,*.snm
+
+au BufEnter *.tex setlocal wildignore+=*.log
 
 "===============================================================================
 
@@ -512,6 +519,9 @@ set history=1000
 
 " show tab number, filename and modified flag in tab label
 set guitablabel=%N:\ %t\ %M
+
+" allow pasting as-is using X copy buffer
+set mouse=a
 
 "===============================================================================
 
