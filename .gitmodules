@@ -10,3 +10,12 @@
 [submodule "bundle/ctags_highlighting"]
 	path = bundle/ctags_highlighting
 	url = https://github.com/vim-scripts/CTAGS-Highlighting.git
+[submodule "bundle/nerdtree"]
+	path = bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "bundle/nerdcommenter"]
+	path = bundle/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter.git
+[submodule "bundle/syntastic"]
+	path = bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
