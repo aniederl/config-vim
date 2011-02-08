@@ -71,7 +71,10 @@ set statusline+=%f\          " trailing whitespace
 set statusline+=%h%m%r
 
 " show filetype
-set statusline+=\[%{strlen(&filetype)?&filetype:'none'}]
+set statusline+=%y
+
+" show fugitive info
+set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
 
 " separation point; following fields are right aligned
 set statusline+=%=
