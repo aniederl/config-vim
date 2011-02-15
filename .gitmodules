@@ -67,3 +67,24 @@
 [submodule "bundle/cute-python"]
 	path = bundle/cute-python
 	url = https://github.com/ehamberg/vim-cute-python.git
+[submodule "bundle/javacomplete"]
+	path = bundle/javacomplete
+	url = https://github.com/vim-scripts/javacomplete.git
+[submodule "bundle/clang-complete"]
+	path = bundle/clang-complete
+	url = https://github.com/vim-scripts/clang-complete.git
+[submodule "bundle/pythoncomplete"]
+	path = bundle/pythoncomplete
+	url = https://github.com/vim-scripts/pythoncomplete.git
+[submodule "bundle/clang"]
+	path = bundle/clang
+	url = https://github.com/vim-scripts/clang.git
+[submodule "bundle/vim-ruby"]
+	path = bundle/vim-ruby
+	url = https://github.com/vim-ruby/vim-ruby.git
+[submodule "bundle/perlomni"]
+	path = bundle/perlomni
+	url = https://github.com/c9s/perlomni.vim.git
+[submodule "bundle/vim-perl"]
+	path = bundle/vim-perl
+	url = https://github.com/petdance/vim-perl.git

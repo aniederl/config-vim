@@ -560,8 +560,8 @@ au BufEnter xorg.conf set foldmethod=syntax
 au BufWritePost ~/.vimrc :source ~/.vimrc
 
 " remind
-au BufEnter *.rem   setf remind
-au BufEnter *.rem   set textwidth=0
+au BufEnter *.rem  setf remind
+au FileType remind set textwidth=0
 
 function! l:RemindAbbreviations()
 	iab r REM
@@ -571,7 +571,7 @@ function! l:RemindAbbreviations()
 	iab t <C-r>=strftime("%b %d %Y")<CR>
 endfunction
 
-au BufEnter *.rem   call l:RemindAbbreviations()
+au FileType remind call l:RemindAbbreviations()
 
 
 au BufEnter *.gp    setf gnuplot
@@ -581,28 +581,39 @@ au BufEnter *vimperatorrc setf vim
 
 " Haskell
 let g:haddock_browser="/usr/bin/w3m"
-au BufEnter *.hs compiler ghc
-au BufEnter *.hs set ts=4 sw=4
-au BufEnter *.hs set expandtab
+au FileType haskell compiler ghc
+au FileType haskell set ts=4 sw=4
+au FileType haskell set expandtab
 
 
 " differently name slrnrc
-au BufEnter slrnrc   setf slrnrc
+au BufEnter slrnrc setf slrnrc
 
 " ProVerif
 au BufEnter *.pv setf ocaml
 
+" markdown
+au BufEnter *.{md,mld,mark,markdown} set filetype=markdown
+
+au BufEnter *.qrc setf xml
+
+
 " Java
-au BufEnter *.java setlocal omnifunc=javacomplete#Complete
-"au BufEnter *.java setlocal completefunc=javacomplete#CompleteParamsInfo
+au FileType java setlocal omnifunc=javacomplete#Complete
+"au FileType java setlocal completefunc=javacomplete#CompleteParamsInfo
 
 " Python
-au BufEnter *.py setlocal omnifunc=pythoncomplete#Complete
-au BufEnter *.py setlocal cinwords=if,elif,else,for,while,try,except,finally,def,class
-au BufEnter *.py setlocal expandtab
+au FileType python setlocal omnifunc=pythoncomplete#Complete
+au FileType python setlocal cinwords=if,elif,else,for,while,try,except,finally,def,class
+au FileType python setlocal expandtab
 
+" web completion
+au FileType css        setlocal omnifunc=csscomplete#CompleteCSS
+au FileType html       setlocal omnifunc=htmlcomplete#CompleteTags
+au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+au FileType xml        setlocal omnifunc=xmlcomplete#CompleteTags
 
-au BufEnter *.{md,mld,mark,markdown} set filetype=markdown
+au FileType markdown   setlocal omnifunc=htmlcomplete#CompleteTags
 
 let g:ikiwiki_render_filetype = "markdown"
 au BufEnter *.mdwn set filetype=ikiwiki
@@ -616,9 +627,6 @@ function! OpenCSV()
 	resize 1
 	"wincmd j
 endfunction
-
-
-au BufEnter *.qrc setf xml
 
 
 endif " has("autocmd")
