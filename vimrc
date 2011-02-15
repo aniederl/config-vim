@@ -538,28 +538,28 @@ set mouse=a
 if has("autocmd")
 
 " xorg-server-1.8.0
-au BufNewFile,BufRead /etc/X11/xorg.conf.d/* setf xf86conf
+au BufEnter /etc/X11/xorg.conf.d/* setf xf86conf
 
 " Gentoo file types
-au BufNewFile,BufRead *.eblit setf ebuild
+au BufEnter *.eblit setf ebuild
 
-au BufNewFile,BufRead /etc/portage/env/* setf ebuild
-au BufNewFile,BufRead /etc/portage/bashrc.d/* setf ebuild
+au BufEnter /etc/portage/env/* setf ebuild
+au BufEnter /etc/portage/bashrc.d/* setf ebuild
 
 " /var/log/*
 au BufRead /var/log/* setf messages
 
 " Always use tabs for indenting XML stuff
-au BufNewFile,BufRead *.\(xml\|xsl\) set noexpandtab
+au BufEnter *.\(xml\|xsl\) set noexpandtab
 
-au BufNewFile,BufRead xorg.conf set foldmethod=syntax
+au BufEnter xorg.conf set foldmethod=syntax
 
 " re-source vimrc when written
 au BufWritePost ~/.vimrc :source ~/.vimrc
 
 " remind
-au BufNewFile,BufRead *.rem   setf remind
-au BufNewFile,BufRead *.rem   set textwidth=0
+au BufEnter *.rem   setf remind
+au BufEnter *.rem   set textwidth=0
 
 function! l:RemindAbbreviations()
 	iab r REM
@@ -569,30 +569,30 @@ function! l:RemindAbbreviations()
 	iab t <C-r>=strftime("%b %d %Y")<CR>
 endfunction
 
-au BufNewFile,BufRead *.rem   call l:RemindAbbreviations()
+au BufEnter *.rem   call l:RemindAbbreviations()
 
 
-au BufNewFile,BufRead *.gp    setf gnuplot
+au BufEnter *.gp    setf gnuplot
 
-au BufNewFile,BufRead *vimperatorrc setf vim
+au BufEnter *vimperatorrc setf vim
 
 
 " Haskell
 let g:haddock_browser="/usr/bin/w3m"
-au BufNewFile,BufRead *.hs compiler ghc
-au BufNewFile,BufRead *.hs set ts=4 sw=4
-au BufNewFile,BufRead *.hs set expandtab
+au BufEnter *.hs compiler ghc
+au BufEnter *.hs set ts=4 sw=4
+au BufEnter *.hs set expandtab
 
 
 " differently name slrnrc
-au BufNewFile,BufRead slrnrc   setf slrnrc
+au BufEnter slrnrc   setf slrnrc
 
 " ProVerif
-au BufNewFile,BufRead *.pv setf ocaml
+au BufEnter *.pv setf ocaml
 
 " Java
-au BufNewFile,BufRead *.java setlocal omnifunc=javacomplete#Complete
-"au BufNewFile,BufRead *.java setlocal completefunc=javacomplete#CompleteParamsInfo
+au BufEnter *.java setlocal omnifunc=javacomplete#Complete
+"au BufEnter *.java setlocal completefunc=javacomplete#CompleteParamsInfo
 
 " Python
 au BufEnter *.py setlocal omnifunc=pythoncomplete#Complete
@@ -600,14 +600,14 @@ au BufEnter *.py setlocal cinwords=if,elif,else,for,while,try,except,finally,def
 au BufEnter *.py setlocal expandtab
 
 
-au BufNewFile,BufRead *.{md,mld,mark,markdown} set filetype=markdown
+au BufEnter *.{md,mld,mark,markdown} set filetype=markdown
 
 let g:ikiwiki_render_filetype = "markdown"
-au BufNewFile,BufRead *.mdwn set filetype=ikiwiki
+au BufEnter *.mdwn set filetype=ikiwiki
 
 " csv
-au BufNewFile,BufRead *.csv set filetype=csv scrollbind scrollopt+=hor scrollopt-=ver nowrap
-au BufNewFile,BufRead *.csv set tabstop=10 | call OpenCSV()
+au BufEnter *.csv set filetype=csv scrollbind scrollopt+=hor scrollopt-=ver nowrap
+au BufEnter *.csv set tabstop=10 | call OpenCSV()
 " display header line in separate window with height 1
 function! OpenCSV()
 	split
@@ -616,7 +616,7 @@ function! OpenCSV()
 endfunction
 
 
-au BufNewFile,BufRead *.qrc setf xml
+au BufEnter *.qrc setf xml
 
 
 endif " has("autocmd")
