@@ -446,7 +446,7 @@ set wildignore+=RCS,CVS,.svn,.hg,.git
 set wildignore+=tags,cscope.out,types_*.vim
 
 " ignore generated files
-set wildignore+=*.o,*.a,*.class,*.mo,*.la,*.so,*.obj
+set wildignore+=*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.hi
 
 " ignore qt moc and qrc source files
 set wildignore+=moc_*.cpp,qrc_*.cpp
