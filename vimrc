@@ -392,9 +392,6 @@ imap <LocalLeader>an <C-O>:AN<CR>
 nmap <LocalLeader>an :AN<CR>
 
 
-" split current tab into a new one
-nnoremap <LocalLeader>s :tab split<CR>
-
 " relative tab nav
 nnoremap <silent> <C-h> :tabprevious<CR>
 nnoremap <silent> <C-l> :tabnext<CR>
@@ -648,6 +645,13 @@ nnoremap <Leader>sl  :SessionShowLast<CR>
 
 " EasyGrep
 let g:EasyGrepRecursive = 1
+
+" DelimitMate
+nnoremap <LocalLeader>s :DelimitMateSwitch<CR>
+let g:delimitMate_expand_space = 1
+let g:delimitMate_expand_cr    = 1
+
+
 "===============================================================================
 
 " }}}1
