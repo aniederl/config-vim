@@ -88,3 +88,54 @@
 [submodule "bundle/vim-perl"]
 	path = bundle/vim-perl
 	url = https://github.com/petdance/vim-perl.git
+[submodule "bundle/AnsiEsc"]
+	path = bundle/AnsiEsc
+	url = https://github.com/vim-scripts/AnsiEsc.vim.git
+[submodule "bundle/a.vim"]
+	path = bundle/a.vim
+	url = https://github.com/vim-scripts/a.vim.git
+[submodule "bundle/ikiwiki-syntax"]
+	path = bundle/ikiwiki-syntax
+	url = http://git.devnull.li/ikiwiki-syntax.git
+[submodule "bundle/gitolite"]
+	path = bundle/gitolite
+	url = https://github.com/tmatilai/gitolite.vim.git
+[submodule "bundle/syntaxudev"]
+	path = bundle/syntaxudev
+	url = https://github.com/vim-scripts/syntaxudev.vim.git
+[submodule "bundle/xslt-syntax"]
+	path = bundle/xslt-syntax
+	url = https://github.com/vim-scripts/XSLT-syntax.git
+[submodule "bundle/udev-syntax"]
+	path = bundle/udev-syntax
+	url = https://github.com/vim-scripts/syntaxudev.vim.git
+[submodule "bundle/xquery-syntax"]
+	path = bundle/xquery-syntax
+	url = https://github.com/vim-scripts/XQuery-syntax.git
+[submodule "bundle/nagios-syntax"]
+	path = bundle/nagios-syntax
+	url = https://github.com/vim-scripts/nagios-syntax.git
+[submodule "bundle/lighttpd-syntax"]
+	path = bundle/lighttpd-syntax
+	url = https://github.com/vim-scripts/lighttpd-syntax.git
+[submodule "bundle/nmap-syntax"]
+	path = bundle/nmap-syntax
+	url = https://github.com/vim-scripts/Nmap-syntax-highlight.git
+[submodule "bundle/qmake-syntax"]
+	path = bundle/qmake-syntax
+	url = https://github.com/vim-scripts/qmake--syntax.vim.git
+[submodule "bundle/gtk-syntax"]
+	path = bundle/gtk-syntax
+	url = https://github.com/vim-scripts/gtk-vim-syntax.git
+[submodule "bundle/pam-syntax"]
+	path = bundle/pam-syntax
+	url = https://github.com/vim-scripts/pam.vim.git
+[submodule "ntp.vim"]
+	path = ntp.vim
+	url = https://github.com/vim-scripts/ntp.vim.git
+[submodule "bundle/ntp-syntax"]
+	path = bundle/ntp-syntax
+	url = https://github.com/vim-scripts/ntp.vim.git
+[submodule "bundle/eruby-syntax"]
+	path = bundle/eruby-syntax
+	url = https://github.com/vim-scripts/eruby.vim.git
