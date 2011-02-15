@@ -282,7 +282,7 @@ command! -nargs=0 UpdateTags call UpdateTags()
 "===============================================================================
 
 " shortcut for ex cmds
-nnoremap ; :
+"nnoremap ; :
 
 let maplocalleader=','
 
@@ -650,6 +650,16 @@ let g:EasyGrepRecursive = 1
 nnoremap <LocalLeader>s :DelimitMateSwitch<CR>
 let g:delimitMate_expand_space = 1
 let g:delimitMate_expand_cr    = 1
+
+" Neocomplcache
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_smart_case = 1
+
+let g:neocomplcache_enable_camel_case_completion = 1
+let g:neocomplcache_enable_underbar_completion   = 1
+
+let g:neocomplcache_auto_completion_start_length   = 3
+let g:neocomplcache_manual_completion_start_length = 3
 
 
 "===============================================================================
