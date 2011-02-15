@@ -6,6 +6,8 @@ scriptencoding utf-8
 " License:       This file is licensed under the GPL v2.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" tasklist.vim shortcut
+map <unique> <Leader>r <Plug>TaskList
 
 " activate pathogen
 call pathogen#runtime_append_all_bundles()
