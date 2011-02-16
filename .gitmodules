@@ -142,3 +142,6 @@
 [submodule "bundle/ikiwiki-nav"]
 	path = bundle/ikiwiki-nav
 	url = https://github.com/vim-scripts/ikiwiki-nav.git
+[submodule "bundle/sessionman"]
+	path = bundle/sessionman
+	url = https://github.com/vim-scripts/sessionman.vim.git
