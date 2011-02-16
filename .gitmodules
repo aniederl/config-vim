@@ -139,3 +139,6 @@
 [submodule "bundle/eruby-syntax"]
 	path = bundle/eruby-syntax
 	url = https://github.com/vim-scripts/eruby.vim.git
+[submodule "bundle/ikiwiki-nav"]
+	path = bundle/ikiwiki-nav
+	url = https://github.com/vim-scripts/ikiwiki-nav.git
