@@ -6,8 +6,10 @@ scriptencoding utf-8
 " License:       This file is licensed under the GPL v2.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let maplocalleader=','
+
 " tasklist.vim shortcut
-map <unique> <Leader>r <Plug>TaskList
+map <LocalLeader>u <Plug>TaskList
 
 " activate pathogen
 call pathogen#runtime_append_all_bundles()
@@ -285,8 +287,6 @@ command! -nargs=0 UpdateTags call UpdateTags()
 
 " shortcut for ex cmds
 "nnoremap ; :
-
-let maplocalleader=','
 
 
 " CreateMaps from NERD_commenter.vim
