@@ -30,7 +30,7 @@
 	url = https://github.com/Shougo/neocomplcache.git
 [submodule "bundle/haskellmode-vim"]
 	path = bundle/haskellmode-vim
-	url = git@github.com:aniederl/haskellmode-vim.git
+	url = https://github.com/aniederl/haskellmode-vim.git
 [submodule "bundle/command-t"]
 	path = bundle/command-t
 	url = git://git.wincent.com/command-t.git
