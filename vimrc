@@ -339,7 +339,7 @@ nnoremap <silent> <Leader>p :set invpaste<CR>
 nnoremap <silent> <LocalLeader>n :nohlsearch<CR>
 
 " build buffer and show errors
-nnoremap <Leader>b :call BuildProject()<CR>
+nnoremap <LocalLeader>m :call BuildProject()<CR>
 
 " update tags and types file
 nnoremap <Leader>u :UpdateTypesFile!<CR>
