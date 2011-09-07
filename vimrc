@@ -11,6 +11,8 @@ let maplocalleader=','
 " tasklist.vim shortcut
 map <LocalLeader>u <Plug>TaskList
 
+let g:CommandTMaxFiles=50000
+
 " activate pathogen
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
@@ -355,7 +357,10 @@ nnoremap <silent> <LocalLeader>fp :cprevious<CR>
 nnoremap <silent> <LocalLeader>d :NERDTreeToggle<CR>
 
 " toggle taglist window
-nnoremap <silent> <LocalLeader>t :TlistToggle<CR>
+nnoremap <silent> <Leader>t :TlistToggle<CR>
+
+nnoremap <silent> <LocalLeader>t :CommandT<CR>
+nnoremap <silent> <LocalLeader>g :CommandTBuffer<CR>
 
 " navigate through quickfix buffer with main window following errors
 nnoremap <silent> <C-j> :cnext<CR>
@@ -365,19 +370,6 @@ nnoremap <silent> <C-k> :cprevious<CR>
 vmap <Leader>s <Plug>Vsurround
 vmap <Leader>S <Plug>VSurround
 
-
-" fuzzyfinder
-nnoremap <Leader>f :FufFile<CR>
-nnoremap <Leader>F :FufFileWithCurrentBufferDir<CR>
-nnoremap <Leader>d :FufDir<CR>
-nnoremap <Leader>g :FufBuffer<CR>
-
-" define recursive search with shell globbing
-try
-	call fuf#defineLaunchCommand('FufFileRecursive', 'file', '"**/"')
-	nnoremap <Leader>/ :FufFileRecursive<CR>
-catch
-endtry
 
 " bindings for alternate.vim
 imap <LocalLeader>r  <C-O>:A<CR>
