@@ -633,7 +633,7 @@ let g:secure_modelines_verbose = 0
 let g:secure_modelines_modelines = 15
 
 " misc plugins
-let g:tex_flavor = 'latex'
+"let g:tex_flavor = 'latex'
 let g:showmarks_enable = 0
 let NERDShutUp = 1
 let g:NERDCreateDefaultMappings = 0
