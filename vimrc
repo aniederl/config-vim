@@ -599,6 +599,8 @@ au BufEnter *.qrc setf xml
 
 " Java
 au FileType java setlocal omnifunc=javacomplete#Complete
+au FileType java setlocal errorformat=%A\ %#[javac]\ %f:%l:\ %m,%-Z\ %#[javac]\ %p^,%-C%.%#
+au FileType java setlocal makeprg=ant\ -Dbuild.sysclasspath=ignore\ -find\ 'build.xml'
 "au FileType java setlocal completefunc=javacomplete#CompleteParamsInfo
 
 " Python
