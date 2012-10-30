@@ -160,3 +160,6 @@
 [submodule "bundle/gitolite-syntax"]
 	path = bundle/gitolite-syntax
 	url = https://github.com/tmatilai/gitolite.vim.git
+[submodule "bundle/octave"]
+	path = bundle/octave
+	url = https://github.com/vim-scripts/octave.vim--.git
