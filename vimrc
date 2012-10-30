@@ -427,13 +427,18 @@ nnoremap ` '
 "===============================================================================
 
 " highlight strings inside C comments
-let c_comment_strings=1
+let c_comment_strings   = 1
 
 " Highlight syntax errors
-let c_space_errors = 1
-let java_space_errors = 1
+let c_space_errors      = 1
+let java_space_errors   = 1
 let python_space_errors = 1
-let ruby_space_errors = 1
+let ruby_space_errors   = 1
+
+" Highlight functions with java style
+let java_highlight_functions = "style"
+
+let java_allow_cpp_keywords  = 1
 
 " activate matchit % matching
 if has("eval")
@@ -458,6 +463,9 @@ set wildignore+=*.pem
 " abbreviations
 iab #i #include
 iab #d #define
+
+" ctags
+set tags=./tags;$HOME,tags
 
 "===============================================================================
 
@@ -556,7 +564,7 @@ au BufEnter *.\(xml\|xsl\) set noexpandtab
 au BufEnter xorg.conf set foldmethod=syntax
 
 " re-source vimrc when written
-au BufWritePost ~/.vimrc :source ~/.vimrc
+"au BufWritePost ~/.vimrc :source ~/.vimrc
 
 " remind
 au BufEnter *.rem  setf remind
@@ -599,14 +607,35 @@ au BufEnter *.qrc setf xml
 
 " Java
 au FileType java setlocal omnifunc=javacomplete#Complete
-au FileType java setlocal errorformat=%A\ %#[javac]\ %f:%l:\ %m,%-Z\ %#[javac]\ %p^,%-C%.%#
-au FileType java setlocal makeprg=ant\ -Dbuild.sysclasspath=ignore\ -find\ 'build.xml'
+"au FileType java setlocal errorformat=%A\ %#[javac]\ %f:%l:\ %m,%-Z\ %#[javac]\ %p^,%-C%.%#
+"au FileType java setlocal makeprg=ant\ -Dbuild.sysclasspath=ignore\ -find\ 'build.xml'
 "au FileType java setlocal completefunc=javacomplete#CompleteParamsInfo
+au FileType java set makeprg=ant\ -find\ 'build.xml'
+au FileType java exe ":compiler ant"
+au FileType java set shellpipe=2>&1\ \|\ tee
+
+" do not use tabs
+au FileType java set expandtab
+
+" add separately generated java jdk tags
+au FileType java set tags+=~/.vim/tags/jdk_tags
+
+au FileType java set keywordprg=:help
+
+" enable gf/^wf for weird java path structures
+au FileType java set path=**
+au FileType java set suffixesadd=.java
+
+" add javadoc help files generated with vimdoclet
+au FileType java set runtimepath+=~/.vim/javadoc
+au FileType java set keywordprg=:help
 
 " Python
 au FileType python setlocal omnifunc=pythoncomplete#Complete
 au FileType python setlocal cinwords=if,elif,else,for,while,try,except,finally,def,class
 au FileType python setlocal expandtab
+au FileType python setlocal makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
+au FileType python setlocal errorformat=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
 
 " web completion
 au FileType css        setlocal omnifunc=csscomplete#CompleteCSS
@@ -621,7 +650,7 @@ au BufEnter *.mdwn set filetype=ikiwiki
 
 " csv
 au BufEnter *.csv set filetype=csv scrollbind scrollopt+=hor scrollopt-=ver nowrap
-au BufEnter *.csv set tabstop=10 | call OpenCSV()
+"au BufEnter *.csv set tabstop=10 | call OpenCSV()
 " display header line in separate window with height 1
 function! OpenCSV()
 	split
