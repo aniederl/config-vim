@@ -294,10 +294,6 @@ command! -nargs=0 UpdateTags call UpdateTags()
 " Keyboard Shortcuts {{{1
 "===============================================================================
 
-" shortcut for ex cmds
-"nnoremap ; :
-
-
 " CreateMaps from NERD_commenter.vim
 function! s:CreateMaps(target, combo)
 	if !hasmapto(a:target, 'n')
