@@ -13,6 +13,12 @@ map <LocalLeader>u <Plug>TaskList
 
 let g:CommandTMaxFiles=50000
 
+" NerdCommenter
+let g:NERDCustomDelimiters = {
+    \ 'octave': { 'left': '%', 'leftAlt': '#' },
+\}
+
+
 " activate pathogen
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
@@ -78,6 +84,26 @@ set statusline+=%h%m%r
 
 " show filetype
 set statusline+=%y
+
+" fileformat
+set statusline+=\%{(&fileformat!='unix'?'['.&fileformat.']':'')}
+
+" file encoding
+function! StatusLineFileEncoding()
+  let default='utf-8'
+  let status=''
+  let encoding=''
+  if (&fenc != '') && (&fenc != default)
+    encoding=&fenc
+  elseif (&enc != '') && (&enc != default)
+    encoding=&enc
+  endif
+  if (encoding != '')
+    status = '[' . encoding . ']'
+  endif
+  return status
+endfunction
+set statusline+=\%{StatusLineFileEncoding()}
 
 " show fugitive info
 set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
@@ -696,7 +722,6 @@ let g:neocomplcache_enable_underbar_completion   = 1
 
 let g:neocomplcache_auto_completion_start_length   = 3
 let g:neocomplcache_manual_completion_start_length = 3
-
 
 "===============================================================================
 
