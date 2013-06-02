@@ -163,3 +163,6 @@
 [submodule "bundle/octave"]
 	path = bundle/octave
 	url = https://github.com/vim-scripts/octave.vim--.git
+[submodule "bundle/scala"]
+	path = bundle/scala
+	url = https://github.com/derekwyatt/vim-scala.git
