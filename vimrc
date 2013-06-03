@@ -20,6 +20,7 @@ let g:NERDCustomDelimiters = {
 
 
 " activate pathogen
+filetype off
 call pathogen#incubate()
 call pathogen#helptags()
 
