@@ -505,6 +505,28 @@ set tags=./tags;$HOME,tags
 
 "===============================================================================
 
+" Relative Line Numbers {{{1
+"===============================================================================
+
+" show line numbers relative to current line
+set relativenumber
+
+autocmd FocusLost   * :set number
+autocmd FocusGained * :set relativenumber
+
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber
+
+function! RelativeNumberToggle()
+	if (&relativenumber == 0)
+		set relativenumber
+	else
+		set number
+	endif
+endfunc
+
+nnoremap <C-n> :call RelativeNumberToggle()<CR>
+
 " Misc {{{1
 "===============================================================================
 " write changes on buffer switch or :make
