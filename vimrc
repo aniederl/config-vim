@@ -6,6 +6,9 @@ scriptencoding utf-8
 " License:       This file is licensed under the GPL v2.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" map '-' to ',' and use ',' as localleader
+nnoremap - ,
+
 let maplocalleader=','
 
 " tasklist.vim shortcut
