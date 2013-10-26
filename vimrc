@@ -390,10 +390,20 @@ nnoremap <silent> <LocalLeader>fp :cprevious<CR>
 nnoremap <silent> <LocalLeader>d :NERDTreeToggle<CR>
 
 " toggle taglist window
-nnoremap <silent> <Leader>t :TlistToggle<CR>
+"nnoremap <silent> <LocalLeader>t :TlistToggle<CR>
 
-nnoremap <silent> <LocalLeader>t :CommandT<CR>
-nnoremap <silent> <LocalLeader>g :CommandTBuffer<CR>
+" toggle tagbar window
+nnoremap <silent> <LocalLeader>t :TagbarToggle<CR>
+
+" ctrlp mappings
+nnoremap <silent> <Leader>f :CtrlP<CR>
+nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
+nnoremap <silent> <Leader>T :CtrlPBufTag<CR>
+nnoremap <silent> <Leader>t :CtrlPTag<CR>
+nnoremap <silent> <Leader>F :CtrlPCurWD<CR>
+nnoremap <silent> <Leader>M :CtrlPMRUFiles<CR>
+nnoremap <silent> <Leader>m :CtrlPMixed<CR>
+nnoremap <silent> <Leader>l :CtrlPLine<CR>
 
 " navigate through quickfix buffer with main window following errors
 nnoremap <silent> <C-j> :cnext<CR>
