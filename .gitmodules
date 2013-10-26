@@ -79,9 +79,6 @@
 [submodule "bundle/perlomni"]
 	path = bundle/perlomni
 	url = https://github.com/c9s/perlomni.vim.git
-[submodule "bundle/vim-perl"]
-	path = bundle/vim-perl
-	url = https://github.com/petdance/vim-perl.git
 [submodule "bundle/AnsiEsc"]
 	path = bundle/AnsiEsc
 	url = https://github.com/vim-scripts/AnsiEsc.vim.git
