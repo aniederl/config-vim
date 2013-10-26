@@ -67,9 +67,6 @@
 [submodule "bundle/javacomplete"]
 	path = bundle/javacomplete
 	url = https://github.com/vim-scripts/javacomplete.git
-[submodule "bundle/clang-complete"]
-	path = bundle/clang-complete
-	url = https://github.com/vim-scripts/clang-complete.git
 [submodule "bundle/pythoncomplete"]
 	path = bundle/pythoncomplete
 	url = https://github.com/vim-scripts/pythoncomplete.git
