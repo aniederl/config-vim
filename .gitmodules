@@ -148,9 +148,6 @@
 [submodule "bundle/pathogen"]
 	path = bundle/pathogen
 	url = https://github.com/tpope/vim-pathogen.git
-[submodule "bundle/clang_complete"]
-	path = bundle/clang_complete
-	url = https://github.com/Shougo/clang_complete.git
 [submodule "bundle/gitolite-syntax"]
 	path = bundle/gitolite-syntax
 	url = https://github.com/tmatilai/gitolite.vim.git
