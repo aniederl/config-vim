@@ -24,8 +24,26 @@ let g:NERDCustomDelimiters = {
 
 " activate pathogen
 filetype off
-call pathogen#incubate()
-call pathogen#helptags()
+"call pathogen#incubate()
+"call pathogen#helptags()
+
+
+" NeoBundle
+if has('vim_starting')
+	set nocompatible
+	set runtimepath+=~/.vim/bundle/neobundle/
+endif
+
+call neobundle#rc(expand('~/.vim/bundle/'))
+
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+NeoBundle 'Shougo/vimproc'
+
+" Required for NeoBundle
+filetype plugin indent on
+
+NeoBundleCheck
 
 
 " include gentoo specific vimrc (with sane defaults) if available {{{1

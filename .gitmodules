@@ -226,3 +226,6 @@
 [submodule "bundle/unite-quickfix"]
 	path = bundle/unite-quickfix
 	url = https://github.com/osyo-manga/unite-quickfix.git
+[submodule "bundle/neobundle"]
+	path = bundle/neobundle
+	url = git://github.com/Shougo/neobundle.vim
