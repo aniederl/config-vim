@@ -199,3 +199,30 @@
 [submodule "bundle/gundo"]
 	path = bundle/gundo
 	url = https://github.com/vim-scripts/Gundo.git
+[submodule "bundle/unite"]
+	path = bundle/unite
+	url = https://github.com/Shougo/unite.vim.git
+[submodule "bundle/unite-colorscheme"]
+	path = bundle/unite-colorscheme
+	url = https://github.com/ujihisa/unite-colorscheme.git
+[submodule "bundle/unite-filetype"]
+	path = bundle/unite-filetype
+	url = https://github.com/osyo-manga/unite-filetype.git
+[submodule "bundle/unite-fold"]
+	path = bundle/unite-fold
+	url = https://github.com/osyo-manga/unite-fold.git
+[submodule "bundle/unite-help"]
+	path = bundle/unite-help
+	url = https://github.com/tsukkee/unite-help.git
+[submodule "bundle/unite-locate"]
+	path = bundle/unite-locate
+	url = https://github.com/ujihisa/unite-locate.git
+[submodule "bundle/unite-mark"]
+	path = bundle/unite-mark
+	url = https://github.com/tacroe/unite-mark.git
+[submodule "bundle/unite-outline"]
+	path = bundle/unite-outline
+	url = https://github.com/Shougo/unite-outline.git
+[submodule "bundle/unite-quickfix"]
+	path = bundle/unite-quickfix
+	url = https://github.com/osyo-manga/unite-quickfix.git
