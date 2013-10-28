@@ -6,6 +6,9 @@ scriptencoding utf-8
 " License:       This file is licensed under the GPL v2.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Plugin Initialization Settings {{{1
+"===============================================================================
+
 " map '-' to ',' and use ',' as localleader
 nnoremap - ,
 
@@ -14,21 +17,22 @@ let maplocalleader=','
 " tasklist.vim shortcut
 map <LocalLeader>u <Plug>TaskList
 
-let g:CommandTMaxFiles=50000
-
 " NerdCommenter
 let g:NERDCustomDelimiters = {
     \ 'octave': { 'left': '%', 'leftAlt': '#' },
 \}
 
+"===============================================================================
 
-" activate pathogen
+
+" NeoBundle {{{1
+"===============================================================================
+
+" Setup {{{2
+"-------------------------------------------------------------------------------
+
 filetype off
-"call pathogen#incubate()
-"call pathogen#helptags()
 
-
-" NeoBundle
 if has('vim_starting')
 	set nocompatible
 	set runtimepath+=~/.vim/bundle/neobundle/
@@ -38,13 +42,372 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-NeoBundle 'Shougo/vimproc'
 
-" Required for NeoBundle
+"-------------------------------------------------------------------------------
+" vimproc {{{2
+"-------------------------------------------------------------------------------
+
+NeoBundle 'Shougo/vimproc', {
+      \ 'build' : {
+      \     'windows' : 'make -f make_mingw32.mak',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ }
+
+
+"-------------------------------------------------------------------------------
+" neocomplete {{{2
+"-------------------------------------------------------------------------------
+
+" use new neocomplete completion if possible
+if v:version >= 704 && has('lua')
+	let g:use_neocomplete = 1
+	NeoBundle 'Shougo/neocomplete'
+else
+	NeoBundle 'Shougo/neocomplcache'
+endif
+
+
+"-------------------------------------------------------------------------------
+" snippets {{{2
+"-------------------------------------------------------------------------------
+
+" snippets
+NeoBundle 'Shougo/neosnippet'
+
+" snippet collection for different languages
+NeoBundle 'honza/vim-snippets'
+
+
+"-------------------------------------------------------------------------------
+" statusline {{{2
+"-------------------------------------------------------------------------------
+
+" powerline statusline
+"NeoBundle 'lokaltog/powerline'
+
+" airline statusline
+NeoBundle 'bling/vim-airline'
+
+
+"-------------------------------------------------------------------------------
+" git {{{2
+"-------------------------------------------------------------------------------
+
+" git integration
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-git'
+
+
+"-------------------------------------------------------------------------------
+" Motions and Regions {{{2
+"-------------------------------------------------------------------------------
+
+" motions for CamelCase
+NeoBundle 'camelcasemotion'
+
+" extend % matching
+NeoBundle 'matchit.zip'
+NeoBundle 'ruby-matchit'
+NeoBundle 'voithos/vim-python-matchit'
+
+" surroundings, quoting, tags, etc.
+NeoBundle 'tpope/vim-surround'
+
+" narrow region extraction/editing
+NeoBundle 'chrisbra/NrrwRgn'
+
+
+"-------------------------------------------------------------------------------
+" Sessions {{{2
+"-------------------------------------------------------------------------------
+
+" session manager
+NeoBundle 'sessionman.vim'
+
+" session obsession
+NeoBundle 'tpope/vim-obsession'
+
+
+"-------------------------------------------------------------------------------
+" General {{{2
+"-------------------------------------------------------------------------------
+
+" custom operators
+NeoBundle 'kana/vim-operator-user'
+
+" secure modelines
+NeoBundle 'ciaranm/securemodelines'
+
+" mapping pairs
+NeoBundle 'tpope/vim-unimpaired'
+
+
+"-------------------------------------------------------------------------------
+" General Coding {{{2
+"-------------------------------------------------------------------------------
+
+" smart tabs: tabs for indentation, spaces for alignment
+NeoBundle 'Smart-Tabs'
+
+" auto-balancing delimiters
+NeoBundle 'Raimondi/delimitMate'
+
+" intelligent commenting
+NeoBundle 'tomtom/tcomment_vim'
+
+" powerful syntax checker
+NeoBundle 'scrooloose/syntastic'
+
+" highlight custom types and classes
+NeoBundle 'TagHighlight'
+
+" end structures automatically
+NeoBundle 'tpope/vim-endwise'
+
+
+"-------------------------------------------------------------------------------
+" General Editing {{{2
+"-------------------------------------------------------------------------------
+
+" ansi escape sequences
+NeoBundle 'AnsiEsc.vim'
+
+" graphical undo
+NeoBundle 'Gundo'
+
+" repeat some plugin commands with '.'
+NeoBundle 'tpope/vim-repeat'
+
+" table movement and alignment
+NeoBundle 'godlygeek/tabular'
+
+
+"-------------------------------------------------------------------------------
+" Unite {{{2
+"-------------------------------------------------------------------------------
+
+NeoBundle 'Shougo/unite.vim'
+
+" show an outline
+NeoBundle 'Shougo/unite-outline'
+
+
+" switch through colorschemes
+NeoBundle 'ujihisa/unite-colorscheme'
+
+" locate
+NeoBundle 'ujihisa/unite-locate'
+
+" fonts
+NeoBundle 'ujihisa/unite-font'
+
+
+" unite everything
+NeoBundle 'sgur/unite-everything'
+
+
+" filetypes
+NeoBundle 'osyo-manga/unite-filetype'
+
+" folds
+NeoBundle 'osyo-manga/unite-fold'
+
+" quickfix
+NeoBundle 'osyo-manga/unite-quickfix'
+
+
+" help
+NeoBundle 'tsukkee/unite-help'
+
+" tags
+NeoBundle 'tsukkee/unite-tag'
+
+
+" marks
+NeoBundle 'tacroe/unite-mark'
+
+" aliases
+NeoBundle 'tacroe/unite-alias'
+
+
+" tasklist
+NeoBundle 'junkblocker/unite-tasklist'
+
+" history
+NeoBundle 'thinca/vim-unite-history'
+
+
+"-------------------------------------------------------------------------------
+" C/C++ {{{2
+"-------------------------------------------------------------------------------
+
+" clang completer for C and C++
+NeoBundle 'Rip-Rip/clang_complete'
+
+" clang formatter
+NeoBundle 'rhysd/vim-clang-format'
+
+" cscope
+NeoBundle 'autoload_cscope.vim'
+
+" highlight operators in C-like languages
+NeoBundle 'cSyntaxAfter'
+
+
+"-------------------------------------------------------------------------------
+" Java {{{2
+"-------------------------------------------------------------------------------
+
+" basic java completion
+NeoBundle 'javacomplete'
+
+
+"-------------------------------------------------------------------------------
+" Octave {{{2
+"-------------------------------------------------------------------------------
+
+NeoBundle 'octave.vim'
+
+
+"-------------------------------------------------------------------------------
+" Python {{{2
+"-------------------------------------------------------------------------------
+
+" Python-mode
+NeoBundle 'klen/python-mode'
+
+" conceal
+NeoBundle 'ehamberg/vim-cute-python'
+
+" nose unit tests
+NeoBundle 'lambdalisue/nose.vim'
+
+
+"-------------------------------------------------------------------------------
+" Perl {{{2
+"-------------------------------------------------------------------------------
+
+" perl editing in vim
+NeoBundle 'vim-perl/vim-perl'
+
+" completion
+NeoBundle 'c9s/perlomni.vim'
+
+
+"-------------------------------------------------------------------------------
+" Ruby {{{2
+"-------------------------------------------------------------------------------
+
+" editing Ruby with vim
+NeoBundle 'vim-ruby/vim-ruby'
+
+" refactoring
+NeoBundle 'ecomba/vim-ruby-refactoring'
+
+" testing with cucumber
+NeoBundle 'tpope/vim-cucumber'
+
+" HTML-embedded ruby
+NeoBundle 'eruby.vim'
+
+" Haml, Sass, SCSS
+NeoBundle 'tpope/vim-haml'
+
+
+"-------------------------------------------------------------------------------
+" Haskell {{{2
+"-------------------------------------------------------------------------------
+
+" Vim to Haskell
+NeoBundle 'dag/vim2hs'
+
+" ghc integration
+NeoBundle 'eagletmt/ghcmod-vim'
+
+" completion with ghc
+NeoBundle 'ujihisa/neco-ghc'
+
+
+"-------------------------------------------------------------------------------
+" Scala {{{2
+"-------------------------------------------------------------------------------
+
+NeoBundle 'derekwyatt/vim-scala'
+
+
+"-------------------------------------------------------------------------------
+" HTML/CSS {{{2
+"-------------------------------------------------------------------------------
+
+" HTML, CSS, etc.
+NeoBundle 'mattn/emmet-vim'
+
+
+"-------------------------------------------------------------------------------
+" Markdown {{{2
+"-------------------------------------------------------------------------------
+
+" markdown
+NeoBundle 'tpope/vim-markdown'
+
+" pandoc
+NeoBundle 'pdc.vim'
+
+
+"-------------------------------------------------------------------------------
+" Misc. Syntax {{{2
+"-------------------------------------------------------------------------------
+
+" gitolite
+NeoBundle 'tmatilai/gitolite'
+
+" gtk
+NeoBundle 'gtk-vim-syntax'
+
+" lighttpd
+NeoBundle 'lighttpd-syntax'
+
+" nagios
+NeoBundle 'nagios-syntax'
+
+" Nmap
+NeoBundle 'Nmap-syntax-highlight'
+
+" ntp
+NeoBundle 'ntp.vim'
+
+" pam
+NeoBundle 'pam.vim'
+
+" qmake
+NeoBundle 'qmake--syntax.vim'
+
+" udev
+NeoBundle 'syntaxudev.vim'
+
+" xquery
+NeoBundle 'XQuery-syntax'
+
+" xslt
+NeoBundle 'XSLT-syntax'
+
+
+"-------------------------------------------------------------------------------
+" Check and Load {{{2
+"-------------------------------------------------------------------------------
+
+" Required for Check
 filetype plugin indent on
 
 NeoBundleCheck
 
+"-------------------------------------------------------------------------------
+" }}}2
+
+"===============================================================================
 
 " include gentoo specific vimrc (with sane defaults) if available {{{1
 let $ETC_VIM = '/etc/vim'
@@ -741,6 +1104,9 @@ endif " has("autocmd")
 " Plugin Settings {{{1
 "===============================================================================
 
+" Misc {{{2
+"-------------------------------------------------------------------------------
+
 " Disable modelines, use securemodelines.vim instead
 set nomodeline
 let g:secure_modelines_verbose = 0
@@ -767,18 +1133,146 @@ nnoremap <LocalLeader>s :DelimitMateSwitch<CR>
 let g:delimitMate_expand_space = 1
 let g:delimitMate_expand_cr    = 1
 
-" Neocomplcache
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_smart_case = 1
+" camelcasemotion
+map <S-W> <Plug>CamelCaseMotion_w
+map <S-B> <Plug>CamelCaseMotion_b
+map <S-E> <Plug>CamelCaseMotion_e
 
-let g:neocomplcache_enable_camel_case_completion = 1
-let g:neocomplcache_enable_underbar_completion   = 1
+" highlight operators
+autocmd! FileType c,cpp,objc,java,javascript call CSyntaxAfter()
 
-let g:neocomplcache_auto_completion_start_length   = 3
-let g:neocomplcache_manual_completion_start_length = 3
+" airline
+let g:airline_powerline_fonts = 1
 
+"-------------------------------------------------------------------------------
+
+" clang_format {{{2
+"-------------------------------------------------------------------------------
+
+let g:clang_format#style_options = {
+            \ "AccessModifierOffset" : -4,
+            \ "AllowShortIfStatementsOnASingleLine" : "true",
+            \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "Standard" : "C++11",
+            \ "BreakBeforeBraces" : "Stroustrup"}
+
+" map to <Leader>cf in C++ code
+autocmd! FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd! FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+
+" needs vim-operator-user
+autocmd! FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+
+"-------------------------------------------------------------------------------
+
+" neocomplete/neocomplcache {{{2
+"-------------------------------------------------------------------------------
+
+if g:use_neocomplete
+" neocomplete {{{3
+"-------------------------------------------------------------------------------
+
+	" Disable AutoComplPop.
+	let g:acp_enableAtStartup = 0
+	" Use neocomplete.
+	let g:neocomplete#enable_at_startup = 1
+	" Use smartcase.
+	let g:neocomplete#enable_smart_case = 1
+	" Set minimum syntax keyword length.
+	let g:neocomplete#sources#syntax#min_keyword_length = 3
+	let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+	" Define dictionary.
+	let g:neocomplete#sources#dictionary#dictionaries = {
+			\ 'default' : '',
+			\ 'vimshell' : $HOME.'/.vimshell_hist',
+			\ 'scheme' : $HOME.'/.gosh_completions'
+					\ }
+
+	" Define keyword.
+	if !exists('g:neocomplete#keyword_patterns')
+			let g:neocomplete#keyword_patterns = {}
+	endif
+	let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+	" Plugin key-mappings.
+	inoremap <expr><C-g>     neocomplete#undo_completion()
+	inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+	" Recommended key-mappings.
+	" <CR>: close popup and save indent.
+	inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+	function! s:my_cr_function()
+		return neocomplete#smart_close_popup() . "\<CR>"
+		" For no inserting <CR> key.
+		"return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+	endfunction
+	" <TAB>: completion.
+	inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+	" <C-h>, <BS>: close popup and delete backword char.
+	inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+	inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+	inoremap <expr><C-y>  neocomplete#close_popup()
+	inoremap <expr><C-e>  neocomplete#cancel_popup()
+
+	" Enable heavy omni completion.
+	if !exists('g:neocomplete#sources#omni#input_patterns')
+		let g:neocomplete#sources#omni#input_patterns = {}
+	endif
+	"let g:neocomplete#sources#omni#input_patterns.php  = '[^. \t]->\h\w*\|\h\w*::'
+	let g:neocomplete#sources#omni#input_patterns.c    = '[^.[:digit:] *\t]\%(\.\|->\)'
+	let g:neocomplete#sources#omni#input_patterns.cpp  = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+	" For perlomni.vim setting.
+	" https://github.com/c9s/perlomni.vim
+	let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
+else
+" neocomplcache {{{3
+"-------------------------------------------------------------------------------
+	let g:neocomplcache_enable_at_startup = 1
+	let g:neocomplcache_enable_smart_case = 1
+
+	let g:neocomplcache_enable_camel_case_completion = 1
+	let g:neocomplcache_enable_underbar_completion   = 1
+
+	let g:neocomplcache_auto_completion_start_length   = 3
+	let g:neocomplcache_manual_completion_start_length = 3
+
+endif
+
+" }}}3
+"-------------------------------------------------------------------------------
+
+" neosnippets {{{2
+"-------------------------------------------------------------------------------
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: "\<TAB>"
+
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+
+" Enable snipMate compatibility feature.
+let g:neosnippet#enable_snipmate_compatibility = 1
+
+" Tell Neosnippet about the other snippets
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+"-------------------------------------------------------------------------------
+
+" }}}2
 "===============================================================================
-
 " }}}1
 
 " Colors {{{1
@@ -788,6 +1282,9 @@ let g:neocomplcache_manual_completion_start_length = 3
 if !has('gui')
 	let g:CSApprox_verbose_level = 0
 endif
+
+" 256 colors
+set t_Co=256
 
 colorscheme fruity256
 
