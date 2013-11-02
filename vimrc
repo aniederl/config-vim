@@ -1063,6 +1063,9 @@ set mouse=a
 augroup vimrc_filetypes
 	autocmd!
 
+	" spell correct commit messages
+	autocmd FileType gitcommit setlocal spell
+
 	" xorg-server-1.8.0
 	autocmd BufEnter /etc/X11/xorg.conf.d/* setf xf86conf
 
