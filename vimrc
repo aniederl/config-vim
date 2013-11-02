@@ -144,6 +144,21 @@ NeoBundle 'ciaranm/securemodelines'
 " mapping pairs
 NeoBundle 'tpope/vim-unimpaired'
 
+" smart casing substition, abbreviation and coercion
+NeoBundle 'tpope/vim-abolish'
+
+" alignment
+NeoBundle 'junegunn/vim-easy-align'
+
+" colorschemes
+NeoBundle 'flazz/vim-colorschemes'
+
+" display signs at interesting lines
+NeoBundle 'tomtom/quickfixsigns_vim'
+
+" highlight several words in different colors simultaneously
+NeoBundle 'Mark--Karkat'
+
 
 "-------------------------------------------------------------------------------
 " General Coding {{{2
@@ -167,6 +182,13 @@ NeoBundle 'TagHighlight'
 " end structures automatically
 NeoBundle 'tpope/vim-endwise'
 
+" detect file indentation settings and warn on inconsistencies
+NeoBundle 'IndentConsistencyCop'
+NeoBundle 'IndentConsistencyCopAutoCmds'
+
+" textobject 'a' for function/method arguments
+NeoBundle 'argtextobj.vim'
+
 
 "-------------------------------------------------------------------------------
 " General Editing {{{2
@@ -183,6 +205,9 @@ NeoBundle 'tpope/vim-repeat'
 
 " table movement and alignment
 NeoBundle 'godlygeek/tabular'
+
+" accumulate all spelling errors in the quickfix buffer
+NeoBundle 'SpellCheck'
 
 
 "-------------------------------------------------------------------------------
@@ -296,6 +321,9 @@ NeoBundle 'vim-perl/vim-perl'
 " completion
 NeoBundle 'c9s/perlomni.vim'
 
+" documentation
+NeoBundle 'hotchpotch/perldoc-vim'
+
 
 "-------------------------------------------------------------------------------
 " Ruby {{{2
@@ -309,6 +337,9 @@ NeoBundle 'ecomba/vim-ruby-refactoring'
 
 " testing with cucumber
 NeoBundle 'tpope/vim-cucumber'
+
+" browser Ruby documentation from inside Vim
+NeoBundle 'danchoi/ri.vim'
 
 " HTML-embedded ruby
 NeoBundle 'eruby.vim'
@@ -345,6 +376,13 @@ NeoBundle 'derekwyatt/vim-scala'
 " HTML, CSS, etc.
 NeoBundle 'mattn/emmet-vim'
 
+
+"-------------------------------------------------------------------------------
+" LaTeX {{{2
+"-------------------------------------------------------------------------------
+
+" LaTeXSuite
+NeoBundle 'git://git.code.sf.net/p/vim-latex/vim-latex'
 
 "-------------------------------------------------------------------------------
 " Markdown {{{2
@@ -442,6 +480,24 @@ set fileencoding=utf-8
 " %      restore buffer list if vim is not started with a filename argument
 " n...   name of the viminfo file
 set viminfo='30,\"50,%,n~/.viminfo
+
+
+" spell checking {{{2
+"-------------------------------------------------------------------------------
+
+" check for spelling errors
+set spell
+
+" use US english as default
+set spelllang=en_us
+
+" correct the last spelling mistake using the first suggestion
+"   [s   - move to last mistake
+"   1z=  - choose first suggestion
+"   gi    - enter insert mode at last point before leaving insert
+imap <C-l> <Esc>[s1z=gi
+
+"-------------------------------------------------------------------------------
 
 
 " statusline {{{2
@@ -628,14 +684,27 @@ set wildignore=*.swp,*.jpg,*.png,*.xpm,*.gif
 " tex
 set wildignore+=*.pdf,*.dvi,*.ps,*.aux,*.out,*.vrb,*.nav,*.toc,*.snm
 
-au BufEnter *.tex setlocal wildignore+=*.log
+augroup vimrc_tex
+	autocmd!
+
+	" ignore pdflatex log files
+	autocmd FileType tex,latex,context setlocal wildignore+=*.log
+augroup END
 
 "===============================================================================
 
-" highlight trailing whitespaces and whitespaces before tabs {{{1
-" \ze sets end of match for highlighting
-highlight TrailingSpaces term=standout cterm=bold ctermbg=red ctermfg=white gui=bold guibg=red guifg=white
-autocmd BufWinEnter * match TrailingSpaces /\s\+$\| \+\ze\t/
+" highlight formatting errors {{{1
+
+" highlight space errors with red background
+highlight SpaceError term=standout cterm=bold ctermbg=red ctermfg=white gui=bold guibg=red guifg=white
+
+augroup vimrc_error_highlight
+	autocmd!
+
+	" highlight trailing whitespaces and whitespaces before tabs
+	" \ze sets end of match for highlighting
+	autocmd BufWinEnter * match SpaceError /\s\+$\| \+\ze\t/
+augroup END
 
 
 " Tip 1008: Toggle to open or close the quickfix window {{{1
@@ -660,10 +729,10 @@ endfunction
 
 " used to track the quickfix window
 augroup QFixToggle
- autocmd!
- autocmd BufWinEnter quickfix let g:qfix_win = bufnr("$")
- autocmd BufWinLeave * call QFixLeave()
- autocmd TabLeave * call QFixLeave()
+	autocmd!
+	autocmd BufWinEnter quickfix let g:qfix_win = bufnr("$")
+	autocmd BufWinLeave * call QFixLeave()
+	autocmd TabLeave * call QFixLeave()
 augroup END
 "===============================================================================
 
@@ -892,11 +961,17 @@ set tags=./tags;$HOME,tags
 " show line numbers relative to current line
 set relativenumber
 
-autocmd FocusLost   * :set number
-autocmd FocusGained * :set relativenumber
+augroup vimrc_relativenumber
+	autocmd!
 
-autocmd InsertEnter * :set number
-autocmd InsertLeave * :set relativenumber
+	" only show relative numbers when window is focused
+	autocmd FocusLost   * :set number
+	autocmd FocusGained * :set relativenumber
+
+	" do not show relative numbers in insert mode
+	autocmd InsertEnter * :set number
+	autocmd InsertLeave * :set relativenumber
+augroup END
 
 function! RelativeNumberToggle()
 	if (&relativenumber == 0)
@@ -983,32 +1058,122 @@ set mouse=a
 
 " autocmds {{{1
 "===============================================================================
-if has("autocmd")
+"if has("autocmd")
 
-" xorg-server-1.8.0
-au BufEnter /etc/X11/xorg.conf.d/* setf xf86conf
+augroup vimrc_filetypes
+	autocmd!
 
-" Gentoo file types
-au BufEnter *.eblit setf ebuild
+	" xorg-server-1.8.0
+	autocmd BufEnter /etc/X11/xorg.conf.d/* setf xf86conf
 
-au BufEnter /etc/portage/env/* setf ebuild
-au BufEnter /etc/portage/bashrc.d/* setf ebuild
+	" Gentoo file types
+	autocmd BufEnter *.eblit setf ebuild
 
-" /var/log/*
-au BufRead /var/log/* setf messages
+	autocmd BufEnter /etc/portage/env/* setf ebuild
+	autocmd BufEnter /etc/portage/bashrc.d/* setf ebuild
 
-" Always use tabs for indenting XML stuff
-au BufEnter *.\(xml\|xsl\) set noexpandtab
+	" /var/log/*
+	autocmd BufRead /var/log/* setf messages
 
-au BufEnter xorg.conf set foldmethod=syntax
+	" Always use tabs for indenting XML stuff
+	autocmd BufEnter *.\(xml\|xsl\) set noexpandtab
 
-" re-source vimrc when written
-"au BufWritePost ~/.vimrc :source ~/.vimrc
+	autocmd BufEnter xorg.conf set foldmethod=syntax
 
-" remind
-au BufEnter *.rem  setf remind
-au FileType remind set textwidth=0
+	" re-source vimrc when written
+	"autocmd BufWritePost ~/.vimrc :source ~/.vimrc
 
+	" remind
+	autocmd BufEnter *.rem  setf remind
+	autocmd FileType remind set textwidth=0
+
+	autocmd BufEnter *.gp    setf gnuplot
+
+	autocmd BufEnter *vimperatorrc setf vim
+
+
+	" Haskell
+	autocmd FileType haskell compiler ghc
+	autocmd FileType haskell set ts=4 sw=4
+	autocmd FileType haskell set expandtab
+
+
+	" differently name slrnrc
+	autocmd BufEnter slrnrc setf slrnrc
+
+	" ProVerif
+	autocmd BufEnter *.pv setf ocaml
+
+	" markdown
+	autocmd BufEnter *.{md,mld,mark,markdown} set filetype=markdown
+
+	autocmd BufEnter *.qrc setf xml
+
+
+	" Java
+	autocmd FileType java setlocal omnifunc=javacomplete#Complete
+	"autocmd FileType java setlocal errorformat=%A\ %#[javac]\ %f:%l:\ %m,%-Z\ %#[javac]\ %p^,%-C%.%#
+	"autocmd FileType java setlocal makeprg=ant\ -Dbuild.sysclasspath=ignore\ -find\ 'build.xml'
+	"autocmd FileType java setlocal completefunc=javacomplete#CompleteParamsInfo
+	autocmd FileType java set makeprg=ant\ -find\ 'build.xml'
+	autocmd FileType java exe ":compiler ant"
+	autocmd FileType java set shellpipe=2>&1\ \|\ tee
+
+	" do not use tabs
+	autocmd FileType java set expandtab
+
+	" add separately generated java jdk tags
+	autocmd FileType java set tags+=~/.vim/tags/jdk_tags
+
+	autocmd FileType java set keywordprg=:help
+
+	" enable gf/^wf for weird java path structures
+	autocmd FileType java set path=**
+	autocmd FileType java set suffixesadd=.java
+
+	" add javadoc help files generated with vimdoclet
+	autocmd FileType java set runtimepath+=~/.vim/javadoc
+	autocmd FileType java set keywordprg=:help
+
+	" Python (disabled, use settings from python-mode)
+	"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+	"autocmd FileType python setlocal cinwords=if,elif,else,for,while,try,except,finally,def,class
+	"autocmd FileType python setlocal expandtab
+	"autocmd FileType python setlocal makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
+	"autocmd FileType python setlocal errorformat=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+
+	" web completion
+	autocmd FileType css        setlocal omnifunc=csscomplete#CompleteCSS
+	autocmd FileType html       setlocal omnifunc=htmlcomplete#CompleteTags
+	autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+	autocmd FileType xml        setlocal omnifunc=xmlcomplete#CompleteTags
+
+	autocmd FileType markdown   setlocal omnifunc=htmlcomplete#CompleteTags
+
+	autocmd BufEnter *.mdwn set filetype=ikiwiki
+
+	" csv
+	autocmd BufEnter *.csv set filetype=csv scrollbind scrollopt+=hor scrollopt-=ver nowrap
+
+	"autocmd BufEnter *.csv set tabstop=10 | call OpenCSV()
+	" display header line in separate window with height 1
+	"function! OpenCSV()
+	"  split
+	"  resize 1
+	"  "wincmd j
+	"endfunction
+
+
+"endif " has("autocmd")
+"===============================================================================
+
+" Plugin Settings {{{1
+"===============================================================================
+
+" Misc {{{2
+"-------------------------------------------------------------------------------
+
+" remind file abbreviations
 function! l:RemindAbbreviations()
 	iab r REM
 	iab m MSG
@@ -1017,95 +1182,17 @@ function! l:RemindAbbreviations()
 	iab t <C-r>=strftime("%b %d %Y")<CR>
 endfunction
 
-au FileType remind call l:RemindAbbreviations()
+augroup vimrc_remind
+	autocmd!
 
-
-au BufEnter *.gp    setf gnuplot
-
-au BufEnter *vimperatorrc setf vim
+	autocmd! FileType remind call l:RemindAbbreviations()
+augroup END
 
 
 " Haskell
 let g:haddock_browser="/usr/bin/w3m"
-au FileType haskell compiler ghc
-au FileType haskell set ts=4 sw=4
-au FileType haskell set expandtab
-
-
-" differently name slrnrc
-au BufEnter slrnrc setf slrnrc
-
-" ProVerif
-au BufEnter *.pv setf ocaml
-
-" markdown
-au BufEnter *.{md,mld,mark,markdown} set filetype=markdown
-
-au BufEnter *.qrc setf xml
-
-
-" Java
-au FileType java setlocal omnifunc=javacomplete#Complete
-"au FileType java setlocal errorformat=%A\ %#[javac]\ %f:%l:\ %m,%-Z\ %#[javac]\ %p^,%-C%.%#
-"au FileType java setlocal makeprg=ant\ -Dbuild.sysclasspath=ignore\ -find\ 'build.xml'
-"au FileType java setlocal completefunc=javacomplete#CompleteParamsInfo
-au FileType java set makeprg=ant\ -find\ 'build.xml'
-au FileType java exe ":compiler ant"
-au FileType java set shellpipe=2>&1\ \|\ tee
-
-" do not use tabs
-au FileType java set expandtab
-
-" add separately generated java jdk tags
-au FileType java set tags+=~/.vim/tags/jdk_tags
-
-au FileType java set keywordprg=:help
-
-" enable gf/^wf for weird java path structures
-au FileType java set path=**
-au FileType java set suffixesadd=.java
-
-" add javadoc help files generated with vimdoclet
-au FileType java set runtimepath+=~/.vim/javadoc
-au FileType java set keywordprg=:help
-
-" Python
-au FileType python setlocal omnifunc=pythoncomplete#Complete
-au FileType python setlocal cinwords=if,elif,else,for,while,try,except,finally,def,class
-au FileType python setlocal expandtab
-au FileType python setlocal makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
-au FileType python setlocal errorformat=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
-
-" web completion
-au FileType css        setlocal omnifunc=csscomplete#CompleteCSS
-au FileType html       setlocal omnifunc=htmlcomplete#CompleteTags
-au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-au FileType xml        setlocal omnifunc=xmlcomplete#CompleteTags
-
-au FileType markdown   setlocal omnifunc=htmlcomplete#CompleteTags
 
 let g:ikiwiki_render_filetype = "markdown"
-au BufEnter *.mdwn set filetype=ikiwiki
-
-" csv
-au BufEnter *.csv set filetype=csv scrollbind scrollopt+=hor scrollopt-=ver nowrap
-"au BufEnter *.csv set tabstop=10 | call OpenCSV()
-" display header line in separate window with height 1
-function! OpenCSV()
-	split
-	resize 1
-	"wincmd j
-endfunction
-
-
-endif " has("autocmd")
-"===============================================================================
-
-" Plugin Settings {{{1
-"===============================================================================
-
-" Misc {{{2
-"-------------------------------------------------------------------------------
 
 " Disable modelines, use securemodelines.vim instead
 set nomodeline
@@ -1139,7 +1226,10 @@ map <S-B> <Plug>CamelCaseMotion_b
 map <S-E> <Plug>CamelCaseMotion_e
 
 " highlight operators
-autocmd! FileType c,cpp,objc,java,javascript call CSyntaxAfter()
+augroup vimrc_csyntaxafter
+	autocmd!
+	autocmd! FileType c,cpp,objc,java,javascript call CSyntaxAfter()
+augroup END
 
 " airline
 let g:airline_powerline_fonts = 1
@@ -1156,12 +1246,16 @@ let g:clang_format#style_options = {
             \ "Standard" : "C++11",
             \ "BreakBeforeBraces" : "Stroustrup"}
 
-" map to <Leader>cf in C++ code
-autocmd! FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-autocmd! FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+augroup vimrc_clang_format
+	autocmd!
 
-" needs vim-operator-user
-autocmd! FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+	" map to <Leader>cf in C++ code
+	autocmd! FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+	autocmd! FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+
+	" needs vim-operator-user
+	autocmd! FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+augroup END
 
 "-------------------------------------------------------------------------------
 
