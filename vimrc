@@ -97,7 +97,7 @@ NeoBundle 'bling/vim-airline'
 "-------------------------------------------------------------------------------
 
 " git integration
-NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-fugitive', { 'augroup' : 'fugitive' }
 NeoBundle 'tpope/vim-git'
 
 
@@ -158,6 +158,9 @@ NeoBundle 'tomtom/quickfixsigns_vim'
 
 " highlight several words in different colors simultaneously
 NeoBundle 'Mark--Karkat'
+
+" powerful file explorer
+NeoBundle 'Shougo/vimfiler.vim'
 
 
 "-------------------------------------------------------------------------------
