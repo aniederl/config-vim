@@ -846,14 +846,14 @@ nnoremap <silent> <LocalLeader>d :NERDTreeToggle<CR>
 nnoremap <silent> <LocalLeader>t :TagbarToggle<CR>
 
 " ctrlp mappings
-nnoremap <silent> <Leader>f :CtrlP<CR>
-nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
-nnoremap <silent> <Leader>T :CtrlPBufTag<CR>
-nnoremap <silent> <Leader>t :CtrlPTag<CR>
-nnoremap <silent> <Leader>F :CtrlPCurWD<CR>
-nnoremap <silent> <Leader>M :CtrlPMRUFiles<CR>
-nnoremap <silent> <Leader>m :CtrlPMixed<CR>
-nnoremap <silent> <Leader>l :CtrlPLine<CR>
+"nnoremap <silent> <Leader>f :CtrlP<CR>
+"nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
+"nnoremap <silent> <Leader>T :CtrlPBufTag<CR>
+"nnoremap <silent> <Leader>t :CtrlPTag<CR>
+"nnoremap <silent> <Leader>F :CtrlPCurWD<CR>
+"nnoremap <silent> <Leader>M :CtrlPMRUFiles<CR>
+"nnoremap <silent> <Leader>m :CtrlPMixed<CR>
+"nnoremap <silent> <Leader>l :CtrlPLine<CR>
 
 " navigate through quickfix buffer with main window following errors
 nnoremap <silent> <C-j> :cnext<CR>
@@ -1191,6 +1191,9 @@ augroup vimrc_remind
 	autocmd! FileType remind call l:RemindAbbreviations()
 augroup END
 
+" airline
+let g:airline_symbols       = get(g:, 'airline_symbols', {})
+let g:airline_symbols.space = "\ua0"
 
 " Haskell
 let g:haddock_browser="/usr/bin/w3m"
@@ -1243,11 +1246,11 @@ let g:airline_powerline_fonts = 1
 "-------------------------------------------------------------------------------
 
 let g:clang_format#style_options = {
-            \ "AccessModifierOffset" : -4,
-            \ "AllowShortIfStatementsOnASingleLine" : "true",
-            \ "AlwaysBreakTemplateDeclarations" : "true",
-            \ "Standard" : "C++11",
-            \ "BreakBeforeBraces" : "Stroustrup"}
+\ "AccessModifierOffset" : -4,
+\ "AllowShortIfStatementsOnASingleLine" : "true",
+\ "AlwaysBreakTemplateDeclarations" : "true",
+\ "Standard" : "C++11",
+\ "BreakBeforeBraces" : "Stroustrup"}
 
 augroup vimrc_clang_format
 	autocmd!
