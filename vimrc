@@ -952,6 +952,7 @@ nnoremap <silent> <Leader>o :Unite -silent -start-insert file<CR>
 nnoremap <silent> <Leader>O :Unite -silent -start-insert file_rec/async<CR>
 nnoremap <silent> <Leader>M :Unite -silent file_mru<CR>
 
+" use 'Q' or Escape for leaving unite menu
 function! s:unite_settings()
   nmap <buffer> Q     <plug>(unite_exit)
   nmap <buffer> <esc> <plug>(unite_exit)
@@ -963,12 +964,67 @@ augroup vimrc_unite
   autocmd FileType unite call s:unite_settings()
 augroup END
 
+" use space as unite prefix
 nnoremap [unite] <Nop>
 nmap     <Space> [unite]
 
 " map <C-r> [unite];
 
-nnoremap <silent> [unite]; :<C-u>Unite -buffer-name=history history/command command<CR>
+
+" general fuzzy file search
+nnoremap <silent> [unite]<Space> :<C-u>Unite -buffer-name=files buffer file_mru bookmark file_rec/async<CR>
+
+" registers
+nnoremap <silent> [unite]r       :<C-u>Unite -buffer-name=register register<CR>
+
+" buffer and mru
+nnoremap <silent> [unite]u       :<C-u>Unite -buffer-name=buffers buffer file_mru<CR>
+
+" yank history
+nnoremap <silent> [unite]y       :<C-u>Unite -buffer-name=yanks history/yank<CR>
+
+" outline
+nnoremap <silent> [unite]o       :<C-u>Unite -buffer-name=outline -vertical outline<CR>
+
+" sessions
+nnoremap <silent> [unite]p       :<C-u>Unite -buffer-name=sessions session<CR>
+
+" sources
+nnoremap <silent> [unite]a       :<C-u>Unite -buffer-name=sources source<CR>
+
+" snippets
+nnoremap <silent> [unite]s       :<C-u>Unite -buffer-name=snippets snippet<CR>
+
+" :lcd
+nnoremap <silent> [unite]d       :<C-u>Unite -buffer-name=change-cwd -default-action=lcd directory_mru<CR>
+
+" files
+nnoremap <silent> [unite]f       :<C-u>Unite -buffer-name=files file_rec/async file/new<CR>
+
+" grep from cwd
+nnoremap <silent> [unite]g       :<C-u>Unite -buffer-name=grep grep:.<CR>
+
+" help
+nnoremap <silent> [unite]h       :<C-u>Unite -buffer-name=help help<CR>
+
+" line with word under cursor
+nnoremap <silent> [unite]l       :<C-u>UniteWithCursorWord -buffer-name=search_file line<CR>
+
+" mru
+nnoremap <silent> [unite]m       :<C-u>Unite -buffer-name=mru file_mru<CR>
+
+" find
+nnoremap <silent> [unite]n       :<C-u>Unite -buffer-name=find find:.<CR>
+
+" commands
+nnoremap <silent> [unite]c       :<C-u>Unite -buffer-name=commands command<CR>
+
+" bookmarks
+nnoremap <silent> [unite]b       :<C-u>Unite -buffer-name=bookmarks bookmark<CR>
+
+" command history
+nnoremap <silent> [unite];       :<C-u>Unite -buffer-name=history history/command command<CR>
+
 
 " options
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
@@ -977,7 +1033,7 @@ call unite#custom#source('file_mru,file_rec,file_rec/async,grep,locate',
             \ 'ignore_pattern', join(['\.git/', 'tmp/', 'bundle/'], '\|'))
 
 let g:unite_source_history_yank_enable = 1
-let g:unite_enable_start_insert        = 0
+let g:unite_enable_start_insert        = 1
 let g:unite_enable_short_source_mes    = 0
 let g:unite_force_overwrite_statusline = 0
 let g:unite_prompt         = '>>> '
