@@ -21,11 +21,6 @@ let maplocalleader = '\\'
 " tasklist.vim shortcut
 map <Leader>u <Plug>TaskList
 
-" NerdCommenter
-let g:NERDCustomDelimiters = {
-    \ 'octave': { 'left': '%', 'leftAlt': '#' },
-\}
-
 "===============================================================================
 
 
@@ -784,16 +779,39 @@ command! -nargs=0 UpdateTags call UpdateTags()
 " Keyboard Shortcuts {{{1
 "===============================================================================
 
-" CreateMaps from NERD_commenter.vim
-function! s:CreateMaps(target, combo)
-	if !hasmapto(a:target, 'n')
-		exec 'nmap ' . a:combo . ' ' . a:target
-	endif
+" Fugitive {{{2
+"-------------------------------------------------------------------------------
 
-	if !hasmapto(a:target, 'v')
-		exec 'vmap ' . a:combo . ' ' . a:target
-	endif
-endfunction
+nnoremap <Leader>gn  :Unite output:echo\ system("git\ init")<CR>
+nnoremap <Leader>gs  :Gstatus<CR>
+nnoremap <Leader>gw  :Gwrite<CR>
+nnoremap <Leader>go  :Gread<CR>
+nnoremap <Leader>gR  :Gremove<CR>
+nnoremap <Leader>gm  :Gmove<CR>
+nnoremap <Leader>gc  :Gcommit<CR>
+nnoremap <Leader>gd  :Gdiff<CR>
+nnoremap <Leader>gp  :Git! push<CR>
+nnoremap <Leader>gP  :Git! pull<CR>
+nnoremap <Leader>gi  :Git!<Space>
+nnoremap <Leader>ge  :Gedit<CR>
+nnoremap <Leader>gE  :Gedit<Space>
+nnoremap <Leader>gl  :exe "silent Glog <Bar> Unite -no-quit quickfix"<CR>:redraw!<CR>
+nnoremap <Leader>gL  :exe "silent Glog -- <Bar> Unite -no-quit quickfix"<CR>:redraw!<CR>
+nnoremap <Leader>gt  :!tig<CR>:redraw!<CR>
+nnoremap <Leader>gg  :exe 'silent Ggrep -i '.input("Pattern: ").'<Bar>Unite -no-quit quickfix'<CR>
+nnoremap <Leader>ggm :exe 'silent Glog --grep='.input("Pattern: ").'<Bar>Unite -no-quit quickfix'<CR>
+nnoremap <Leader>ggt :exe 'silent Glog -S='.input("Pattern: ").'<Bar>Unite -no-quit quickfix'<CR>
+nnoremap <Leader>ggc :silent! Ggrep -i<Space>
+
+" diff mode
+nnoremap <Leader>du :diffupdate<CR>
+
+if !exists(":Gdiffoff")
+	command Gdiffoff diffoff | q | Gedit
+endif
+nnoremap <Leader>dq :Gdiffoff<CR>
+
+" }}}2
 
 " navigate tabs like vimperator
 noremap <silent> <C-n> :tabnext<CR>
@@ -1170,8 +1188,6 @@ let g:secure_modelines_modelines = 15
 " misc plugins
 "let g:tex_flavor = 'latex'
 let g:showmarks_enable = 0
-let NERDShutUp = 1
-let g:NERDCreateDefaultMappings = 0
 
 " sessionman
 " nnoremap <Leader>ss  :wa<CR>:SessionSave<CR>
