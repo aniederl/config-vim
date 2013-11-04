@@ -30,6 +30,14 @@ map <Leader>u <Plug>TaskList
 " Setup {{{2
 "-------------------------------------------------------------------------------
 
+" auto install neobundle
+if !filereadable(expand($HOME.'/.vim/bundle/neobundle/README.md'))
+  echo "Installing NeoBundle..."
+  echo ""
+  silent !mkdir -p $HOME/.vim/bundle
+  silent !git clone https://github.com/Shougo/neobundle.vim $HOME/.vim/bundle/neobundle
+endif
+
 filetype off
 
 if has('vim_starting')
