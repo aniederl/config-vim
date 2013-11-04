@@ -810,6 +810,103 @@ command! -nargs=0 UpdateTags call UpdateTags()
 " Keyboard Shortcuts {{{1
 "===============================================================================
 
+" General {{{2
+"-------------------------------------------------------------------------------
+
+" tabs
+nnoremap te :tabe<Space>
+nnoremap td :tab drop
+nnoremap ts :tab split<CR>
+
+" relative tab nav
+nnoremap <silent> <C-h> :tabprevious<CR>
+nnoremap <silent> <C-l> :tabnext<CR>
+
+" relative tab move
+nnoremap <silent> <A-Left>  :execute 'silent! tabmove ' . (tabpagenr() - 2)<CR>
+nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . (tabpagenr())<CR>
+
+" custom tab close
+function! CloseTab()
+  if winnr("$") == 1  && tabpagenr() > 1 && tabpagenr() < tabpagenr("$")
+    tabclose | tabprev
+  else
+    quit
+  endif
+endfunction
+nmap <silent> Q :call CloseTab()<CR>
+
+
+" navigate through quickfix buffer with main window following errors
+nnoremap <silent> <C-j> :cnext<CR>
+nnoremap <silent> <C-k> :cprevious<CR>
+
+
+" toggle line numbers
+nnoremap <F7> :set number!<CR>
+
+" toggle list mode
+nnoremap <F8> :set list!<CR>
+
+" pastetoogle key, enter paste mode for disabling autoindentation when
+" pasting something into vim
+nnoremap <silent> <Leader>p :set invpaste<CR>
+
+" remove highlighting from previous search
+nnoremap <silent> <Leader>v :nohlsearch<CR>
+
+" build buffer and show errors
+nnoremap <LocalLeader>m :call BuildProject()<CR>
+
+" update tags and types file
+" nnoremap <Leader>u :UpdateTypesFile!<CR>
+
+" toggle quickfix window using Vim Tip 1008
+let g:jah_Quickfix_Win_Height = 10
+nnoremap <silent> <LocalLeader>ff :QFix<CR>
+
+nnoremap <silent> <LocalLeader>fn :cnext<CR>
+nnoremap <silent> <LocalLeader>fp :cprevious<CR>
+
+" toggle taglist window
+"nnoremap <silent> <LocalLeader>t :TlistToggle<CR>
+
+" toggle tagbar window
+nnoremap <silent> <LocalLeader>t :TagbarToggle<CR>
+
+" ctrlp mappings
+"nnoremap <silent> <Leader>f :CtrlP<CR>
+"nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
+"nnoremap <silent> <Leader>T :CtrlPBufTag<CR>
+"nnoremap <silent> <Leader>t :CtrlPTag<CR>
+"nnoremap <silent> <Leader>F :CtrlPCurWD<CR>
+"nnoremap <silent> <Leader>M :CtrlPMRUFiles<CR>
+"nnoremap <silent> <Leader>m :CtrlPMixed<CR>
+"nnoremap <silent> <Leader>l :CtrlPLine<CR>
+
+"-------------------------------------------------------------------------------
+
+" Command-line mode {{{2
+"-------------------------------------------------------------------------------
+
+" Bash like keys for the command line.
+cnoremap <c-a> <home>
+cnoremap <c-e> <end>
+
+" Ctrl-[hl]: Move left/right by word
+cnoremap <c-h> <s-left>
+cnoremap <c-l> <s-right>
+
+" Ctrl-Space: Show history
+cnoremap <c-@> <c-f>
+
+cnoremap <c-j> <down>
+cnoremap <c-k> <up>
+cnoremap <c-f> <left>
+cnoremap <c-g> <right>
+
+"-------------------------------------------------------------------------------
+
 " Fugitive {{{2
 "-------------------------------------------------------------------------------
 
@@ -843,7 +940,6 @@ endif
 nnoremap <Leader>dq :Gdiffoff<CR>
 
 " }}}2
-
 " Unite {{{2
 "-------------------------------------------------------------------------------
 
@@ -906,78 +1002,6 @@ let g:junkfile#directory=expand($HOME."/.vim/tmp/junk")
 
 
 " }}}2
-
-" navigate tabs like vimperator
-noremap <silent> <C-n> :tabnext<CR>
-noremap <silent> <C-p> :tabprev<CR>
-
-" toggle line numbers
-nnoremap <F7> :set number!<CR>
-
-" toggle list mode
-nnoremap <F8> :set list!<CR>
-
-" pastetoogle key, enter paste mode for disabling autoindentation when
-" pasting something into vim
-nnoremap <silent> <Leader>p :set invpaste<CR>
-
-" remove highlighting from previous search
-nnoremap <silent> <Leader>v :nohlsearch<CR>
-
-" build buffer and show errors
-nnoremap <LocalLeader>m :call BuildProject()<CR>
-
-" update tags and types file
-" nnoremap <Leader>u :UpdateTypesFile!<CR>
-
-" toggle quickfix window using Vim Tip 1008
-let g:jah_Quickfix_Win_Height = 10
-nnoremap <silent> <LocalLeader>ff :QFix<CR>
-
-nnoremap <silent> <LocalLeader>fn :cnext<CR>
-nnoremap <silent> <LocalLeader>fp :cprevious<CR>
-
-" toggle taglist window
-"nnoremap <silent> <LocalLeader>t :TlistToggle<CR>
-
-" toggle tagbar window
-nnoremap <silent> <LocalLeader>t :TagbarToggle<CR>
-
-" ctrlp mappings
-"nnoremap <silent> <Leader>f :CtrlP<CR>
-"nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
-"nnoremap <silent> <Leader>T :CtrlPBufTag<CR>
-"nnoremap <silent> <Leader>t :CtrlPTag<CR>
-"nnoremap <silent> <Leader>F :CtrlPCurWD<CR>
-"nnoremap <silent> <Leader>M :CtrlPMRUFiles<CR>
-"nnoremap <silent> <Leader>m :CtrlPMixed<CR>
-"nnoremap <silent> <Leader>l :CtrlPLine<CR>
-
-" navigate through quickfix buffer with main window following errors
-nnoremap <silent> <C-j> :cnext<CR>
-nnoremap <silent> <C-k> :cprevious<CR>
-
-
-" relative tab nav
-nnoremap <silent> <C-h> :tabprevious<CR>
-nnoremap <silent> <C-l> :tabnext<CR>
-
-" relative tab move
-nnoremap <silent> <A-Left>  :execute 'silent! tabmove ' . (tabpagenr() - 2)<CR>
-nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . (tabpagenr())<CR>
-
-function! CloseTab()
-  if winnr("$") == 1  && tabpagenr() > 1 && tabpagenr() < tabpagenr("$")
-    tabclose | tabprev
-  else
-    quit
-  endif
-endfunction
-nmap <silent> Q :call CloseTab()<CR>
-
-nnoremap te :tabe<Space>
-nnoremap td :tab drop
-nnoremap ts :tab split<CR>
 
 
 "===============================================================================
