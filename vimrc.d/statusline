@@ -1,0 +1,62 @@
+scriptencoding utf-8
+" vim: ft=vim
+" Filename:      /etc/vim/vimrc
+" Purpose:       setup file for the VIM editor
+" Author:        (c) Andreas Niederl <rico32@gmx.net>
+" License:       This file is licensed under the GPL v2.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" custom statusline format
+set statusline=
+
+" show buffer number first with width always 3
+" %-0{minwid}.{maxwid}{item}
+set statusline+=%-3.3n\      " trailing whitespace
+
+" truncate at start
+set statusline+=%<
+
+" filename
+set statusline+=%f\          " trailing whitespace
+
+" status flags
+set statusline+=%h%m%r
+
+" show filetype
+set statusline+=%y
+
+" fileformat
+set statusline+=\%{(&fileformat!='unix'?'['.&fileformat.']':'')}
+
+" file encoding
+function! StatusLineFileEncoding()
+  let default='utf-8'
+  let status=''
+  let encoding=''
+  if (&fenc != '') && (&fenc != default)
+  encoding=&fenc
+elseif (&enc != '') && (&enc != default)
+encoding=&enc
+  endif
+  if (encoding != '')
+    status = '[' . encoding . ']'
+  endif
+  return status
+endfunction
+set statusline+=\%{StatusLineFileEncoding()}
+
+" show fugitive info
+set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
+
+" separation point; following fields are right aligned
+set statusline+=%=
+
+" show byte value under cursor in hex
+set statusline+=0x%-8B\ \  " trailing whitespace
+
+" show line, column and virtual column number
+set statusline+=%-14.(%l,%c%V%)
+
+" position in file
+set statusline+=%P
+

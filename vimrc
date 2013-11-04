@@ -469,6 +469,7 @@ endif
 
 " Basic Settings {{{1
 "===============================================================================
+
 " we use vim, not some ancient vi
 set nocompatible
 
@@ -493,6 +494,81 @@ set fileencoding=utf-8
 " %      restore buffer list if vim is not started with a filename argument
 " n...   name of the viminfo file
 set viminfo='30,\"50,%,n~/.viminfo
+
+" General {{{1
+"===============================================================================
+" write changes on buffer switch or :make
+set autowrite
+
+" read a file unasked when unchanged in vim but changed outside
+set autoread
+
+" show matching parenthesises
+set showmatch
+
+" do not flicker around
+set novisualbell
+
+" context for scrolling
+set scrolloff=3
+
+" backspace over autoindent, line breaks and start of insert mode
+set backspace=indent,eol,start
+
+" always show line number and names of matching files when grepping
+set grepprg=grep\ -nH\ $*
+
+" use backups
+set nobackup
+set writebackup
+set backupdir=~/.vim/.backup//,.
+
+" temporary files
+set directory=~/.vim/.tmp//,.
+
+" Only insert the longest common text of the matches.  If
+" the menu is displayed you can use CTRL-L to add more
+" characters.  Whether case is ignored depends on the kind
+" of completion.  For buffer text the 'ignorecase' option is
+" used.
+set completeopt+=longest
+
+" Use the popup menu also when there is only one match.
+" Useful when there is additional information about the
+" match, e.g., what file it comes from.
+set completeopt+=menuone
+
+" switch to tab with open file or open new tab (quickfix)
+set switchbuf=usetab,newtab
+
+" allow putting unwritten buffers into background
+set hidden
+
+" avoid hit-enter prompts
+set shortmess+=aAI
+
+" console dialogs instead of popups
+set guioptions+=c
+
+" report all line changes
+set report=0
+
+" extend command history
+set history=1000
+
+" show tab number, filename and modified flag in tab label
+set guitablabel=%N:\ %t\ %M
+
+" allow pasting as-is using X copy buffer
+set mouse=a
+
+"===============================================================================
+
+" mode is already shown by powerline/airline
+set noshowmode
+
+" show command in last line
+set showcmd
 
 
 " spell checking {{{2
@@ -519,61 +595,7 @@ imap <C-l> <Esc>[s1z=gi
 " always show status line
 set laststatus=2
 
-
-" " custom statusline format
-" set statusline=
-"
-" " show buffer number first with width always 3
-" " %-0{minwid}.{maxwid}{item}
-" set statusline+=%-3.3n\      " trailing whitespace
-"
-" " truncate at start
-" set statusline+=%<
-"
-" " filename
-" set statusline+=%f\          " trailing whitespace
-"
-" " status flags
-" set statusline+=%h%m%r
-"
-" " show filetype
-" set statusline+=%y
-"
-" " fileformat
-" set statusline+=\%{(&fileformat!='unix'?'['.&fileformat.']':'')}
-"
-" " file encoding
-" function! StatusLineFileEncoding()
-"   let default='utf-8'
-"   let status=''
-"   let encoding=''
-"   if (&fenc != '') && (&fenc != default)
-"   encoding=&fenc
-" elseif (&enc != '') && (&enc != default)
-" encoding=&enc
-"   endif
-"   if (encoding != '')
-"     status = '[' . encoding . ']'
-"   endif
-"   return status
-" endfunction
-" set statusline+=\%{StatusLineFileEncoding()}
-"
-" " show fugitive info
-" set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
-"
-" " separation point; following fields are right aligned
-" set statusline+=%=
-"
-" " show byte value under cursor in hex
-" set statusline+=0x%-8B\ \  " trailing whitespace
-"
-" " show line, column and virtual column number
-" set statusline+=%-14.(%l,%c%V%)
-"
-" " position in file
-" set statusline+=%P
-"
+" source $HOME/.vim/vimrc.d/statusline
 
 "-------------------------------------------------------------------------------
 "===============================================================================
@@ -611,6 +633,7 @@ set copyindent
 " use :set list! to toggle
 set listchars=tab:»-,trail:·
 set list
+set showbreak=↪
 
 " Format options (with Vim help text) {{{2
 "-------------------------------------------------------------------------------
@@ -952,7 +975,7 @@ function! CloseTab()
 endfunction
 nmap <silent> Q :call CloseTab()<CR>
 
-nnoremap te :tabe
+nnoremap te :tabe<Space>
 nnoremap td :tab drop
 nnoremap ts :tab split<CR>
 
@@ -1034,77 +1057,6 @@ endfunc
 
 nnoremap <C-n> :call RelativeNumberToggle()<CR>
 
-" Misc {{{1
-"===============================================================================
-" write changes on buffer switch or :make
-set autowrite
-
-" read a file unasked when unchanged in vim but changed outside
-set autoread
-
-" Show the current mode
-set showmode
-
-" show matching parenthesises
-set showmatch
-
-" do not flicker around
-set novisualbell
-
-" context for scrolling
-set scrolloff=3
-
-" backspace over autoindent, line breaks and start of insert mode
-set backspace=indent,eol,start
-
-" always show line number and names of matching files when grepping
-set grepprg=grep\ -nH\ $*
-
-" use backups
-set nobackup
-set writebackup
-set backupdir=~/.vim/.backup//,.
-
-" temporary files
-set directory=~/.vim/.tmp//,.
-
-" Only insert the longest common text of the matches.  If
-" the menu is displayed you can use CTRL-L to add more
-" characters.  Whether case is ignored depends on the kind
-" of completion.  For buffer text the 'ignorecase' option is
-" used.
-set completeopt+=longest
-
-" Use the popup menu also when there is only one match.
-" Useful when there is additional information about the
-" match, e.g., what file it comes from.
-set completeopt+=menuone
-
-" switch to tab with open file or open new tab (quickfix)
-set switchbuf=usetab,newtab
-
-" allow putting unwritten buffers into background
-set hidden
-
-" avoid hit-enter prompts
-set shortmess+=aAI
-
-" console dialogs instead of popups
-set guioptions+=c
-
-" report all line changes
-set report=0
-
-" extend command history
-set history=1000
-
-" show tab number, filename and modified flag in tab label
-set guitablabel=%N:\ %t\ %M
-
-" allow pasting as-is using X copy buffer
-set mouse=a
-
-"===============================================================================
 
 
 " autocmds {{{1
