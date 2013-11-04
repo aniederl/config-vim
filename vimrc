@@ -162,6 +162,9 @@ NeoBundle 'Mark--Karkat'
 " powerful file explorer
 NeoBundle 'Shougo/vimfiler.vim'
 
+" create junk files for scratch editing
+NeoBundle 'Shougo/junkfile.vim'
+
 
 "-------------------------------------------------------------------------------
 " General Coding {{{2
