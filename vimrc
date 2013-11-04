@@ -837,6 +837,11 @@ endfunction
 nmap <silent> Q :call CloseTab()<CR>
 
 
+" quick splits
+nnoremap _     :split<CR>
+nnoremap <bar> :vsplit<CR>
+
+
 " navigate through quickfix buffer with main window following errors
 nnoremap <silent> <C-j> :cnext<CR>
 nnoremap <silent> <C-k> :cprevious<CR>
