@@ -27,7 +27,7 @@ set guioptions-=m
 set guioptions-=T
 
 " default font
-set guifont=DejaVu\ Sans\ Mono\ 12
+set guifont=DejaVu\ Sans\ Mono\ 11
 
 " always show tabline
 set showtabline=2
