@@ -948,15 +948,31 @@ nnoremap <Leader>dq :Gdiffoff<CR>
 " Unite {{{2
 "-------------------------------------------------------------------------------
 
-nnoremap <silent> <Leader>o :Unite -silent -start-insert file<CR>
-nnoremap <silent> <Leader>O :Unite -silent -start-insert file_rec/async<CR>
-nnoremap <silent> <Leader>M :Unite -silent file_mru<CR>
+" Inside Menu {{{3
+"-------------------------------------------------------------------------------
 
-" use 'Q' or Escape for leaving unite menu
+" mappings inside unite menu
 function! s:unite_settings()
-  nmap <buffer> Q     <plug>(unite_exit)
-  nmap <buffer> <esc> <plug>(unite_exit)
-  imap <buffer> <esc> <plug>(unite_exit)
+  " use 'Q' or Escape for leaving
+  nmap <buffer> Q     <Plug>(unite_exit)
+  nmap <buffer> <Esc> <Plug>(unite_exit)
+  imap <buffer> <Esc> <Plug>(unite_exit)
+
+  " navigation
+  imap <buffer> <C-j> <Plug>(unite_insert_leave)
+  nmap <buffer> <C-j> <Plug>(unite_loop_cursor_down)
+  nmap <buffer> <C-k> <Plug>(unite_loop_cursor_up)
+
+  " line editing
+  imap <buffer> <C-w> <Plug>(unite_delete_backward_word)
+  imap <buffer> <C-u> <Plug>(unite_delete_backward_path)
+
+  " redraw menu
+  imap <buffer> <C-r> <Plug>(unite_redraw)
+  nmap <buffer> <C-r> <Plug>(unite_redraw)
+
+  " choose action
+  imap <buffer> <C-a> <Plug>(unite_choose_action)
 endfunction
 
 augroup vimrc_unite
@@ -964,9 +980,17 @@ augroup vimrc_unite
   autocmd FileType unite call s:unite_settings()
 augroup END
 
+"-------------------------------------------------------------------------------
+" Prefix {{{3
+"-------------------------------------------------------------------------------
+
 " use space as unite prefix
 nnoremap [unite] <Nop>
 nmap     <Space> [unite]
+
+"-------------------------------------------------------------------------------
+" Mappings {{{3
+"-------------------------------------------------------------------------------
 
 " map <C-r> [unite];
 
@@ -1026,8 +1050,13 @@ nnoremap <silent> [unite]b       :<C-u>Unite -buffer-name=bookmarks bookmark<CR>
 nnoremap <silent> [unite];       :<C-u>Unite -buffer-name=history history/command command<CR>
 
 
-" options
+"-------------------------------------------------------------------------------
+" Options {{{3
+"-------------------------------------------------------------------------------
+
+" use fuzzy matching
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
+
 call unite#filters#sorter_default#use(['sorter_rank'])
 call unite#custom#source('file_mru,file_rec,file_rec/async,grep,locate',
             \ 'ignore_pattern', join(['\.git/', 'tmp/', 'bundle/'], '\|'))
@@ -1059,11 +1088,12 @@ elseif executable('ack')
     let g:unite_source_grep_search_word_highlight = 1
 endif
 
-let g:junkfile#directory=expand($HOME."/.vim/tmp/junk")
+" }}}3
 
 
 " }}}2
 
+let g:junkfile#directory=expand($HOME."/.vim/tmp/junk")
 
 "===============================================================================
 
