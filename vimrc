@@ -716,7 +716,7 @@ augroup vimrc_error_highlight
 
   " highlight trailing whitespaces and whitespaces before tabs
   " \ze sets end of match for highlighting
-  autocmd BufWinEnter * match SpaceError /\s\+$\| \+\ze\t/
+  autocmd BufWinEnter * if &modifiable && &ft!='unite' | match SpaceError /\s\+$\| \+\ze\t/ | endif
 augroup END
 
 
