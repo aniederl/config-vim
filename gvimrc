@@ -8,7 +8,7 @@ scriptencoding utf-8
 
 " include gentoo specific gvimrc (with sane defaults) if available {{{1
 if filereadable(expand("$ETC_VIM/gvimrc.gentoo"))
-	source $ETC_VIM/gvimrc.gentoo
+  source $ETC_VIM/gvimrc.gentoo
 endif
 
 " Basic Settings {{{1
@@ -66,6 +66,6 @@ set cursorline
 
 " $HOME/.gvimrc.local {{{1
 if filereadable($HOME/'.gvimrc.local')
-	source $HOME/'.gvimrc.local'
+  source $HOME/'.gvimrc.local'
 endif
 

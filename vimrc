@@ -24,7 +24,7 @@ map <Leader>u <Plug>TaskList
 "===============================================================================
 
 
-" NeoBundle {{{1
+" NeoBundle Plugins {{{1
 "===============================================================================
 
 " Setup {{{2
@@ -33,13 +33,13 @@ map <Leader>u <Plug>TaskList
 filetype off
 
 if has('vim_starting')
-	set nocompatible
-	set runtimepath+=~/.vim/bundle/neobundle/
+  set nocompatible
+  set runtimepath+=~/.vim/bundle/neobundle/
 endif
 
 call neobundle#rc(expand('~/.vim/bundle/'))
 
-NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/neobundle.vim'
 
 
 "-------------------------------------------------------------------------------
@@ -62,10 +62,10 @@ NeoBundle 'Shougo/vimproc', {
 
 " use new neocomplete completion if possible
 if v:version >= 704 && has('lua')
-	let g:use_neocomplete = 1
-	NeoBundle 'Shougo/neocomplete'
+  let g:use_neocomplete = 1
+  NeoBundle 'Shougo/neocomplete'
 else
-	NeoBundle 'Shougo/neocomplcache'
+  NeoBundle 'Shougo/neocomplcache'
 endif
 
 
@@ -170,7 +170,7 @@ NeoBundle 'Shougo/junkfile.vim'
 "-------------------------------------------------------------------------------
 
 " smart tabs: tabs for indentation, spaces for alignment
-NeoBundle 'Smart-Tabs'
+"NeoBundle 'Smart-Tabs'
 
 " auto-balancing delimiters
 NeoBundle 'Raimondi/delimitMate'
@@ -472,7 +472,7 @@ set background=dark
 
 " Syntax highlighting
 if has("syntax")
-	syntax on
+  syntax on
 endif
 
 " Unicode encoding
@@ -512,60 +512,60 @@ imap <C-l> <Esc>[s1z=gi
 set laststatus=2
 
 
-" custom statusline format
-set statusline=
-
-" show buffer number first with width always 3
-" %-0{minwid}.{maxwid}{item}
-set statusline+=%-3.3n\      " trailing whitespace
-
-" truncate at start
-set statusline+=%<
-
-" filename
-set statusline+=%f\          " trailing whitespace
-
-" status flags
-set statusline+=%h%m%r
-
-" show filetype
-set statusline+=%y
-
-" fileformat
-set statusline+=\%{(&fileformat!='unix'?'['.&fileformat.']':'')}
-
-" file encoding
-function! StatusLineFileEncoding()
-  let default='utf-8'
-  let status=''
-  let encoding=''
-  if (&fenc != '') && (&fenc != default)
-    encoding=&fenc
-  elseif (&enc != '') && (&enc != default)
-    encoding=&enc
-  endif
-  if (encoding != '')
-    status = '[' . encoding . ']'
-  endif
-  return status
-endfunction
-set statusline+=\%{StatusLineFileEncoding()}
-
-" show fugitive info
-set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
-
-" separation point; following fields are right aligned
-set statusline+=%=
-
-" show byte value under cursor in hex
-set statusline+=0x%-8B\ \  " trailing whitespace
-
-" show line, column and virtual column number
-set statusline+=%-14.(%l,%c%V%)
-
-" position in file
-set statusline+=%P
-
+" " custom statusline format
+" set statusline=
+"
+" " show buffer number first with width always 3
+" " %-0{minwid}.{maxwid}{item}
+" set statusline+=%-3.3n\      " trailing whitespace
+"
+" " truncate at start
+" set statusline+=%<
+"
+" " filename
+" set statusline+=%f\          " trailing whitespace
+"
+" " status flags
+" set statusline+=%h%m%r
+"
+" " show filetype
+" set statusline+=%y
+"
+" " fileformat
+" set statusline+=\%{(&fileformat!='unix'?'['.&fileformat.']':'')}
+"
+" " file encoding
+" function! StatusLineFileEncoding()
+"   let default='utf-8'
+"   let status=''
+"   let encoding=''
+"   if (&fenc != '') && (&fenc != default)
+"   encoding=&fenc
+" elseif (&enc != '') && (&enc != default)
+" encoding=&enc
+"   endif
+"   if (encoding != '')
+"     status = '[' . encoding . ']'
+"   endif
+"   return status
+" endfunction
+" set statusline+=\%{StatusLineFileEncoding()}
+"
+" " show fugitive info
+" set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
+"
+" " separation point; following fields are right aligned
+" set statusline+=%=
+"
+" " show byte value under cursor in hex
+" set statusline+=0x%-8B\ \  " trailing whitespace
+"
+" " show line, column and virtual column number
+" set statusline+=%-14.(%l,%c%V%)
+"
+" " position in file
+" set statusline+=%P
+"
 
 "-------------------------------------------------------------------------------
 "===============================================================================
@@ -578,7 +578,7 @@ set textwidth=80
 
 " Indentation
 if has("autocmd")
-	filetype indent on
+  filetype indent on
 endif
 
 " Tab width
@@ -590,8 +590,8 @@ set shiftwidth=2
 " round indent to multiple of sw using < and >
 set shiftround
 
-" use tabs for indentation, spaces for alignment (ctab.vim)
-set noexpandtab
+" use spaces for indentation and alignment
+set expandtab
 
 " use smart indentation (i.e. respect indentation with blank lines in between)
 set smartindent
@@ -690,10 +690,10 @@ set wildignore=*.swp,*.jpg,*.png,*.xpm,*.gif
 set wildignore+=*.pdf,*.dvi,*.ps,*.aux,*.out,*.vrb,*.nav,*.toc,*.snm
 
 augroup vimrc_tex
-	autocmd!
+  autocmd!
 
-	" ignore pdflatex log files
-	autocmd FileType tex,latex,context setlocal wildignore+=*.log
+  " ignore pdflatex log files
+  autocmd FileType tex,latex,context setlocal wildignore+=*.log
 augroup END
 
 "===============================================================================
@@ -704,11 +704,11 @@ augroup END
 highlight SpaceError term=standout cterm=bold ctermbg=red ctermfg=white gui=bold guibg=red guifg=white
 
 augroup vimrc_error_highlight
-	autocmd!
+  autocmd!
 
-	" highlight trailing whitespaces and whitespaces before tabs
-	" \ze sets end of match for highlighting
-	autocmd BufWinEnter * match SpaceError /\s\+$\| \+\ze\t/
+  " highlight trailing whitespaces and whitespaces before tabs
+  " \ze sets end of match for highlighting
+  autocmd BufWinEnter * match SpaceError /\s\+$\| \+\ze\t/
 augroup END
 
 
@@ -727,50 +727,50 @@ function! QFixToggle(forced)
 endfunction
 
 function! QFixLeave()
-	if exists("g:qfix_win") && expand("<abuf>") == g:qfix_win
-		unlet! g:qfix_win
-	endif
+  if exists("g:qfix_win") && expand("<abuf>") == g:qfix_win
+    unlet! g:qfix_win
+  endif
 endfunction
 
 " used to track the quickfix window
 augroup QFixToggle
-	autocmd!
-	autocmd BufWinEnter quickfix let g:qfix_win = bufnr("$")
-	autocmd BufWinLeave * call QFixLeave()
-	autocmd TabLeave * call QFixLeave()
+  autocmd!
+  autocmd BufWinEnter quickfix let g:qfix_win = bufnr("$")
+  autocmd BufWinLeave * call QFixLeave()
+  autocmd TabLeave * call QFixLeave()
 augroup END
 "===============================================================================
 
 " Functions {{{1
 "===============================================================================
 function! BuildProject()
-	silent make
-	echohl StatusLine | echo "Build Complete" | echohl None
-	cwindow
+  silent make
+  echohl StatusLine | echo "Build Complete" | echohl None
+  cwindow
 endfunction
 
 let g:CtagsExcludes = [ '.git', '.hg', '.svn' ]
 
 function! UpdateTags()
-	let ctags_args = ''
+  let ctags_args = ''
 
-	let ctags_args .= ' --recurse'
+  let ctags_args .= ' --recurse'
 
-	if exists('g:CtagsExcludes')
-		for exclude in g:CtagsExcludes
-			let ctags_args .= ' --exclude=' . exclude
-		endfor
-	endif
+  if exists('g:CtagsExcludes')
+    for exclude in g:CtagsExcludes
+      let ctags_args .= ' --exclude=' . exclude
+    endfor
+  endif
 
-	let ctags_args .= ' --c-kinds=+p'
-	let ctags_args .= ' --c++-kinds=+p'
+  let ctags_args .= ' --c-kinds=+p'
+  let ctags_args .= ' --c++-kinds=+p'
 
-	let ctags_args .= ' --fields=+iaS'
-	let ctags_args .= ' --extra=+q'
+  let ctags_args .= ' --fields=+iaS'
+  let ctags_args .= ' --extra=+q'
 
-	execute ":!ctags " . ctags_args
+  execute ":!ctags " . ctags_args
 
-	echohl StatusLine | echo "Tags File Updated" | echohl None
+  echohl StatusLine | echo "Tags File Updated" | echohl None
 endfunction
 command! -nargs=0 UpdateTags call UpdateTags()
 
@@ -807,7 +807,7 @@ nnoremap <Leader>ggc :silent! Ggrep -i<Space>
 nnoremap <Leader>du :diffupdate<CR>
 
 if !exists(":Gdiffoff")
-	command Gdiffoff diffoff | q | Gedit
+  command Gdiffoff diffoff | q | Gedit
 endif
 nnoremap <Leader>dq :Gdiffoff<CR>
 
@@ -873,11 +873,11 @@ nnoremap <silent> <A-Left>  :execute 'silent! tabmove ' . (tabpagenr() - 2)<CR>
 nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . (tabpagenr())<CR>
 
 function! CloseTab()
-	if winnr("$") == 1  && tabpagenr() > 1 && tabpagenr() < tabpagenr("$")
-		tabclose | tabprev
-	else
-		quit
-	endif
+  if winnr("$") == 1  && tabpagenr() > 1 && tabpagenr() < tabpagenr("$")
+    tabclose | tabprev
+  else
+    quit
+  endif
 endfunction
 nmap <silent> Q :call CloseTab()<CR>
 
@@ -908,7 +908,7 @@ let java_allow_cpp_keywords  = 1
 
 " activate matchit % matching
 if has("eval")
-	runtime! macros/matchit.vim
+  runtime! macros/matchit.vim
 endif
 
 " ignore VCS
@@ -942,23 +942,23 @@ set tags=./tags;$HOME,tags
 set relativenumber
 
 augroup vimrc_relativenumber
-	autocmd!
+  autocmd!
 
-	" only show relative numbers when window is focused
-	autocmd FocusLost   * :set number
-	autocmd FocusGained * :set relativenumber
+  " only show relative numbers when window is focused
+  autocmd FocusLost   * :set number
+  autocmd FocusGained * :set relativenumber
 
-	" do not show relative numbers in insert mode
-	autocmd InsertEnter * :set number
-	autocmd InsertLeave * :set relativenumber
+  " do not show relative numbers in insert mode
+  autocmd InsertEnter * :set number
+  autocmd InsertLeave * :set relativenumber
 augroup END
 
 function! RelativeNumberToggle()
-	if (&relativenumber == 0)
-		set relativenumber
-	else
-		set number
-	endif
+  if (&relativenumber == 0)
+    set relativenumber
+  else
+    set number
+  endif
 endfunc
 
 nnoremap <C-n> :call RelativeNumberToggle()<CR>
@@ -1041,110 +1041,112 @@ set mouse=a
 "if has("autocmd")
 
 augroup vimrc_filetypes
-	autocmd!
+  autocmd!
 
-	" spell correct commit messages
-	autocmd FileType gitcommit setlocal spell
+  " spell correct commit messages
+  autocmd FileType gitcommit setlocal spell
 
-	" xorg-server-1.8.0
-	autocmd BufEnter /etc/X11/xorg.conf.d/* setf xf86conf
+  " xorg-server-1.8.0
+  autocmd BufEnter /etc/X11/xorg.conf.d/* setf xf86conf
 
-	" Gentoo file types
-	autocmd BufEnter *.eblit setf ebuild
+  " Gentoo file types
+  autocmd BufEnter *.eblit setf ebuild
 
-	autocmd BufEnter /etc/portage/env/* setf ebuild
-	autocmd BufEnter /etc/portage/bashrc.d/* setf ebuild
+  autocmd BufEnter /etc/portage/env/* setf ebuild
+  autocmd BufEnter /etc/portage/bashrc.d/* setf ebuild
 
-	" /var/log/*
-	autocmd BufRead /var/log/* setf messages
+  " /var/log/*
+  autocmd BufRead /var/log/* setf messages
 
-	" Always use tabs for indenting XML stuff
-	autocmd BufEnter *.\(xml\|xsl\) set noexpandtab
+  " Always use tabs for indenting XML stuff
+  autocmd BufEnter *.\(xml\|xsl\) set noexpandtab
 
-	autocmd BufEnter xorg.conf set foldmethod=syntax
+  autocmd BufEnter xorg.conf set foldmethod=syntax
 
-	" re-source vimrc when written
-	"autocmd BufWritePost ~/.vimrc :source ~/.vimrc
+  " re-source vimrc when written
+  "autocmd BufWritePost ~/.vimrc :source ~/.vimrc
 
-	" remind
-	autocmd BufEnter *.rem  setf remind
-	autocmd FileType remind set textwidth=0
+  " remind
+  autocmd BufEnter *.rem  setf remind
+  autocmd FileType remind set textwidth=0
 
-	autocmd BufEnter *.gp    setf gnuplot
+  autocmd BufEnter *.gp    setf gnuplot
 
-	autocmd BufEnter *vimperatorrc setf vim
-
-
-	" Haskell
-	autocmd FileType haskell compiler ghc
-	autocmd FileType haskell set ts=4 sw=4
-	autocmd FileType haskell set expandtab
+  autocmd BufEnter *vimperatorrc setf vim
 
 
-	" differently name slrnrc
-	autocmd BufEnter slrnrc setf slrnrc
-
-	" ProVerif
-	autocmd BufEnter *.pv setf ocaml
-
-	" markdown
-	autocmd BufEnter *.{md,mld,mark,markdown} set filetype=markdown
-
-	autocmd BufEnter *.qrc setf xml
+  " Haskell
+  autocmd FileType haskell compiler ghc
+  autocmd FileType haskell set ts=4 sw=4
+  autocmd FileType haskell set expandtab
 
 
-	" Java
-	autocmd FileType java setlocal omnifunc=javacomplete#Complete
-	"autocmd FileType java setlocal errorformat=%A\ %#[javac]\ %f:%l:\ %m,%-Z\ %#[javac]\ %p^,%-C%.%#
-	"autocmd FileType java setlocal makeprg=ant\ -Dbuild.sysclasspath=ignore\ -find\ 'build.xml'
-	"autocmd FileType java setlocal completefunc=javacomplete#CompleteParamsInfo
-	autocmd FileType java set makeprg=ant\ -find\ 'build.xml'
-	autocmd FileType java exe ":compiler ant"
-	autocmd FileType java set shellpipe=2>&1\ \|\ tee
+  " differently name slrnrc
+  autocmd BufEnter slrnrc setf slrnrc
 
-	" do not use tabs
-	autocmd FileType java set expandtab
+  " ProVerif
+  autocmd BufEnter *.pv setf ocaml
 
-	" add separately generated java jdk tags
-	autocmd FileType java set tags+=~/.vim/tags/jdk_tags
+  " markdown
+  autocmd BufEnter *.{md,mld,mark,markdown} set filetype=markdown
 
-	autocmd FileType java set keywordprg=:help
+  autocmd BufEnter *.qrc setf xml
 
-	" enable gf/^wf for weird java path structures
-	autocmd FileType java set path=**
-	autocmd FileType java set suffixesadd=.java
 
-	" add javadoc help files generated with vimdoclet
-	autocmd FileType java set runtimepath+=~/.vim/javadoc
-	autocmd FileType java set keywordprg=:help
+  " Java
+  autocmd FileType java setlocal omnifunc=javacomplete#Complete
+  "autocmd FileType java setlocal errorformat=%A\ %#[javac]\ %f:%l:\ %m,%-Z\ %#[javac]\ %p^,%-C%.%#
+  "autocmd FileType java setlocal makeprg=ant\ -Dbuild.sysclasspath=ignore\ -find\ 'build.xml'
+  "autocmd FileType java setlocal completefunc=javacomplete#CompleteParamsInfo
+  autocmd FileType java set makeprg=ant\ -find\ 'build.xml'
+  autocmd FileType java exe ":compiler ant"
+  autocmd FileType java set shellpipe=2>&1\ \|\ tee
 
-	" Python (disabled, use settings from python-mode)
-	"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-	"autocmd FileType python setlocal cinwords=if,elif,else,for,while,try,except,finally,def,class
-	"autocmd FileType python setlocal expandtab
-	"autocmd FileType python setlocal makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
-	"autocmd FileType python setlocal errorformat=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+  " do not use tabs
+  autocmd FileType java set expandtab
 
-	" web completion
-	autocmd FileType css        setlocal omnifunc=csscomplete#CompleteCSS
-	autocmd FileType html       setlocal omnifunc=htmlcomplete#CompleteTags
-	autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-	autocmd FileType xml        setlocal omnifunc=xmlcomplete#CompleteTags
+  " add separately generated java jdk tags
+  autocmd FileType java set tags+=~/.vim/tags/jdk_tags
 
-	autocmd FileType markdown   setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType java set keywordprg=:help
 
-	autocmd BufEnter *.mdwn set filetype=ikiwiki
+  " enable gf/^wf for weird java path structures
+  autocmd FileType java set path=**
+  autocmd FileType java set suffixesadd=.java
 
-	" csv
-	autocmd BufEnter *.csv set filetype=csv scrollbind scrollopt+=hor scrollopt-=ver nowrap
+  " add javadoc help files generated with vimdoclet
+  autocmd FileType java set runtimepath+=~/.vim/javadoc
+  autocmd FileType java set keywordprg=:help
 
-	"autocmd BufEnter *.csv set tabstop=10 | call OpenCSV()
-	" display header line in separate window with height 1
-	"function! OpenCSV()
-	"  split
-	"  resize 1
-	"  "wincmd j
-	"endfunction
+  " Python (disabled, use settings from python-mode)
+  "autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+  "autocmd FileType python setlocal cinwords=if,elif,else,for,while,try,except,finally,def,class
+  "autocmd FileType python setlocal expandtab
+  "autocmd FileType python setlocal makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
+  "autocmd FileType python setlocal errorformat=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+
+  " web completion
+  autocmd FileType css        setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd FileType html       setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType xml        setlocal omnifunc=xmlcomplete#CompleteTags
+
+  autocmd FileType markdown   setlocal omnifunc=htmlcomplete#CompleteTags
+
+  autocmd BufEnter *.mdwn set filetype=ikiwiki
+
+  " csv
+  autocmd BufEnter *.csv set filetype=csv scrollbind scrollopt+=hor scrollopt-=ver nowrap
+
+augroup END
+
+"autocmd BufEnter *.csv set tabstop=10 | call OpenCSV()
+" display header line in separate window with height 1
+"function! OpenCSV()
+"  split
+"  resize 1
+"  "wincmd j
+"endfunction
 
 
 "endif " has("autocmd")
@@ -1158,17 +1160,17 @@ augroup vimrc_filetypes
 
 " remind file abbreviations
 function! l:RemindAbbreviations()
-	iab r REM
-	iab m MSG
-	iab pri PRIORITY
-	iab d <C-r>=strftime("%a")<CR>
-	iab t <C-r>=strftime("%b %d %Y")<CR>
+  iab r REM
+  iab m MSG
+  iab pri PRIORITY
+  iab d <C-r>=strftime("%a")<CR>
+  iab t <C-r>=strftime("%b %d %Y")<CR>
 endfunction
 
 augroup vimrc_remind
-	autocmd!
+  autocmd!
 
-	autocmd! FileType remind call l:RemindAbbreviations()
+  autocmd! FileType remind call l:RemindAbbreviations()
 augroup END
 
 " airline
@@ -1211,8 +1213,8 @@ map <S-E> <Plug>CamelCaseMotion_e
 
 " highlight operators
 augroup vimrc_csyntaxafter
-	autocmd!
-	autocmd! FileType c,cpp,objc,java,javascript call CSyntaxAfter()
+  autocmd!
+  autocmd! FileType c,cpp,objc,java,javascript call CSyntaxAfter()
 augroup END
 
 " airline
@@ -1224,21 +1226,21 @@ let g:airline_powerline_fonts = 1
 "-------------------------------------------------------------------------------
 
 let g:clang_format#style_options = {
-\ "AccessModifierOffset" : -4,
-\ "AllowShortIfStatementsOnASingleLine" : "true",
-\ "AlwaysBreakTemplateDeclarations" : "true",
-\ "Standard" : "C++11",
-\ "BreakBeforeBraces" : "Stroustrup"}
+      \ "AccessModifierOffset" : -4,
+      \ "AllowShortIfStatementsOnASingleLine" : "true",
+      \ "AlwaysBreakTemplateDeclarations" : "true",
+      \ "Standard" : "C++11",
+      \ "BreakBeforeBraces" : "Stroustrup"}
 
 augroup vimrc_clang_format
-	autocmd!
+  autocmd!
 
-	" map to <Leader>cf in C++ code
-	autocmd! FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-	autocmd! FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+  " map to <Leader>cf in C++ code
+  autocmd! FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+  autocmd! FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 
-	" needs vim-operator-user
-	autocmd! FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+  " needs vim-operator-user
+  autocmd! FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
 augroup END
 
 "-------------------------------------------------------------------------------
@@ -1247,75 +1249,75 @@ augroup END
 "-------------------------------------------------------------------------------
 
 if g:use_neocomplete
-" neocomplete {{{3
-"-------------------------------------------------------------------------------
+  " neocomplete {{{3
+  "-------------------------------------------------------------------------------
 
-	" Disable AutoComplPop.
-	let g:acp_enableAtStartup = 0
-	" Use neocomplete.
-	let g:neocomplete#enable_at_startup = 1
-	" Use smartcase.
-	let g:neocomplete#enable_smart_case = 1
-	" Set minimum syntax keyword length.
-	let g:neocomplete#sources#syntax#min_keyword_length = 3
-	let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+  " Disable AutoComplPop.
+  let g:acp_enableAtStartup = 0
+  " Use neocomplete.
+  let g:neocomplete#enable_at_startup = 1
+  " Use smartcase.
+  let g:neocomplete#enable_smart_case = 1
+  " Set minimum syntax keyword length.
+  let g:neocomplete#sources#syntax#min_keyword_length = 3
+  let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
-	" Define dictionary.
-	let g:neocomplete#sources#dictionary#dictionaries = {
-			\ 'default' : '',
-			\ 'vimshell' : $HOME.'/.vimshell_hist',
-			\ 'scheme' : $HOME.'/.gosh_completions'
-					\ }
+  " Define dictionary.
+  let g:neocomplete#sources#dictionary#dictionaries = {
+        \ 'default' : '',
+        \ 'vimshell' : $HOME.'/.vimshell_hist',
+        \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
 
-	" Define keyword.
-	if !exists('g:neocomplete#keyword_patterns')
-			let g:neocomplete#keyword_patterns = {}
-	endif
-	let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+  " Define keyword.
+  if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+  endif
+  let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
-	" Plugin key-mappings.
-	inoremap <expr><C-g>     neocomplete#undo_completion()
-	inoremap <expr><C-l>     neocomplete#complete_common_string()
+  " Plugin key-mappings.
+  inoremap <expr><C-g>     neocomplete#undo_completion()
+  inoremap <expr><C-l>     neocomplete#complete_common_string()
 
-	" Recommended key-mappings.
-	" <CR>: close popup and save indent.
-	inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-	function! s:my_cr_function()
-		return neocomplete#smart_close_popup() . "\<CR>"
-		" For no inserting <CR> key.
-		"return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-	endfunction
-	" <TAB>: completion.
-	inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-	" <C-h>, <BS>: close popup and delete backword char.
-	inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-	inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-	inoremap <expr><C-y>  neocomplete#close_popup()
-	inoremap <expr><C-e>  neocomplete#cancel_popup()
+  " Recommended key-mappings.
+  " <CR>: close popup and save indent.
+  inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+  function! s:my_cr_function()
+    return neocomplete#smart_close_popup() . "\<CR>"
+    " For no inserting <CR> key.
+    "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+  endfunction
+  " <TAB>: completion.
+  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+  " <C-h>, <BS>: close popup and delete backword char.
+  inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+  inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+  inoremap <expr><C-y>  neocomplete#close_popup()
+  inoremap <expr><C-e>  neocomplete#cancel_popup()
 
-	" Enable heavy omni completion.
-	if !exists('g:neocomplete#sources#omni#input_patterns')
-		let g:neocomplete#sources#omni#input_patterns = {}
-	endif
-	"let g:neocomplete#sources#omni#input_patterns.php  = '[^. \t]->\h\w*\|\h\w*::'
-	let g:neocomplete#sources#omni#input_patterns.c    = '[^.[:digit:] *\t]\%(\.\|->\)'
-	let g:neocomplete#sources#omni#input_patterns.cpp  = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+  " Enable heavy omni completion.
+  if !exists('g:neocomplete#sources#omni#input_patterns')
+    let g:neocomplete#sources#omni#input_patterns = {}
+  endif
+  "let g:neocomplete#sources#omni#input_patterns.php  = '[^. \t]->\h\w*\|\h\w*::'
+  let g:neocomplete#sources#omni#input_patterns.c    = '[^.[:digit:] *\t]\%(\.\|->\)'
+  let g:neocomplete#sources#omni#input_patterns.cpp  = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
-	" For perlomni.vim setting.
-	" https://github.com/c9s/perlomni.vim
-	let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+  " For perlomni.vim setting.
+  " https://github.com/c9s/perlomni.vim
+  let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 else
-" neocomplcache {{{3
-"-------------------------------------------------------------------------------
-	let g:neocomplcache_enable_at_startup = 1
-	let g:neocomplcache_enable_smart_case = 1
+  " neocomplcache {{{3
+  "-------------------------------------------------------------------------------
+  let g:neocomplcache_enable_at_startup = 1
+  let g:neocomplcache_enable_smart_case = 1
 
-	let g:neocomplcache_enable_camel_case_completion = 1
-	let g:neocomplcache_enable_underbar_completion   = 1
+  let g:neocomplcache_enable_camel_case_completion = 1
+  let g:neocomplcache_enable_underbar_completion   = 1
 
-	let g:neocomplcache_auto_completion_start_length   = 3
-	let g:neocomplcache_manual_completion_start_length = 3
+  let g:neocomplcache_auto_completion_start_length   = 3
+  let g:neocomplcache_manual_completion_start_length = 3
 
 endif
 
@@ -1331,11 +1333,11 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " SuperTab like snippets behavior.
 imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
+      \ "\<Plug>(neosnippet_expand_or_jump)"
+      \: pumvisible() ? "\<C-n>" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
+      \ "\<Plug>(neosnippet_expand_or_jump)"
+      \: "\<TAB>"
 
 " For snippet_complete marker.
 if has('conceal')
@@ -1358,13 +1360,14 @@ let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
 " don't load CSApprox without gui support
 if !has('gui')
-	let g:CSApprox_verbose_level = 0
+  let g:CSApprox_verbose_level = 0
+
+  " 256 colors
+  set t_Co=256
+
+  " 256 color version
+  colorscheme fruity256
 endif
-
-" 256 colors
-set t_Co=256
-
-colorscheme fruity256
 
 " cursor line
 set cursorline
