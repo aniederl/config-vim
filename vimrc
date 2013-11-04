@@ -9,13 +9,17 @@ scriptencoding utf-8
 " Plugin Initialization Settings {{{1
 "===============================================================================
 
-" map '-' to ',' and use ',' as localleader
+" map '-' to ',' so it can be used for reverse character search with f/t/F/T
 nnoremap - ,
 
-let maplocalleader=','
+" use ',' as leader
+let mapleader = ','
+
+" use '\' as local leader
+let maplocalleader = '\\'
 
 " tasklist.vim shortcut
-map <LocalLeader>u <Plug>TaskList
+map <Leader>u <Plug>TaskList
 
 " NerdCommenter
 let g:NERDCustomDelimiters = {
@@ -791,27 +795,6 @@ function! s:CreateMaps(target, combo)
 	endif
 endfunction
 
-let g:NERDCreateMyMappings = 1
-if g:NERDCreateMyMappings
-	call s:CreateMaps('<plug>NERDCommenterComment',    '<LocalLeader>cc')
-	call s:CreateMaps('<plug>NERDCommenterToggle',     '<LocalLeader>c<space>')
-	call s:CreateMaps('<plug>NERDCommenterMinimal',    '<LocalLeader>cm')
-	call s:CreateMaps('<plug>NERDCommenterSexy',       '<LocalLeader>cs')
-	call s:CreateMaps('<plug>NERDCommenterInvert',     '<LocalLeader>ci')
-	call s:CreateMaps('<plug>NERDCommenterYank',       '<LocalLeader>cy')
-	call s:CreateMaps('<plug>NERDCommenterAlignLeft',  '<LocalLeader>cl')
-	call s:CreateMaps('<plug>NERDCommenterAlignBoth',  '<LocalLeader>cb')
-	call s:CreateMaps('<plug>NERDCommenterNest',       '<LocalLeader>cn')
-	call s:CreateMaps('<plug>NERDCommenterUncomment',  '<LocalLeader>cu')
-	call s:CreateMaps('<plug>NERDCommenterToEOL',      '<LocalLeader>c$')
-	call s:CreateMaps('<plug>NERDCommenterAppend',     '<LocalLeader>cA')
-
-	if !hasmapto('<plug>NERDCommenterAltDelims', 'n')
-		nmap <LocalLeader>ca <plug>NERDCommenterAltDelims
-	endif
-endif
-
-
 " navigate tabs like vimperator
 noremap <silent> <C-n> :tabnext<CR>
 noremap <silent> <C-p> :tabprev<CR>
@@ -827,13 +810,13 @@ nnoremap <F8> :set list!<CR>
 nnoremap <silent> <Leader>p :set invpaste<CR>
 
 " remove highlighting from previous search
-nnoremap <silent> <LocalLeader>n :nohlsearch<CR>
+nnoremap <silent> <Leader>v :nohlsearch<CR>
 
 " build buffer and show errors
 nnoremap <LocalLeader>m :call BuildProject()<CR>
 
 " update tags and types file
-nnoremap <Leader>u :UpdateTypesFile!<CR>
+" nnoremap <Leader>u :UpdateTypesFile!<CR>
 
 " toggle quickfix window using Vim Tip 1008
 let g:jah_Quickfix_Win_Height = 10
@@ -841,9 +824,6 @@ nnoremap <silent> <LocalLeader>ff :QFix<CR>
 
 nnoremap <silent> <LocalLeader>fn :cnext<CR>
 nnoremap <silent> <LocalLeader>fp :cprevious<CR>
-
-" nerdtree
-nnoremap <silent> <LocalLeader>d :NERDTreeToggle<CR>
 
 " toggle taglist window
 "nnoremap <silent> <LocalLeader>t :TlistToggle<CR>
@@ -865,25 +845,6 @@ nnoremap <silent> <LocalLeader>t :TagbarToggle<CR>
 nnoremap <silent> <C-j> :cnext<CR>
 nnoremap <silent> <C-k> :cprevious<CR>
 
-" better vmappings for surround.vim
-vmap <Leader>s <Plug>Vsurround
-vmap <Leader>S <Plug>VSurround
-
-
-" bindings for alternate.vim
-imap <LocalLeader>r  <C-O>:A<CR>
-nmap <LocalLeader>r  :A<CR>
-imap <LocalLeader>aa <C-O>:A<CR>
-nmap <LocalLeader>aa :A<CR>
-imap <LocalLeader>as <C-O>:AS<CR>
-nmap <LocalLeader>as :AS<CR>
-imap <LocalLeader>av <C-O>:AV<CR>
-nmap <LocalLeader>av :AV<CR>
-imap <LocalLeader>at <C-O>:AT<CR>
-nmap <LocalLeader>at :AT<CR>
-imap <LocalLeader>an <C-O>:AN<CR>
-nmap <LocalLeader>an :AN<CR>
-
 
 " relative tab nav
 nnoremap <silent> <C-h> :tabprevious<CR>
@@ -902,14 +863,9 @@ function! CloseTab()
 endfunction
 nmap <silent> Q :call CloseTab()<CR>
 
-nnoremap te :tabe 
-nnoremap td :tab drop 
+nnoremap te :tabe
+nnoremap td :tab drop
 nnoremap ts :tab split<CR>
-
-
-" switch ` and ' (` jumps to line and column)
-"nnoremap ' `
-"nnoremap ` '
 
 
 "===============================================================================
@@ -1218,11 +1174,11 @@ let NERDShutUp = 1
 let g:NERDCreateDefaultMappings = 0
 
 " sessionman
-nnoremap <Leader>ss  :wa<CR>:SessionSave<CR>
-nnoremap <Leader>ssa :wa<CR>:SessionSaveAs<CR>
-nnoremap <Leader>sr  :wa<CR>:SessionOpenLast<CR>
-nnoremap <Leader>so  :wa<CR>:SessionOpen<CR>
-nnoremap <Leader>sl  :SessionShowLast<CR>
+" nnoremap <Leader>ss  :wa<CR>:SessionSave<CR>
+" nnoremap <Leader>ssa :wa<CR>:SessionSaveAs<CR>
+" nnoremap <Leader>sr  :wa<CR>:SessionOpenLast<CR>
+" nnoremap <Leader>so  :wa<CR>:SessionOpen<CR>
+" nnoremap <Leader>sl  :SessionShowLast<CR>
 
 " EasyGrep
 let g:EasyGrepRecursive = 1
