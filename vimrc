@@ -203,8 +203,8 @@ NeoBundle 'benmills/vimux'
 NeoBundle 'Raimondi/delimitMate'
 
 " intelligent commenting
-"NeoBundle 'tomtom/tcomment_vim'
-NeoBundle 'tpope/vim-commentary'
+NeoBundle 'tomtom/tcomment_vim'
+"NeoBundle 'tpope/vim-commentary'
 
 " powerful syntax checker
 NeoBundle 'scrooloose/syntastic'
