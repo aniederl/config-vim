@@ -222,6 +222,9 @@ NeoBundle 'tpope/vim-endwise'
 " textobject 'a' for function/method arguments
 NeoBundle 'argtextobj.vim'
 
+" multiple cursors
+NeoBundle 'terryma/vim-multiple-cursors'
+
 
 "-------------------------------------------------------------------------------
 " General Editing {{{2
