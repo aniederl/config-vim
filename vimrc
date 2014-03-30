@@ -618,6 +618,8 @@ set noshowmode
 " show command in last line
 set showcmd
 
+" only remember current directory and open buffers in session files
+set sessionoptions=buffers,curdir
 
 " spell checking {{{2
 "-------------------------------------------------------------------------------
