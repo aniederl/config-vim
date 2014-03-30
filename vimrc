@@ -1137,8 +1137,11 @@ nnoremap <silent> [unite]O       :<C-u>Unite -buffer-name=files file_rec/async f
 
 "-------------------------------------------------------------------------------
 
+" grep for word under cursor
+nnoremap <silent> [unite]g       :<C-u>UniteWithCursorWord -buffer-name=grep grep<CR>
+
 " grep
-nnoremap <silent> [unite]g       :<C-u>Unite -buffer-name=grep grep<CR>
+nnoremap <silent> [unite]G       :<C-u>Unite -buffer-name=grep grep<CR>
 
 " find
 nnoremap <silent> [unite]n       :<C-u>Unite -buffer-name=find find<CR>
@@ -1259,7 +1262,9 @@ let g:unite_source_menu_menus.grep = {
         \                                          ⌘ \g',
     \}
 let g:unite_source_menu_menus.grep.command_candidates = [
-    \['▷ grep (ag → ack → grep)                                     ⌘ [space]g',
+    \['▷ grep word under cursor (ag → ack → grep)                   ⌘ [space]g',
+        \'UniteWithCursorWord -buffer-name=grep grep'],
+    \['▷ grep (ag → ack → grep)                                     ⌘ [space]G',
         \'Unite -buffer-name=grep grep'],
     \['▷ find                                                       ⌘ [space]n',
         \'Unite -buffer-name=find find'],
