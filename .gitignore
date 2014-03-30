@@ -1,4 +1,5 @@
 /local.vim
+/local.pre.vim
 sessions
 .netrwhist
 /xptemplate

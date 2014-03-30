@@ -6,6 +6,17 @@ scriptencoding utf-8
 " License:       This file is licensed under the GPL v2.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Local Pre-Initialization {{{1
+"===============================================================================
+
+" include local configuration
+let s:vimlocalpreconfig = $HOME . '/.vim/local.pre.vim'
+
+if filereadable(s:vimlocalpreconfig)
+  exe 'source ' . s:vimlocalpreconfig
+endif
+
+
 " Plugin Initialization Settings {{{1
 "===============================================================================
 
