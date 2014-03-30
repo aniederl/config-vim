@@ -21,6 +21,9 @@ let maplocalleader = '\'
 " tasklist.vim shortcut
 "map <LocalLeader>u <Plug>TaskList
 
+" disable default zoomwintab mappings
+let g:zoomwintab_remap = 0
+
 "===============================================================================
 
 
