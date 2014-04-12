@@ -83,6 +83,7 @@ NeoBundle 'Shougo/vimproc', {
 "-------------------------------------------------------------------------------
 
 " use new neocomplete completion if possible
+let g:use_neocomplete = 0
 if v:version >= 704 && has('lua')
   let g:use_neocomplete = 1
   NeoBundle 'Shougo/neocomplete'
