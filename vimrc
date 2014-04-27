@@ -179,6 +179,9 @@ NeoBundle 'tpope/vim-unimpaired'
 " smart casing substition, abbreviation and coercion
 NeoBundle 'tpope/vim-abolish'
 
+" heuristically set buffer options (shiftwidth, tabexpand etc.)
+NeoBundle 'tpope/vim-sleuth'
+
 " alignment
 NeoBundle 'junegunn/vim-easy-align'
 
