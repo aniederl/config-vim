@@ -1937,7 +1937,7 @@ augroup END
 "-------------------------------------------------------------------------------
 
 " remind file abbreviations
-function! l:RemindAbbreviations()
+function! s:RemindAbbreviations()
   iab r REM
   iab m MSG
   iab pri PRIORITY
@@ -1948,7 +1948,7 @@ endfunction
 augroup vimrc_remind
   autocmd!
 
-  autocmd! FileType remind call l:RemindAbbreviations()
+  autocmd! FileType remind call s:RemindAbbreviations()
 augroup END
 
 " airline
