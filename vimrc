@@ -1765,6 +1765,9 @@ set wildignore+=*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.hi
 " ignore qt moc and qrc source files
 set wildignore+=moc_*.cpp,qrc_*.cpp
 
+" python
+set wildignore+=*.pyc,*/__pycache__/*
+
 " ignore certificates
 set wildignore+=*.pem
 
