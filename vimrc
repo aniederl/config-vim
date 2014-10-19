@@ -59,10 +59,9 @@ if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle/
 endif
 
-call neobundle#rc(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
 
-NeoBundle 'Shougo/neobundle.vim'
-
+NeoBundleFetch 'Shougo/neobundle.vim'
 
 "-------------------------------------------------------------------------------
 " vimproc {{{2
@@ -516,6 +515,8 @@ NeoBundleLazy 'vimez/vim-tmux', { 'autoload' : { 'filetypes' : 'conf' } }
 "-------------------------------------------------------------------------------
 " Check and Load {{{2
 "-------------------------------------------------------------------------------
+
+call neobundle#end()
 
 " Required for Check
 filetype plugin indent on
