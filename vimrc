@@ -1859,7 +1859,7 @@ augroup vimrc_filetypes
 
 
   " Haskell
-  autocmd FileType haskell compiler ghc
+  "autocmd FileType haskell compiler ghc
   autocmd FileType haskell set ts=4 sw=4
   autocmd FileType haskell set expandtab
 
