@@ -473,6 +473,12 @@ NeoBundleLazy 'pdc.vim'
 NeoBundleLazy 'Rykka/riv.vim', { 'autoload' : { 'filetypes' : ['rst'] } }
 
 "-------------------------------------------------------------------------------
+" Hex Editing {{{2
+"-------------------------------------------------------------------------------
+
+NeoBundle 'Shougo/vinarise.vim'
+
+"-------------------------------------------------------------------------------
 " Misc. Syntax {{{2
 "-------------------------------------------------------------------------------
 
@@ -1964,6 +1970,8 @@ let g:airline_symbols.space = "\ua0"
 let g:haddock_browser="/usr/bin/w3m"
 
 let g:ikiwiki_render_filetype = "markdown"
+
+let g:markdown_fenced_languages = ['diff', 'sh', 'gdb', 'python', 'perl', 'c', 'cpp']
 
 " Disable modelines, use securemodelines.vim instead
 set nomodeline
