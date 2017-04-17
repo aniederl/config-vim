@@ -343,6 +343,9 @@ NeoBundle 'autoload_cscope.vim'
 " highlight operators in C-like languages
 NeoBundle 'cSyntaxAfter'
 
+" QML
+NeoBundle 'peterhoeg/vim-qml'
+
 
 "-------------------------------------------------------------------------------
 " Java {{{2
@@ -515,7 +518,7 @@ NeoBundle 'XQuery-syntax'
 " xslt
 NeoBundle 'XSLT-syntax'
 
-NeoBundleLazy 'vimez/vim-tmux', { 'autoload' : { 'filetypes' : 'conf' } }
+NeoBundle 'tmux-plugins/vim-tmux'
 
 
 "-------------------------------------------------------------------------------
@@ -1974,7 +1977,7 @@ let g:haddock_browser="/usr/bin/w3m"
 
 let g:ikiwiki_render_filetype = "markdown"
 
-let g:markdown_fenced_languages = ['diff', 'sh', 'gdb', 'python', 'perl', 'c', 'cpp']
+let g:markdown_fenced_languages = ['diff', 'bash=sh', 'gdb', 'python', 'perl', 'c', 'cpp']
 
 " Disable modelines, use securemodelines.vim instead
 set nomodeline
