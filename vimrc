@@ -651,7 +651,7 @@ set sessionoptions=buffers,curdir
 "-------------------------------------------------------------------------------
 
 " check for spelling errors
-set spell
+set nospell
 
 " use US english as default
 set spelllang=en_us
