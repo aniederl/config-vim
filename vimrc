@@ -86,7 +86,7 @@ let g:use_neocomplete = 0
 if v:version >= 704 && has('lua')
   let g:use_neocomplete = 1
   NeoBundle 'Shougo/neocomplete'
-  NeoBundle 'RyanPineo/neocomplete-ultisnips'
+  "NeoBundle 'RyanPineo/neocomplete-ultisnips'
 else
   NeoBundle 'Shougo/neocomplcache'
 endif
@@ -106,7 +106,7 @@ NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'honza/vim-snippets'
 
 " ultisnips
-NeoBundle 'SirVer/ultisnips'
+"NeoBundle 'SirVer/ultisnips'
 
 
 "-------------------------------------------------------------------------------
