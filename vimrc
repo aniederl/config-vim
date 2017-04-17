@@ -796,6 +796,9 @@ set wildignore=*.swp,*.jpg,*.png,*.xpm,*.gif
 " tex
 set wildignore+=*.pdf,*.dvi,*.ps,*.aux,*.out,*.vrb,*.nav,*.toc,*.snm
 
+" C/C++ generated files
+set wildignore+=*.d,_cov/,*.gperf,*.gcda,*.gcno
+
 augroup vimrc_tex
   autocmd!
 
