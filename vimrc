@@ -101,17 +101,6 @@ let g:UltiSnipsEditSplit="vertical"
 
 
 "-------------------------------------------------------------------------------
-" statusline {{{2
-"-------------------------------------------------------------------------------
-
-" powerline statusline
-"Plug 'lokaltog/powerline'
-
-" airline statusline
-Plug 'bling/vim-airline'
-
-
-"-------------------------------------------------------------------------------
 " git {{{2
 "-------------------------------------------------------------------------------
 
@@ -208,6 +197,23 @@ Plug 'vim-scripts/zoomwintab.vim'
 
 " tmux integration
 Plug 'benmills/vimux'
+
+" filesystem sidebar
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+
+Plug 'majutsushi/tagbar'
+
+nnoremap <silent> <LocalLeader>t :TagbarToggle<CR>
+
+" airline statusline
+Plug 'vim-airline/vim-airline'
+
+" airline
+let g:airline_powerline_fonts = 1
+
+" airline
+let g:airline_symbols       = get(g:, 'airline_symbols', {})
+let g:airline_symbols.space = "\ua0"
 
 
 "-------------------------------------------------------------------------------
@@ -999,9 +1005,6 @@ nnoremap <silent> <Leader>q :QFix<CR>
 
 " toggle taglist window
 "nnoremap <silent> <LocalLeader>t :TlistToggle<CR>
-
-" toggle tagbar window
-nnoremap <silent> <LocalLeader>t :TagbarToggle<CR>
 
 " ctrlp mappings
 "nnoremap <silent> <Leader>f :CtrlP<CR>
@@ -1975,10 +1978,6 @@ augroup vimrc_remind
   autocmd! FileType remind call s:RemindAbbreviations()
 augroup END
 
-" airline
-let g:airline_symbols       = get(g:, 'airline_symbols', {})
-let g:airline_symbols.space = "\ua0"
-
 " Haskell
 let g:haddock_browser="/usr/bin/w3m"
 
@@ -2019,9 +2018,6 @@ augroup vimrc_csyntaxafter
   autocmd!
   autocmd! FileType c,cpp,objc,java,javascript call CSyntaxAfter()
 augroup END
-
-" airline
-let g:airline_powerline_fonts = 1
 
 "-------------------------------------------------------------------------------
 
