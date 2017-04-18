@@ -1,6 +1,6 @@
 scriptencoding utf-8
 
-" Filename:      /etc/vim/vimrc
+" Filename:      .vimrc
 " Purpose:       setup file for the VIM editor
 " Author:        (c) Andreas Niederl <rico32@gmx.net>
 " License:       This file is licensed under the GPL v2.
@@ -10,10 +10,10 @@ scriptencoding utf-8
 "===============================================================================
 
 " include local configuration
-let s:vimlocalpreconfig = $HOME . '/.vim/local.pre.vim'
+let s:vimlocalpreconfig = expand($HOME . '/.vim/local.pre.vim')
 
 if filereadable(s:vimlocalpreconfig)
-  exe 'source ' . s:vimlocalpreconfig
+  execute 'source ' . s:vimlocalpreconfig
 endif
 
 
@@ -38,43 +38,34 @@ let g:zoomwintab_remap = 0
 "===============================================================================
 
 
-" NeoBundle Plugins {{{1
+" Plugins {{{1
 "===============================================================================
 
 " Setup {{{2
 "-------------------------------------------------------------------------------
 
-" auto install neobundle
-if !filereadable(expand($HOME.'/.vim/bundle/neobundle/README.md'))
-  echo "Installing NeoBundle..."
+" auto install plug
+let s:plugpath = expand($HOME . '/.vim/autoload/plug.vim')
+if !filereadable(s:plugpath)
+  echo "Downloading Plug..."
   echo ""
-  silent !mkdir -p $HOME/.vim/bundle
-  silent !git clone https://github.com/Shougo/neobundle.vim $HOME/.vim/bundle/neobundle
+  silent execute "!curl --create-dirs -fLo " . s:plugpath . " https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 endif
 
 filetype off
 
 if has('vim_starting')
   set nocompatible
-  set runtimepath+=~/.vim/bundle/neobundle/
 endif
 
-call neobundle#begin(expand('~/.vim/bundle/'))
+call plug#begin('~/.vim/plugged')
 
-NeoBundleFetch 'Shougo/neobundle.vim'
 
 "-------------------------------------------------------------------------------
 " vimproc {{{2
 "-------------------------------------------------------------------------------
 
-NeoBundle 'Shougo/vimproc', {
-      \ 'build' : {
-      \     'windows' : 'make -f make_mingw32.mak',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
+Plug 'Shougo/vimproc', { 'do': 'make' }
 
 
 "-------------------------------------------------------------------------------
@@ -85,10 +76,10 @@ NeoBundle 'Shougo/vimproc', {
 let g:use_neocomplete = 0
 if v:version >= 704 && has('lua')
   let g:use_neocomplete = 1
-  NeoBundle 'Shougo/neocomplete'
-  "NeoBundle 'RyanPineo/neocomplete-ultisnips'
+  Plug 'Shougo/neocomplete'
+  "Plug 'RyanPineo/neocomplete-ultisnips'
 else
-  NeoBundle 'Shougo/neocomplcache'
+  Plug 'Shougo/neocomplcache'
 endif
 
 
@@ -96,17 +87,17 @@ endif
 " snippets {{{2
 "-------------------------------------------------------------------------------
 
-" snippets
-NeoBundle 'Shougo/neosnippet'
-
-" standard snippets
-NeoBundle 'Shougo/neosnippet-snippets'
+Plug 'SirVer/ultisnips'
 
 " snippet collection for different languages
-NeoBundle 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 
-" ultisnips
-"NeoBundle 'SirVer/ultisnips'
+" trigger configuration
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<C-b>"
+let g:UltiSnipsJumpBackwardTrigger="<C-z>"
+
+let g:UltiSnipsEditSplit="vertical"
 
 
 "-------------------------------------------------------------------------------
@@ -114,10 +105,10 @@ NeoBundle 'honza/vim-snippets'
 "-------------------------------------------------------------------------------
 
 " powerline statusline
-"NeoBundle 'lokaltog/powerline'
+"Plug 'lokaltog/powerline'
 
 " airline statusline
-NeoBundle 'bling/vim-airline'
+Plug 'bling/vim-airline'
 
 
 "-------------------------------------------------------------------------------
@@ -125,11 +116,11 @@ NeoBundle 'bling/vim-airline'
 "-------------------------------------------------------------------------------
 
 " git integration
-NeoBundle 'tpope/vim-fugitive', { 'augroup' : 'fugitive' }
-NeoBundle 'tpope/vim-git'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-git'
 
 " gitk for vim
-NeoBundle 'gregsexton/gitv'
+Plug 'gregsexton/gitv'
 
 
 "-------------------------------------------------------------------------------
@@ -137,18 +128,18 @@ NeoBundle 'gregsexton/gitv'
 "-------------------------------------------------------------------------------
 
 " motions for CamelCase
-NeoBundle 'camelcasemotion'
+Plug 'camelcasemotion'
 
 " extend % matching
-NeoBundle 'matchit.zip'
-NeoBundle 'ruby-matchit'
-NeoBundle 'voithos/vim-python-matchit'
+Plug 'matchit.zip'
+Plug 'ruby-matchit'
+Plug 'voithos/vim-python-matchit'
 
 " surroundings, quoting, tags, etc.
-NeoBundle 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 
 " narrow region extraction/editing
-NeoBundle 'chrisbra/NrrwRgn'
+Plug 'chrisbra/NrrwRgn'
 
 
 "-------------------------------------------------------------------------------
@@ -156,10 +147,10 @@ NeoBundle 'chrisbra/NrrwRgn'
 "-------------------------------------------------------------------------------
 
 " session manager
-NeoBundle 'sessionman.vim'
+Plug 'sessionman.vim'
 
 " session obsession
-NeoBundle 'tpope/vim-obsession'
+Plug 'tpope/vim-obsession'
 
 
 "-------------------------------------------------------------------------------
@@ -167,46 +158,56 @@ NeoBundle 'tpope/vim-obsession'
 "-------------------------------------------------------------------------------
 
 " custom operators
-NeoBundle 'kana/vim-operator-user'
+Plug 'kana/vim-operator-user'
 
 " secure modelines
-NeoBundle 'ciaranm/securemodelines'
+Plug 'ciaranm/securemodelines'
 
 " mapping pairs
-NeoBundle 'tpope/vim-unimpaired'
+Plug 'tpope/vim-unimpaired'
 
 " smart casing substition, abbreviation and coercion
-NeoBundle 'tpope/vim-abolish'
+Plug 'tpope/vim-abolish'
 
 " heuristically set buffer options (shiftwidth, tabexpand etc.)
-NeoBundle 'tpope/vim-sleuth'
+Plug 'tpope/vim-sleuth'
 
-" alignment
-NeoBundle 'junegunn/vim-easy-align'
+""
+" alignmentxt
+Plug 'junegunn/vim-easy-align'
+
+" start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" start interactive EasyAlign for a motion / text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 " colorschemes
-NeoBundle 'flazz/vim-colorschemes'
+Plug 'flazz/vim-colorschemes'
 
 " display signs at interesting lines
-NeoBundle 'tomtom/quickfixsigns_vim'
+Plug 'tomtom/quickfixsigns_vim'
 
 " highlight several words in different colors simultaneously
-NeoBundle 'Mark--Karkat'
+Plug 'Mark--Karkat'
 
 " powerful file explorer
-NeoBundle 'Shougo/vimfiler.vim'
+Plug 'Shougo/vimfiler.vim'
+
+" path navigator
+Plug 'justinmk/vim-dirvish'
 
 " create junk files for scratch editing
-NeoBundle 'Shougo/junkfile.vim'
+Plug 'Shougo/junkfile.vim'
 
 " easy window resizing
-NeoBundle 'jimsei/winresizer'
+Plug 'jimsei/winresizer'
 
 " zoom a window
-NeoBundle 'vim-scripts/zoomwintab.vim'
+Plug 'vim-scripts/zoomwintab.vim'
 
 " tmux integration
-NeoBundle 'benmills/vimux'
+Plug 'benmills/vimux'
 
 
 "-------------------------------------------------------------------------------
@@ -214,33 +215,33 @@ NeoBundle 'benmills/vimux'
 "-------------------------------------------------------------------------------
 
 " smart tabs: tabs for indentation, spaces for alignment
-"NeoBundle 'Smart-Tabs'
+"Plug 'Smart-Tabs'
 
 " auto-balancing delimiters
-NeoBundle 'Raimondi/delimitMate'
+Plug 'Raimondi/delimitMate'
 
 " intelligent commenting
-NeoBundle 'tomtom/tcomment_vim'
-"NeoBundle 'tpope/vim-commentary'
+Plug 'tomtom/tcomment_vim'
+"Plug 'tpope/vim-commentary'
 
 " powerful syntax checker
-NeoBundle 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 
 " highlight custom types and classes
-NeoBundle 'TagHighlight'
+Plug 'TagHighlight'
 
 " end structures automatically
-NeoBundle 'tpope/vim-endwise'
+Plug 'tpope/vim-endwise'
 
 " detect file indentation settings and warn on inconsistencies
-"NeoBundle 'IndentConsistencyCop'
-"NeoBundle 'IndentConsistencyCopAutoCmds'
+"Plug 'IndentConsistencyCop'
+"Plug 'IndentConsistencyCopAutoCmds'
 
 " textobject 'a' for function/method arguments
-NeoBundle 'argtextobj.vim'
+Plug 'argtextobj.vim'
 
 " multiple cursors
-NeoBundle 'terryma/vim-multiple-cursors'
+Plug 'terryma/vim-multiple-cursors'
 
 
 "-------------------------------------------------------------------------------
@@ -248,83 +249,83 @@ NeoBundle 'terryma/vim-multiple-cursors'
 "-------------------------------------------------------------------------------
 
 " ansi escape sequences
-"NeoBundle 'AnsiEsc.vim'
+"Plug 'AnsiEsc.vim'
 
 " graphical undo
-NeoBundle 'Gundo'
+Plug 'Gundo'
 
 " repeat some plugin commands with '.'
-NeoBundle 'tpope/vim-repeat'
+Plug 'tpope/vim-repeat'
 
 " table movement and alignment
-NeoBundle 'godlygeek/tabular'
+Plug 'godlygeek/tabular'
 
 " accumulate all spelling errors in the quickfix buffer
-NeoBundle 'SpellCheck'
+Plug 'SpellCheck'
 
 " insert lorem ipsum blocks
-NeoBundle 'vim-scripts/loremipsum'
+Plug 'vim-scripts/loremipsum'
 
 
 "-------------------------------------------------------------------------------
 " Unite {{{2
 "-------------------------------------------------------------------------------
 
-NeoBundle 'Shougo/unite.vim'
+Plug 'Shougo/unite.vim'
 
 " most recently used
-NeoBundle 'Shougo/neomru.vim'
+Plug 'Shougo/neomru.vim'
 
 " show an outline
-NeoBundle 'Shougo/unite-outline'
+Plug 'Shougo/unite-outline'
 
 
 " switch through colorschemes
-NeoBundle 'ujihisa/unite-colorscheme'
+Plug 'ujihisa/unite-colorscheme'
 
 " locate
-NeoBundle 'ujihisa/unite-locate'
+Plug 'ujihisa/unite-locate'
 
 " fonts
-NeoBundle 'ujihisa/unite-font'
+Plug 'ujihisa/unite-font'
 
 
 " unite everything
-NeoBundle 'sgur/unite-everything'
+Plug 'sgur/unite-everything'
 
 
 " filetypes
-NeoBundle 'osyo-manga/unite-filetype'
+Plug 'osyo-manga/unite-filetype'
 
 " folds
-NeoBundle 'osyo-manga/unite-fold'
+Plug 'osyo-manga/unite-fold'
 
 " quickfix
-NeoBundle 'osyo-manga/unite-quickfix'
+Plug 'osyo-manga/unite-quickfix'
 
 
 " help
-NeoBundle 'tsukkee/unite-help'
+Plug 'tsukkee/unite-help'
 
 " tags
-NeoBundle 'tsukkee/unite-tag'
+Plug 'tsukkee/unite-tag'
 
 
 " marks
-NeoBundle 'tacroe/unite-mark'
+Plug 'tacroe/unite-mark'
 
 " aliases
-NeoBundle 'tacroe/unite-alias'
+Plug 'tacroe/unite-alias'
 
 
 " tasklist
-NeoBundle 'junkblocker/unite-tasklist'
+Plug 'junkblocker/unite-tasklist'
 
 " history
-NeoBundle 'thinca/vim-unite-history'
+Plug 'thinca/vim-unite-history'
 
 " command line completion
-NeoBundle 'majkinetor/unite-cmdmatch'
+Plug 'majkinetor/unite-cmdmatch'
 
 
 "-------------------------------------------------------------------------------
@@ -332,35 +333,35 @@ NeoBundle 'majkinetor/unite-cmdmatch'
 "-------------------------------------------------------------------------------
 
 " clang completer for C and C++
-NeoBundle 'Rip-Rip/clang_complete'
+Plug 'Rip-Rip/clang_complete'
 
 " clang formatter
-NeoBundle 'rhysd/vim-clang-format'
+Plug 'rhysd/vim-clang-format'
 
 " cscope
-NeoBundle 'autoload_cscope.vim'
+Plug 'autoload_cscope.vim'
 
 " highlight operators in C-like languages
-NeoBundle 'cSyntaxAfter'
+Plug 'cSyntaxAfter'
 
 " QML
-NeoBundle 'peterhoeg/vim-qml'
+Plug 'peterhoeg/vim-qml'
 
 
 "-------------------------------------------------------------------------------
 " Java {{{2
 "-------------------------------------------------------------------------------
 
-" basic java completion
-NeoBundle 'javacomplete'
+" java completion
+Plug 'artur-shaik/vim-javacomplete2'
 
 
 "-------------------------------------------------------------------------------
 " Octave {{{2
 "-------------------------------------------------------------------------------
 
-NeoBundle 'octave.vim'
-NeoBundle 'octave.vim--'
+Plug 'octave.vim'
+Plug 'octave.vim--'
 
 
 "-------------------------------------------------------------------------------
@@ -368,25 +369,25 @@ NeoBundle 'octave.vim--'
 "-------------------------------------------------------------------------------
 
 " Python-mode
-NeoBundleLazy 'klen/python-mode', {'autoload': {'filetypes': ['python']}}
+Plug 'klen/python-mode', { 'for': 'python' }
 
 " virtualenv
-NeoBundleLazy 'jmcantrell/vim-virtualenv', {'autoload': {'filetypes': ['python']}}
+Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
 
 " show indent lines
-NeoBundleLazy 'Yggdroot/indentLine', {'autoload': {'filetypes': ['python']}}
+Plug 'Yggdroot/indentLine', { 'for': 'python' }
 
 " coverage reports
-NeoBundleLazy 'alfredodeza/coveragepy.vim', {'autoload': {'filetypes': ['python']}}
+Plug 'alfredodeza/coveragepy.vim', { 'for': 'python' }
 
 " sort imports
-NeoBundleLazy 'fisadev/vim-isort', {'autoload': {'filetypes': ['python']}}
+Plug 'fisadev/vim-isort', { 'for': 'python' }
 
 " conceal
-NeoBundleLazy 'ehamberg/vim-cute-python', {'autoload': {'filetypes': ['python']}}
+Plug 'ehamberg/vim-cute-python', { 'for': 'python' }
 
 " nose test runner
-NeoBundleLazy 'lambdalisue/nose.vim', {'autoload': {'filetypes': ['python']}}
+Plug 'lambdalisue/nose.vim', { 'for': 'python' }
 
 
 "-------------------------------------------------------------------------------
@@ -394,13 +395,13 @@ NeoBundleLazy 'lambdalisue/nose.vim', {'autoload': {'filetypes': ['python']}}
 "-------------------------------------------------------------------------------
 
 " perl editing in vim
-NeoBundle 'vim-perl/vim-perl'
+Plug 'vim-perl/vim-perl'
 
 " completion
-NeoBundle 'c9s/perlomni.vim'
+Plug 'c9s/perlomni.vim'
 
 " documentation
-NeoBundle 'hotchpotch/perldoc-vim'
+Plug 'hotchpotch/perldoc-vim'
 
 
 "-------------------------------------------------------------------------------
@@ -408,22 +409,22 @@ NeoBundle 'hotchpotch/perldoc-vim'
 "-------------------------------------------------------------------------------
 
 " editing Ruby with vim
-NeoBundle 'vim-ruby/vim-ruby'
+Plug 'vim-ruby/vim-ruby'
 
 " refactoring
-NeoBundle 'ecomba/vim-ruby-refactoring'
+Plug 'ecomba/vim-ruby-refactoring'
 
 " testing with cucumber
-NeoBundle 'tpope/vim-cucumber'
+Plug 'tpope/vim-cucumber'
 
 " browser Ruby documentation from inside Vim
-NeoBundle 'danchoi/ri.vim'
+Plug 'danchoi/ri.vim'
 
 " HTML-embedded ruby
-NeoBundle 'eruby.vim'
+Plug 'eruby.vim'
 
 " Haml, Sass, SCSS
-NeoBundle 'tpope/vim-haml'
+Plug 'tpope/vim-haml'
 
 
 "-------------------------------------------------------------------------------
@@ -431,20 +432,20 @@ NeoBundle 'tpope/vim-haml'
 "-------------------------------------------------------------------------------
 
 " Vim to Haskell
-NeoBundle 'dag/vim2hs'
+Plug 'dag/vim2hs'
 
 " ghc integration
-NeoBundle 'eagletmt/ghcmod-vim'
+Plug 'eagletmt/ghcmod-vim'
 
 " completion with ghc
-NeoBundle 'ujihisa/neco-ghc'
+Plug 'ujihisa/neco-ghc'
 
 
 "-------------------------------------------------------------------------------
 " Scala {{{2
 "-------------------------------------------------------------------------------
 
-NeoBundle 'derekwyatt/vim-scala'
+Plug 'derekwyatt/vim-scala'
 
 
 "-------------------------------------------------------------------------------
@@ -452,85 +453,82 @@ NeoBundle 'derekwyatt/vim-scala'
 "-------------------------------------------------------------------------------
 
 " HTML, CSS, etc.
-NeoBundle 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim'
 
 
 "-------------------------------------------------------------------------------
 " LaTeX {{{2
 "-------------------------------------------------------------------------------
 
-" LaTeXSuite
-NeoBundle 'git://git.code.sf.net/p/vim-latex/vim-latex'
+Plug 'lervag/vimtex'
 
 "-------------------------------------------------------------------------------
 " Markdown {{{2
 "-------------------------------------------------------------------------------
 
 " markdown
-NeoBundleLazy 'tpope/vim-markdown'
+Plug 'tpope/vim-markdown'
 
 " pandoc
-NeoBundleLazy 'pdc.vim'
+Plug 'pdc.vim'
 
 " reStructuredText
-NeoBundleLazy 'Rykka/riv.vim', { 'autoload' : { 'filetypes' : ['rst'] } }
+Plug 'Rykka/riv.vim', { 'for': 'rst' }
 
 "-------------------------------------------------------------------------------
 " Hex Editing {{{2
 "-------------------------------------------------------------------------------
 
-NeoBundle 'Shougo/vinarise.vim'
+Plug 'Shougo/vinarise.vim'
 
 "-------------------------------------------------------------------------------
 " Misc. Syntax {{{2
 "-------------------------------------------------------------------------------
 
 " gitolite
-NeoBundle 'tmatilai/gitolite'
+Plug 'tmatilai/gitolite.vim'
 
 " gtk
-NeoBundle 'gtk-vim-syntax'
+Plug 'gtk-vim-syntax'
 
 " lighttpd
-NeoBundle 'lighttpd-syntax'
+Plug 'lighttpd-syntax'
 
 " nagios
-NeoBundle 'nagios-syntax'
+Plug 'nagios-syntax'
 
 " Nmap
-NeoBundle 'Nmap-syntax-highlight'
+Plug 'Nmap-syntax-highlight'
 
 " ntp
-NeoBundle 'ntp.vim'
+Plug 'ntp.vim'
 
 " pam
-NeoBundle 'pam.vim'
+Plug 'pam.vim'
 
 " qmake
-NeoBundle 'qmake--syntax.vim'
+Plug 'qmake--syntax.vim'
 
 " udev
-NeoBundle 'syntaxudev.vim'
+Plug 'syntaxudev.vim'
 
 " xquery
-NeoBundle 'XQuery-syntax'
+Plug 'XQuery-syntax'
 
 " xslt
-NeoBundle 'XSLT-syntax'
+Plug 'XSLT-syntax'
 
-NeoBundle 'tmux-plugins/vim-tmux'
+Plug 'tmux-plugins/vim-tmux'
 
 
 "-------------------------------------------------------------------------------
 " Check and Load {{{2
 "-------------------------------------------------------------------------------
 
-call neobundle#end()
+call plug#end()
 
-" Required for Check
 filetype plugin indent on
 
-NeoBundleCheck
 
 "-------------------------------------------------------------------------------
 " }}}2
@@ -638,6 +636,39 @@ set guitablabel=%N:\ %t\ %M
 
 " allow pasting as-is using X copy buffer
 set mouse=a
+
+"===============================================================================
+" sensible default options (inspired by https://github.com/tpope/vim-sensible)
+set nrformats-=octal
+
+set ttimeout
+set ttimeoutlen=100
+
+" use <Leader>; to clear search highlights
+nnoremap <silent> <Leader>; :nohlsearch<CR>
+
+set sidescrolloff=5
+
+set display+=lastline
+
+" delete comment characters when joining commented lines
+if v:version > 703
+  set formatoptions+=j
+endif
+
+if has('path_extra')
+  setglobal tags-=./tags tags-=./tags; tags^=./tags;
+endif
+
+set tabpagemax=50
+
+if !empty(&viminfo)
+  set viminfo^=!
+endif
+
+set sessionoptions-=options
+
+inoremap <C-U> <C-G>u<C-U>
 
 "===============================================================================
 
@@ -1464,40 +1495,6 @@ let g:unite_source_menu_menus.text.command_candidates = [
         \'normal ga'],
     \]
 
-"-------------------------------------------------------------------------------
-" NeoBundle {{{5
-"-------------------------------------------------------------------------------
-
-nnoremap <silent>[menu]n :Unite -silent -start-insert menu:neobundle<CR>
-
-let g:unite_source_menu_menus.neobundle = {
-    \ 'description' : '      plugins administration with neobundle
-        \                 ⌘ \n',
-    \}
-let g:unite_source_menu_menus.neobundle.command_candidates = [
-    \['▷ neobundle',
-        \'Unite -buffer-name=neobundle neobundle'],
-    \['▷ neobundle log',
-        \'Unite -buffer-name=neobundle neobundle/log'],
-    \['▷ neobundle lazy',
-        \'Unite -buffer-name=neobundle neobundle/lazy'],
-    \['▷ neobundle update',
-        \'Unite -buffer-name=neobundle neobundle/update'],
-    \['▷ neobundle search',
-        \'Unite -buffer-name=neobundle neobundle/search'],
-    \['▷ neobundle install',
-        \'Unite -buffer-name=neobundle neobundle/install'],
-    \['▷ neobundle check',
-        \'Unite -no-empty output:NeoBundleCheck'],
-    \['▷ neobundle docs',
-        \'Unite output:NeoBundleDocs'],
-    \['▷ neobundle clean',
-        \'NeoBundleClean'],
-    \['▷ neobundle list',
-        \'Unite output:NeoBundleList'],
-    \['▷ neobundle direct edit',
-        \'NeoBundleExtraEdit'],
-    \]
 
 "-------------------------------------------------------------------------------
 " Git {{{5
@@ -1789,7 +1786,7 @@ iab #i #include
 iab #d #define
 
 " ctags
-set tags=./tags;$HOME,tags
+"set tags=./tags;$HOME,tags
 
 "===============================================================================
 
@@ -1912,6 +1909,16 @@ augroup vimrc_filetypes
   " add javadoc help files generated with vimdoclet
   autocmd FileType java set runtimepath+=~/.vim/javadoc
   autocmd FileType java set keywordprg=:help
+
+  " insert class imports
+  autocmd FileType java nmap <F4> <Plug>(JavaComplete-Imports-AddSmart)
+  autocmd FileType java imap <F4> <Plug>(JavaComplete-Imports-AddSmart)
+  autocmd FileType java nmap <F5> <Plug>(JavaComplete-Imports-Add)
+  autocmd FileType java imap <F5> <Plug>(JavaComplete-Imports-Add)
+  autocmd FileType java nmap <F6> <Plug>(JavaComplete-Imports-AddMissing)
+  autocmd FileType java imap <F6> <Plug>(JavaComplete-Imports-AddMissing)
+  autocmd FileType java nmap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
+  autocmd FileType java imap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
 
   " Python (disabled, use settings from python-mode)
   "autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
