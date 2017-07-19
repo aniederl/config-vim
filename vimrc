@@ -117,11 +117,11 @@ Plug 'gregsexton/gitv'
 "-------------------------------------------------------------------------------
 
 " motions for CamelCase
-Plug 'camelcasemotion'
+Plug 'vim-scripts/camelcasemotion'
 
 " extend % matching
-Plug 'matchit.zip'
-Plug 'ruby-matchit'
+Plug 'vim-scripts/matchit.zip'
+Plug 'vim-scripts/ruby-matchit'
 Plug 'voithos/vim-python-matchit'
 
 " surroundings, quoting, tags, etc.
@@ -136,7 +136,7 @@ Plug 'chrisbra/NrrwRgn'
 "-------------------------------------------------------------------------------
 
 " session manager
-Plug 'sessionman.vim'
+Plug 'vim-scripts/sessionman.vim'
 
 " session obsession
 Plug 'tpope/vim-obsession'
@@ -181,7 +181,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'tomtom/quickfixsigns_vim'
 
 " highlight several words in different colors simultaneously
-Plug 'Mark--Karkat'
+Plug 'vim-scripts/Mark--Karkat'
 
 " powerful file explorer
 Plug 'Shougo/vimfiler.vim'
@@ -285,7 +285,7 @@ nmap <silent> <LocalLeader>ft :Filetypes<CR>
 "-------------------------------------------------------------------------------
 
 " smart tabs: tabs for indentation, spaces for alignment
-"Plug 'Smart-Tabs'
+"Plug 'vim-scripts/Smart-Tabs'
 
 " auto-balancing delimiters
 Plug 'Raimondi/delimitMate'
@@ -298,17 +298,17 @@ Plug 'tomtom/tcomment_vim'
 Plug 'scrooloose/syntastic'
 
 " highlight custom types and classes
-Plug 'TagHighlight'
+Plug 'vim-scripts/TagHighlight'
 
 " end structures automatically
 Plug 'tpope/vim-endwise'
 
 " detect file indentation settings and warn on inconsistencies
-"Plug 'IndentConsistencyCop'
-"Plug 'IndentConsistencyCopAutoCmds'
+"Plug 'vim-scripts/IndentConsistencyCop'
+"Plug 'vim-scripts/IndentConsistencyCopAutoCmds'
 
 " textobject 'a' for function/method arguments
-Plug 'argtextobj.vim'
+Plug 'vim-scripts/argtextobj.vim'
 
 " multiple cursors
 Plug 'terryma/vim-multiple-cursors'
@@ -319,10 +319,10 @@ Plug 'terryma/vim-multiple-cursors'
 "-------------------------------------------------------------------------------
 
 " ansi escape sequences
-"Plug 'AnsiEsc.vim'
+"Plug 'vim-scripts/AnsiEsc.vim'
 
 " graphical undo
-Plug 'Gundo'
+Plug 'vim-scripts/Gundo'
 
 " repeat some plugin commands with '.'
 Plug 'tpope/vim-repeat'
@@ -331,7 +331,7 @@ Plug 'tpope/vim-repeat'
 Plug 'godlygeek/tabular'
 
 " accumulate all spelling errors in the quickfix buffer
-Plug 'SpellCheck'
+Plug 'vim-scripts/SpellCheck'
 
 " insert lorem ipsum blocks
 Plug 'vim-scripts/loremipsum'
@@ -409,10 +409,10 @@ Plug 'Rip-Rip/clang_complete'
 Plug 'rhysd/vim-clang-format'
 
 " cscope
-Plug 'autoload_cscope.vim'
+Plug 'vim-scripts/autoload_cscope.vim'
 
 " highlight operators in C-like languages
-Plug 'cSyntaxAfter'
+Plug 'vim-scripts/cSyntaxAfter'
 
 " QML
 Plug 'peterhoeg/vim-qml'
@@ -430,8 +430,8 @@ Plug 'artur-shaik/vim-javacomplete2'
 " Octave {{{2
 "-------------------------------------------------------------------------------
 
-Plug 'octave.vim'
-Plug 'octave.vim--'
+Plug 'vim-scripts/octave.vim'
+Plug 'vim-scripts/octave.vim--'
 
 
 "-------------------------------------------------------------------------------
@@ -540,7 +540,7 @@ Plug 'lervag/vimtex'
 Plug 'tpope/vim-markdown'
 
 " pandoc
-Plug 'pdc.vim'
+Plug 'vim-scripts/pdc.vim'
 
 " reStructuredText
 Plug 'Rykka/riv.vim', { 'for': 'rst' }
@@ -559,34 +559,34 @@ Plug 'Shougo/vinarise.vim'
 Plug 'tmatilai/gitolite.vim'
 
 " gtk
-Plug 'gtk-vim-syntax'
+Plug 'vim-scripts/gtk-vim-syntax'
 
 " lighttpd
-Plug 'lighttpd-syntax'
+Plug 'vim-scripts/lighttpd-syntax'
 
 " nagios
-Plug 'nagios-syntax'
+Plug 'vim-scripts/nagios-syntax'
 
 " Nmap
-Plug 'Nmap-syntax-highlight'
+Plug 'vim-scripts/Nmap-syntax-highlight'
 
 " ntp
-Plug 'ntp.vim'
+Plug 'vim-scripts/ntp.vim'
 
 " pam
-Plug 'pam.vim'
+Plug 'vim-scripts/pam.vim'
 
 " qmake
-Plug 'qmake--syntax.vim'
+Plug 'vim-scripts/qmake--syntax.vim'
 
 " udev
-Plug 'syntaxudev.vim'
+Plug 'vim-scripts/syntaxudev.vim'
 
 " xquery
-Plug 'XQuery-syntax'
+Plug 'vim-scripts/XQuery-syntax'
 
 " xslt
-Plug 'XSLT-syntax'
+Plug 'vim-scripts/XSLT-syntax'
 
 Plug 'tmux-plugins/vim-tmux'
 
