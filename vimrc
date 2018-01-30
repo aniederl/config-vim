@@ -883,7 +883,16 @@ set formatoptions+=l
 
 
 " Use markers to specify folds
-set foldmethod=marker
+"set foldmethod=marker
+
+" Fold based on indentation
+set foldmethod=indent
+
+" Don't close folds by default
+set foldlevel=99
+
+" Fold with space bar
+nnoremap <Space> za
 
 " Searching {{{1
 "===============================================================================
