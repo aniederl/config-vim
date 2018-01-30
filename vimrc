@@ -313,6 +313,29 @@ Plug 'vim-scripts/argtextobj.vim'
 " multiple cursors
 Plug 'terryma/vim-multiple-cursors'
 
+" better folding
+Plug 'Konfekt/FastFold'
+
+nmap zuz <Plug>(FastFoldUpdate)
+
+let g:fastfold_savehook = 1
+let g:fastfold_fold_command_suffixes = ['x', 'X', 'a', 'A', 'o', 'O', 'c', 'C']
+let g:fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
+
+let g:tex_fold_enabled = 1
+let g:vimsyn_folding = 'af'
+let g:xml_syntax_folding = 1
+let g:php_folding = 1
+let g:perl_fold = 1
+
+" fold text object
+xnoremap iz :<C-u>FastFoldUpdate<CR><ESC>:<C-u>normal! ]zv[z<CR>
+xnoremap az :<C-u>FastFoldUpdate<CR><ESC>:<C-u>normal! ]zV[z<CR>
+
+" keep editing state
+Plug 'kopischke/vim-stay'
+
+set viewoptions=cursor,folds,slash,unix
 
 "-------------------------------------------------------------------------------
 " General Editing {{{2
@@ -459,6 +482,11 @@ Plug 'ehamberg/vim-cute-python', { 'for': 'python' }
 " nose test runner
 Plug 'lambdalisue/nose.vim', { 'for': 'python' }
 
+" folding
+Plug 'tmhedberg/SimpylFold'
+
+" show docstrings for folds
+let g:SimpylFold_docstring_preview = 1
 
 "-------------------------------------------------------------------------------
 " Perl {{{2
