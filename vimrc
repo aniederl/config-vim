@@ -462,7 +462,7 @@ Plug 'vim-scripts/octave.vim--'
 "-------------------------------------------------------------------------------
 
 " Python-mode
-Plug 'klen/python-mode', { 'for': 'python' }
+"Plug 'klen/python-mode', { 'for': 'python' }
 
 " virtualenv
 Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
@@ -487,6 +487,31 @@ Plug 'tmhedberg/SimpylFold'
 
 " show docstrings for folds
 let g:SimpylFold_docstring_preview = 1
+
+" better indentation
+Plug 'vim-scripts/indentpython.vim'
+
+" auto completion
+Plug 'Valloric/YouCompleteMe'
+
+let g:ycm_autoclose_preview_window_after_completion = 1
+
+autocmd BufNewFile,BufRead *.py
+      \ map <C-]> :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" switch to virtualenv
+py3 << EOF
+import os
+import sys
+
+if "VIRTUAL_ENV" in os.environ:
+  project_base_dir = os.environ["VIRTUAL_ENV"]
+  activate_this = os.path.join(project_base_dir, "bin/activate_this.py")
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
+
+" add optional highlighting
+let python_highlight_all = 1
 
 "-------------------------------------------------------------------------------
 " Perl {{{2
