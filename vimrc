@@ -491,7 +491,7 @@ Plug 'tpope/vim-cucumber'
 Plug 'danchoi/ri.vim'
 
 " HTML-embedded ruby
-Plug 'eruby.vim'
+Plug 'vim-scripts/eruby.vim'
 
 " Haml, Sass, SCSS
 Plug 'tpope/vim-haml'
