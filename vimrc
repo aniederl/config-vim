@@ -176,6 +176,8 @@ nmap ga <Plug>(EasyAlign)
 
 " colorschemes
 Plug 'flazz/vim-colorschemes'
+Plug 'jnurmine/Zenburn'
+Plug 'altercation/vim-colors-solarized'
 
 " display signs at interesting lines
 Plug 'tomtom/quickfixsigns_vim'
@@ -203,10 +205,23 @@ Plug 'benmills/vimux'
 
 " filesystem sidebar
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
+let NERDTreeIgnore = ['\.pyc$', '\~$']
+
+map <Leader>t :NERDTreeToggle<CR>
+
 
 Plug 'majutsushi/tagbar'
 
 nnoremap <silent> <LocalLeader>t :TagbarToggle<CR>
+
+" filetype icons
+Plug 'ryanoasis/vim-devicons'
+
+" start screen
+"Plug 'mhinz/vim-startify'
 
 """
 " airline
@@ -643,6 +658,16 @@ Plug 'vim-scripts/XSLT-syntax'
 
 Plug 'tmux-plugins/vim-tmux'
 
+"-------------------------------------------------------------------------------
+" Check and Load {{{2
+"-------------------------------------------------------------------------------
+
+" include local plugin configuration
+let s:vimlocalplug = $HOME . '/.vim/localplug.vim'
+
+if filereadable(s:vimlocalplug)
+  exe 'source ' . s:vimlocalplug
+endif
 
 "-------------------------------------------------------------------------------
 " Check and Load {{{2
@@ -2348,6 +2373,9 @@ endif
 
 " cursor line
 set cursorline
+
+" make directory color more readable with dark background
+highlight Directory term=bold ctermfg=cyan guifg=cyan
 
 
 "===============================================================================
