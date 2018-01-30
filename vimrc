@@ -309,6 +309,8 @@ Plug 'Raimondi/delimitMate'
 Plug 'tomtom/tcomment_vim'
 "Plug 'tpope/vim-commentary'
 
+let g:tcommentOptions = {'whitespace': 'no'}
+
 " powerful syntax checker
 Plug 'scrooloose/syntastic'
 
@@ -511,8 +513,7 @@ Plug 'Valloric/YouCompleteMe'
 
 let g:ycm_autoclose_preview_window_after_completion = 1
 
-autocmd BufNewFile,BufRead *.py
-      \ map <C-]> :YcmCompleter GoToDefinitionElseDeclaration<CR>
+autocmd FileType python  nnoremap <buffer> <C-]> :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " switch to virtualenv
 py3 << EOF
