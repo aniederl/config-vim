@@ -1024,6 +1024,10 @@ nnoremap te :tabe<Space>
 nnoremap td :tab drop
 nnoremap ts :tab split<CR>
 
+" split directions
+set splitbelow
+set splitright
+
 " relative tab nav
 nnoremap <silent> <C-h> :tabprevious<CR>
 nnoremap <silent> <C-l> :tabnext<CR>
