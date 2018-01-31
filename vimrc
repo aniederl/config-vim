@@ -529,6 +529,14 @@ EOF
 " add optional highlighting
 let python_highlight_all = 1
 
+" rope integration
+Plug 'python-rope/ropevim'
+
+let ropevim_enable_shortcuts = 1
+let ropevim_extended_complete = 1
+
+autocmd FileType python setlocal omnifunc=RopeCompleteFunc
+
 "-------------------------------------------------------------------------------
 " Perl {{{2
 "-------------------------------------------------------------------------------
