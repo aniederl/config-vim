@@ -313,7 +313,16 @@ Plug 'Raimondi/delimitMate'
 Plug 'tomtom/tcomment_vim'
 "Plug 'tpope/vim-commentary'
 
-let g:tcommentOptions = {'whitespace': 'no'}
+let g:tcomment#options = {'whitespace': 'no'}
+
+" file alternation
+Plug 'tpope/vim-projectionist'
+
+" dispatch commands
+Plug 'tpope/vim-dispatch'
+
+" test execution
+Plug 'janko-m/vim-test'
 
 " powerful syntax checker
 Plug 'scrooloose/syntastic'
