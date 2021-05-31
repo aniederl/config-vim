@@ -344,9 +344,9 @@ Plug 'vim-scripts/argtextobj.vim'
 Plug 'terryma/vim-multiple-cursors'
 
 " better folding
-Plug 'Konfekt/FastFold'
+"Plug 'Konfekt/FastFold'
 
-nmap zuz <Plug>(FastFoldUpdate)
+"nmap zuz <Plug>(FastFoldUpdate)
 
 let g:fastfold_savehook = 1
 let g:fastfold_fold_command_suffixes = ['x', 'X', 'a', 'A', 'o', 'O', 'c', 'C']
@@ -359,13 +359,13 @@ let g:php_folding = 1
 let g:perl_fold = 1
 
 " fold text object
-xnoremap iz :<C-u>FastFoldUpdate<CR><ESC>:<C-u>normal! ]zv[z<CR>
-xnoremap az :<C-u>FastFoldUpdate<CR><ESC>:<C-u>normal! ]zV[z<CR>
+"xnoremap iz :<C-u>FastFoldUpdate<CR><ESC>:<C-u>normal! ]zv[z<CR>
+"xnoremap az :<C-u>FastFoldUpdate<CR><ESC>:<C-u>normal! ]zV[z<CR>
 
 " keep editing state
-Plug 'kopischke/vim-stay'
+"Plug 'kopischke/vim-stay'
 
-set viewoptions=cursor,folds,slash,unix
+"set viewoptions=cursor,folds,slash,unix
 
 "-------------------------------------------------------------------------------
 " General Editing {{{2
@@ -397,7 +397,7 @@ Plug 'vim-scripts/loremipsum'
 Plug 'Shougo/unite.vim'
 
 " most recently used
-Plug 'Shougo/neomru.vim'
+"Plug 'Shougo/neomru.vim'
 
 " show an outline
 Plug 'Shougo/unite-outline'
@@ -513,7 +513,7 @@ Plug 'ehamberg/vim-cute-python', { 'for': 'python' }
 Plug 'lambdalisue/nose.vim', { 'for': 'python' }
 
 " folding
-Plug 'tmhedberg/SimpylFold'
+"Plug 'tmhedberg/SimpylFold'
 
 " show docstrings for folds
 let g:SimpylFold_docstring_preview = 1
@@ -986,10 +986,10 @@ set formatoptions+=l
 "set foldmethod=marker
 
 " Fold based on indentation
-set foldmethod=indent
+"set foldmethod=indent
 
 " Don't close folds by default
-set foldlevel=99
+"set foldlevel=99
 
 " Fold with space bar
 nnoremap <Space> za
