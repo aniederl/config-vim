@@ -174,6 +174,10 @@ xmap ga <Plug>(EasyAlign)
 " start interactive EasyAlign for a motion / text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
+" interactive EasyAlign
+nmap iga <Plug>(LiveEasyAlign)
+xmap iga <Plug>(LiveEasyAlign)
+
 " colorschemes
 Plug 'flazz/vim-colorschemes'
 Plug 'jnurmine/Zenburn'
