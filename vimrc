@@ -101,6 +101,35 @@ let g:UltiSnipsEditSplit="vertical"
 
 
 "-------------------------------------------------------------------------------
+" ansible {{{2
+"-------------------------------------------------------------------------------
+
+Plug 'pearofducks/ansible-vim', { 'do': './UltiSnips/generate.sh' }
+
+" goto role under cursor
+" source: https://gist.github.com/mtyurt/3529a999af675a0aff00eb14ab1fdde3
+"let g:ansible_goto_role_paths = './roles,../_common/roles'
+
+function! FindAnsibleRoleUnderCursor()
+  if exists("g:ansible_goto_role_paths")
+    let l:role_paths = g:ansible_goto_role_paths
+  else
+    let l:role_paths = "./roles"
+  endif
+  let l:tasks_main = expand("<cfile>") . "/tasks/main.yml"
+  let l:found_role_path = findfile(l:tasks_main, l:role_paths)
+  if l:found_role_path == ""
+    echo l:tasks_main . " not found"
+  else
+    execute "edit " . fnameescape(l:found_role_path)
+  endif
+endfunction
+
+autocmd FileType yaml.ansible nnoremap <Leader>gr :call FindAnsibleRoleUnderCursor()<CR>
+autocmd FileType yaml.ansible vnoremap <Leader>gr :call FindAnsibleRoleUnderCursor()<CR>
+
+
+"-------------------------------------------------------------------------------
 " git {{{2
 "-------------------------------------------------------------------------------
 
